@@ -1,4 +1,5 @@
 #!/bin/bash
+TARGETTRIPLE=$(uname -m)-unknown-linux-gnu
 
 # immediately stop building if error occurs
 set -e
@@ -6,7 +7,7 @@ set -e
 # Make sure that you set the environmetal settings by ERASan/env/env.sh
 export TEST=$PWD
 export BINARY_DIR=$TEST/../../build/byteorder
-LIBRARY_DIR="$BUILD_DIR/rust/build/x86_64-unknown-linux-gnu/stage1/lib/rustlib/x86_64-unknown-linux-gnu/lib"
+LIBRARY_DIR="$BUILD_DIR/rust/build/$TARGETTRIPLE/stage1/lib/rustlib/$TARGETTRIPLE/lib"
 RLIBS=$(find $LIBRARY_DIR -name "*.rlib")
 cp $TEST/../total.ll $TEST
 

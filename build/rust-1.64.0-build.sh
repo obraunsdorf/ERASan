@@ -1,4 +1,5 @@
 #!/bin/bash
+TARGETTRIPLE=$(uname -m)-unknown-linux-gnu
 
 # immediately stop building if error occurs
 set -e
@@ -63,7 +64,7 @@ echo "[Build Finished]"
 
 # echo "[Setting Rust LLVM & Opt files]"
 # # only delete llvm-finished-building for making llvm build fast
-# rm build/x86_64-unknown-linux-gnu/llvm/llvm-finished-building
+# rm build/$TARGETTRIPLE/llvm/llvm-finished-building
 
 # export OPT_FILES=$WORKING_DIR/rustc-1.64.0/opt-files
 # pushd $RUST

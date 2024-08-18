@@ -1,4 +1,5 @@
 #!/bin/bash
+TARGETTRIPLE=$(uname -m)-unknown-linux-gnu
 
 # immediately stop building if error occurs
 set -e
@@ -11,7 +12,7 @@ export LLVM_DIR=$RUST/src/llvm-project/llvm/lib/Transforms/Instrumentation
 
 
 # only delete llvm-finished-building for making llvm build fast
-rm $RUST/build/x86_64-unknown-linux-gnu/llvm/llvm-finished-building
+rm $RUST/build/$TARGETTRIPLE/llvm/llvm-finished-building
 rm $LLVM_DIR/AddressSanitizer.cpp
 cp $WORKING_DIR/ERASan.cpp $LLVM_DIR
 mv $LLVM_DIR/ERASan_Rawptr.cpp $LLVM_DIR/AddressSanitizer.cpp

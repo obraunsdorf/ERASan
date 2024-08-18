@@ -1,11 +1,12 @@
 #!/bin/bash
+TARGETTRIPLE=$(uname -m)-unknown-linux-gnu
 start=$(date +%s%6N)
 
-LIBRARY_DIR="$S2HOME/build/rust/build/x86_64-unknown-linux-gnu/stage1/lib/rustlib/x86_64-unknown-linux-gnu/lib"
+LIBRARY_DIR="$S2HOME/build/rust/build/$TARGETTRIPLE/stage1/lib/rustlib/$TARGETTRIPLE/lib"
 RLIBS=$(find $LIBRARY_DIR -name "*.rlib")
 SECPLIB="$S2HOME/poc/RUSTSEC-2022-0070/target/debug/build/secp256k1-sys-c5fbf70ec555741d/out"
 
-#--release --target x86_64-unknown-linux-gnu
+#--release --target $TARGETTRIPLE
 
 # (1) Build the program and Preprocess it
 RUSTFLAGS="--emit=llvm-ir --print link-args" cargo build > ERASAN_linking_commands.txt

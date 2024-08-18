@@ -1,4 +1,5 @@
 #!/bin/bash
+TARGETTRIPLE=$(uname -m)-unknown-linux-gnu
 
 # immediately stop building if error occurs
 set -e
@@ -13,7 +14,7 @@ set -e
 
 export TEST=$PWD
 export BINARY_DIR=$TEST/../../build/rust-base64
-LIBRARY_DIR="$BUILD_DIR/rust/build/x86_64-unknown-linux-gnu/stage1/lib/rustlib/x86_64-unknown-linux-gnu/lib"
+LIBRARY_DIR="$BUILD_DIR/rust/build/$TARGETTRIPLE/stage1/lib/rustlib/$TARGETTRIPLE/lib"
 RLIBS=$(find $LIBRARY_DIR -name "*.rlib")
 DLIBRARY_DIR="$BINARY_DIR/target/release/deps"
 DRLIBS=$(find $DLIBRARY_DIR \( -name "librayon_core-b592f92742f67d6e.rlib" \))

@@ -1,4 +1,5 @@
 #!/bin/bash
+TARGETTRIPLE=$(uname -m)-unknown-linux-gnu
 
 # immediately stop building if error occurs
 set -e
@@ -11,7 +12,7 @@ cd $RUST
 
 echo "Seting for Compiler-rt in Rust Compiler"
 rm src/bootstrap/native.rs
-rm build/x86_64-unknown-linux-gnu/llvm/llvm-finished-building
+rm build/$TARGETTRIPLE/llvm/llvm-finished-building
 cp $WORKING_DIR/rustc-1.64.0/src/bootstrap/native.rs $RUST/src/bootstrap
 
 # build rust compiler
