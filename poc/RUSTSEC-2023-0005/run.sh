@@ -1,4 +1,5 @@
 #!/bin/bash
+set -e
 TARGETTRIPLE=$(uname -m)-unknown-linux-gnu
 start=$(date +%s%6N)
 
@@ -10,7 +11,7 @@ RLIBS=$(find $LIBRARY_DIR -name "*.rlib")
 RUSTFLAGS="--emit=llvm-ir --print link-args" cargo build > ERASAN_linking_commands.txt
 cp preprocess.sh ERASAN_linking_commands.txt target/debug/deps/ && cd target/debug/deps/
 FILES=$(./preprocess.sh)
-llvm-link -S $FILES -o total.ll
+/workspaces/ERASan/build/rust/build/aarch64-unknown-linux-gnu/llvm/bin/llvm-link -S $FILES -o total.ll
 mv total.ll ../../../ && cd ../../../
 echo "Build the program and Preprocess DONE!"
 
