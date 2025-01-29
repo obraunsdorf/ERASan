@@ -1,0 +1,3719 @@
+diff --git a/benchmarks/base64/test/asan/asan-base64.sh b/benchmarks/base64/test/asan/asan-base64.sh
+index 912e81c..3818bb1 100755
+--- a/benchmarks/base64/test/asan/asan-base64.sh
++++ b/benchmarks/base64/test/asan/asan-base64.sh
+@@ -1,4 +1,5 @@
+ #!/bin/bash
++TARGETTRIPLE=$(uname -m)-unknown-linux-gnu
+ 
+ # immediately stop building if error occurs
+ set -e
+@@ -13,7 +14,7 @@ set -e
+ 
+ export TEST=$PWD
+ export BINARY_DIR=$TEST/../../build/rust-base64
+-LIBRARY_DIR="$BUILD_DIR/rust/build/x86_64-unknown-linux-gnu/stage1/lib/rustlib/x86_64-unknown-linux-gnu/lib"
++LIBRARY_DIR="$BUILD_DIR/rust/build/$TARGETTRIPLE/stage1/lib/rustlib/$TARGETTRIPLE/lib"
+ RLIBS=$(find $LIBRARY_DIR -name "*.rlib")
+ DLIBRARY_DIR="$BINARY_DIR/target/release/deps"
+ DRLIBS=$(find $DLIBRARY_DIR \( -name "librayon_core-b592f92742f67d6e.rlib" \))
+diff --git a/benchmarks/base64/test/erasan-debloating/erasan-debloating-base64.sh b/benchmarks/base64/test/erasan-debloating/erasan-debloating-base64.sh
+index 6bacd0d..5f1a014 100755
+--- a/benchmarks/base64/test/erasan-debloating/erasan-debloating-base64.sh
++++ b/benchmarks/base64/test/erasan-debloating/erasan-debloating-base64.sh
+@@ -1,4 +1,5 @@
+ #!/bin/bash
++TARGETTRIPLE=$(uname -m)-unknown-linux-gnu
+ 
+ # immediately stop building if error occurs
+ set -e
+@@ -13,7 +14,7 @@ set -e
+ 
+ export TEST=$PWD
+ export BINARY_DIR=$TEST/../../build/rust-base64
+-LIBRARY_DIR="$BUILD_DIR/rust/build/x86_64-unknown-linux-gnu/stage1/lib/rustlib/x86_64-unknown-linux-gnu/lib"
++LIBRARY_DIR="$BUILD_DIR/rust/build/$TARGETTRIPLE/stage1/lib/rustlib/$TARGETTRIPLE/lib"
+ RLIBS=$(find $LIBRARY_DIR -name "*.rlib")
+ DLIBRARY_DIR="$BINARY_DIR/target/release/deps"
+ DRLIBS=$(find $DLIBRARY_DIR \( -name "librayon_core-b592f92742f67d6e.rlib" \))
+diff --git a/benchmarks/base64/test/erasan-rawptr/erasan-rawptr-base64.sh b/benchmarks/base64/test/erasan-rawptr/erasan-rawptr-base64.sh
+index d4eebdd..39a276f 100755
+--- a/benchmarks/base64/test/erasan-rawptr/erasan-rawptr-base64.sh
++++ b/benchmarks/base64/test/erasan-rawptr/erasan-rawptr-base64.sh
+@@ -1,4 +1,5 @@
+ #!/bin/bash
++TARGETTRIPLE=$(uname -m)-unknown-linux-gnu
+ 
+ # immediately stop building if error occurs
+ set -e
+@@ -13,7 +14,7 @@ set -e
+ 
+ export TEST=$PWD
+ export BINARY_DIR=$TEST/../../build/rust-base64
+-LIBRARY_DIR="$BUILD_DIR/rust/build/x86_64-unknown-linux-gnu/stage1/lib/rustlib/x86_64-unknown-linux-gnu/lib"
++LIBRARY_DIR="$BUILD_DIR/rust/build/$TARGETTRIPLE/stage1/lib/rustlib/$TARGETTRIPLE/lib"
+ RLIBS=$(find $LIBRARY_DIR -name "*.rlib")
+ DLIBRARY_DIR="$BINARY_DIR/target/release/deps"
+ DRLIBS=$(find $DLIBRARY_DIR \( -name "librayon_core-b592f92742f67d6e.rlib" \))
+diff --git a/benchmarks/base64/test/erasan-threadsafe/erasan-threadsafe-base64.sh b/benchmarks/base64/test/erasan-threadsafe/erasan-threadsafe-base64.sh
+index 7810617..1e19d90 100755
+--- a/benchmarks/base64/test/erasan-threadsafe/erasan-threadsafe-base64.sh
++++ b/benchmarks/base64/test/erasan-threadsafe/erasan-threadsafe-base64.sh
+@@ -1,4 +1,5 @@
+ #!/bin/bash
++TARGETTRIPLE=$(uname -m)-unknown-linux-gnu
+ 
+ # immediately stop building if error occurs
+ set -e
+@@ -13,7 +14,7 @@ set -e
+ 
+ export TEST=$PWD
+ export BINARY_DIR=$TEST/../../build/rust-base64
+-LIBRARY_DIR="$BUILD_DIR/rust/build/x86_64-unknown-linux-gnu/stage1/lib/rustlib/x86_64-unknown-linux-gnu/lib"
++LIBRARY_DIR="$BUILD_DIR/rust/build/$TARGETTRIPLE/stage1/lib/rustlib/$TARGETTRIPLE/lib"
+ RLIBS=$(find $LIBRARY_DIR -name "*.rlib")
+ DLIBRARY_DIR="$BINARY_DIR/target/release/deps"
+ DRLIBS=$(find $DLIBRARY_DIR \( -name "librayon_core-b592f92742f67d6e.rlib" \))
+diff --git a/benchmarks/base64/test/erasan-unsafe/erasan-unsafe-base64.sh b/benchmarks/base64/test/erasan-unsafe/erasan-unsafe-base64.sh
+index 7cf3bf0..04e873c 100755
+--- a/benchmarks/base64/test/erasan-unsafe/erasan-unsafe-base64.sh
++++ b/benchmarks/base64/test/erasan-unsafe/erasan-unsafe-base64.sh
+@@ -1,4 +1,5 @@
+ #!/bin/bash
++TARGETTRIPLE=$(uname -m)-unknown-linux-gnu
+ 
+ # immediately stop building if error occurs
+ set -e
+@@ -13,7 +14,7 @@ set -e
+ 
+ export TEST=$PWD
+ export BINARY_DIR=$TEST/../../build/rust-base64
+-LIBRARY_DIR="$BUILD_DIR/rust/build/x86_64-unknown-linux-gnu/stage1/lib/rustlib/x86_64-unknown-linux-gnu/lib"
++LIBRARY_DIR="$BUILD_DIR/rust/build/$TARGETTRIPLE/stage1/lib/rustlib/$TARGETTRIPLE/lib"
+ RLIBS=$(find $LIBRARY_DIR -name "*.rlib")
+ DLIBRARY_DIR="$BINARY_DIR/target/release/deps"
+ DRLIBS=$(find $DLIBRARY_DIR \( -name "librayon_core-b592f92742f67d6e.rlib" \))
+diff --git a/benchmarks/base64/test/erasan/erasan-base64.sh b/benchmarks/base64/test/erasan/erasan-base64.sh
+index 2420839..e671b2d 100755
+--- a/benchmarks/base64/test/erasan/erasan-base64.sh
++++ b/benchmarks/base64/test/erasan/erasan-base64.sh
+@@ -1,4 +1,5 @@
+ #!/bin/bash
++TARGETTRIPLE=$(uname -m)-unknown-linux-gnu
+ 
+ # immediately stop building if error occurs
+ set -e
+@@ -13,7 +14,7 @@ set -e
+ 
+ export TEST=$PWD
+ export BINARY_DIR=$TEST/../../build/rust-base64
+-LIBRARY_DIR="$BUILD_DIR/rust/build/x86_64-unknown-linux-gnu/stage1/lib/rustlib/x86_64-unknown-linux-gnu/lib"
++LIBRARY_DIR="$BUILD_DIR/rust/build/$TARGETTRIPLE/stage1/lib/rustlib/$TARGETTRIPLE/lib"
+ RLIBS=$(find $LIBRARY_DIR -name "*.rlib")
+ DLIBRARY_DIR="$BINARY_DIR/target/release/deps"
+ DRLIBS=$(find $DLIBRARY_DIR \( -name "librayon_core-b592f92742f67d6e.rlib" \))
+diff --git a/benchmarks/base64/test/native/native-base64.sh b/benchmarks/base64/test/native/native-base64.sh
+index 00337ac..c70fb56 100755
+--- a/benchmarks/base64/test/native/native-base64.sh
++++ b/benchmarks/base64/test/native/native-base64.sh
+@@ -1,4 +1,5 @@
+ #!/bin/bash
++TARGETTRIPLE=$(uname -m)-unknown-linux-gnu
+ 
+ # immediately stop building if error occurs
+ set -e
+@@ -6,7 +7,7 @@ set -e
+ # Make sure that you set the environmetal settings by ERASan/env/env.sh
+ export TEST=$PWD
+ export BINARY_DIR=$TEST/../../build/rust-base64
+-LIBRARY_DIR="$BUILD_DIR/rust/build/x86_64-unknown-linux-gnu/stage1/lib/rustlib/x86_64-unknown-linux-gnu/lib"
++LIBRARY_DIR="$BUILD_DIR/rust/build/$TARGETTRIPLE/stage1/lib/rustlib/$TARGETTRIPLE/lib"
+ RLIBS=$(find $LIBRARY_DIR -name "*.rlib")
+ cp $TEST/../total.ll $TEST
+ 
+diff --git a/benchmarks/byteorder/test/asan/asan-byteorder.sh b/benchmarks/byteorder/test/asan/asan-byteorder.sh
+index d035983..505d922 100755
+--- a/benchmarks/byteorder/test/asan/asan-byteorder.sh
++++ b/benchmarks/byteorder/test/asan/asan-byteorder.sh
+@@ -1,4 +1,5 @@
+ #!/bin/bash
++TARGETTRIPLE=$(uname -m)-unknown-linux-gnu
+ 
+ # immediately stop building if error occurs
+ set -e
+@@ -13,7 +14,7 @@ set -e
+ 
+ export TEST=$PWD
+ export BINARY_DIR=$TEST/../../build/byteorder
+-LIBRARY_DIR="$BUILD_DIR/rust/build/x86_64-unknown-linux-gnu/stage1/lib/rustlib/x86_64-unknown-linux-gnu/lib"
++LIBRARY_DIR="$BUILD_DIR/rust/build/$TARGETTRIPLE/stage1/lib/rustlib/$TARGETTRIPLE/lib"
+ RLIBS=$(find $LIBRARY_DIR -name "*.rlib")
+ cp $TEST/../total.ll $TEST
+ 
+diff --git a/benchmarks/byteorder/test/erasan-debloating/erasan-debloating-byteorder.sh b/benchmarks/byteorder/test/erasan-debloating/erasan-debloating-byteorder.sh
+index 6712b72..79dd938 100755
+--- a/benchmarks/byteorder/test/erasan-debloating/erasan-debloating-byteorder.sh
++++ b/benchmarks/byteorder/test/erasan-debloating/erasan-debloating-byteorder.sh
+@@ -1,4 +1,5 @@
+ #!/bin/bash
++TARGETTRIPLE=$(uname -m)-unknown-linux-gnu
+ 
+ # immediately stop building if error occurs
+ set -e
+@@ -13,7 +14,7 @@ set -e
+ 
+ export TEST=$PWD
+ export BINARY_DIR=$TEST/../../build/byteorder
+-LIBRARY_DIR="$BUILD_DIR/rust/build/x86_64-unknown-linux-gnu/stage1/lib/rustlib/x86_64-unknown-linux-gnu/lib"
++LIBRARY_DIR="$BUILD_DIR/rust/build/$TARGETTRIPLE/stage1/lib/rustlib/$TARGETTRIPLE/lib"
+ RLIBS=$(find $LIBRARY_DIR -name "*.rlib")
+ cp $TEST/../total.ll $TEST
+ 
+diff --git a/benchmarks/byteorder/test/erasan-rawptr/erasan-rawptr-byteorder.sh b/benchmarks/byteorder/test/erasan-rawptr/erasan-rawptr-byteorder.sh
+index 915d269..0d2074d 100755
+--- a/benchmarks/byteorder/test/erasan-rawptr/erasan-rawptr-byteorder.sh
++++ b/benchmarks/byteorder/test/erasan-rawptr/erasan-rawptr-byteorder.sh
+@@ -1,4 +1,5 @@
+ #!/bin/bash
++TARGETTRIPLE=$(uname -m)-unknown-linux-gnu
+ 
+ # immediately stop building if error occurs
+ set -e
+@@ -13,7 +14,7 @@ set -e
+ 
+ export TEST=$PWD
+ export BINARY_DIR=$TEST/../../build/byteorder
+-LIBRARY_DIR="$BUILD_DIR/rust/build/x86_64-unknown-linux-gnu/stage1/lib/rustlib/x86_64-unknown-linux-gnu/lib"
++LIBRARY_DIR="$BUILD_DIR/rust/build/$TARGETTRIPLE/stage1/lib/rustlib/$TARGETTRIPLE/lib"
+ RLIBS=$(find $LIBRARY_DIR -name "*.rlib")
+ cp $TEST/../total.ll $TEST
+ 
+diff --git a/benchmarks/byteorder/test/erasan-threadsafe/erasan-threadsafe-byteorder.sh b/benchmarks/byteorder/test/erasan-threadsafe/erasan-threadsafe-byteorder.sh
+index 45aaf39..89ed0b5 100755
+--- a/benchmarks/byteorder/test/erasan-threadsafe/erasan-threadsafe-byteorder.sh
++++ b/benchmarks/byteorder/test/erasan-threadsafe/erasan-threadsafe-byteorder.sh
+@@ -1,4 +1,5 @@
+ #!/bin/bash
++TARGETTRIPLE=$(uname -m)-unknown-linux-gnu
+ 
+ # immediately stop building if error occurs
+ set -e
+@@ -13,7 +14,7 @@ set -e
+ 
+ export TEST=$PWD
+ export BINARY_DIR=$TEST/../../build/byteorder
+-LIBRARY_DIR="$BUILD_DIR/rust/build/x86_64-unknown-linux-gnu/stage1/lib/rustlib/x86_64-unknown-linux-gnu/lib"
++LIBRARY_DIR="$BUILD_DIR/rust/build/$TARGETTRIPLE/stage1/lib/rustlib/$TARGETTRIPLE/lib"
+ RLIBS=$(find $LIBRARY_DIR -name "*.rlib")
+ cp $TEST/../total.ll $TEST
+ 
+diff --git a/benchmarks/byteorder/test/erasan-unsafe/erasan-unsafe-byteorder.sh b/benchmarks/byteorder/test/erasan-unsafe/erasan-unsafe-byteorder.sh
+index 3854a0d..6eed0ac 100755
+--- a/benchmarks/byteorder/test/erasan-unsafe/erasan-unsafe-byteorder.sh
++++ b/benchmarks/byteorder/test/erasan-unsafe/erasan-unsafe-byteorder.sh
+@@ -1,4 +1,5 @@
+ #!/bin/bash
++TARGETTRIPLE=$(uname -m)-unknown-linux-gnu
+ 
+ # immediately stop building if error occurs
+ set -e
+@@ -13,7 +14,7 @@ set -e
+ 
+ export TEST=$PWD
+ export BINARY_DIR=$TEST/../../build/byteorder
+-LIBRARY_DIR="$BUILD_DIR/rust/build/x86_64-unknown-linux-gnu/stage1/lib/rustlib/x86_64-unknown-linux-gnu/lib"
++LIBRARY_DIR="$BUILD_DIR/rust/build/$TARGETTRIPLE/stage1/lib/rustlib/$TARGETTRIPLE/lib"
+ RLIBS=$(find $LIBRARY_DIR -name "*.rlib")
+ cp $TEST/../total.ll $TEST/../total_debug.ll $TEST
+ 
+diff --git a/benchmarks/byteorder/test/erasan/erasan-byteorder.sh b/benchmarks/byteorder/test/erasan/erasan-byteorder.sh
+index 2ae81c2..fe601b8 100755
+--- a/benchmarks/byteorder/test/erasan/erasan-byteorder.sh
++++ b/benchmarks/byteorder/test/erasan/erasan-byteorder.sh
+@@ -1,4 +1,5 @@
+ #!/bin/bash
++TARGETTRIPLE=$(uname -m)-unknown-linux-gnu
+ 
+ # immediately stop building if error occurs
+ set -e
+@@ -13,7 +14,7 @@ set -e
+ 
+ export TEST=$PWD
+ export BINARY_DIR=$TEST/../../build/byteorder
+-LIBRARY_DIR="$BUILD_DIR/rust/build/x86_64-unknown-linux-gnu/stage1/lib/rustlib/x86_64-unknown-linux-gnu/lib"
++LIBRARY_DIR="$BUILD_DIR/rust/build/$TARGETTRIPLE/stage1/lib/rustlib/$TARGETTRIPLE/lib"
+ RLIBS=$(find $LIBRARY_DIR -name "*.rlib")
+ cp $TEST/../total.ll $TEST
+ 
+diff --git a/benchmarks/byteorder/test/native/native-byteorder.sh b/benchmarks/byteorder/test/native/native-byteorder.sh
+index 75a03fd..8650b28 100755
+--- a/benchmarks/byteorder/test/native/native-byteorder.sh
++++ b/benchmarks/byteorder/test/native/native-byteorder.sh
+@@ -1,4 +1,5 @@
+ #!/bin/bash
++TARGETTRIPLE=$(uname -m)-unknown-linux-gnu
+ 
+ # immediately stop building if error occurs
+ set -e
+@@ -6,7 +7,7 @@ set -e
+ # Make sure that you set the environmetal settings by ERASan/env/env.sh
+ export TEST=$PWD
+ export BINARY_DIR=$TEST/../../build/byteorder
+-LIBRARY_DIR="$BUILD_DIR/rust/build/x86_64-unknown-linux-gnu/stage1/lib/rustlib/x86_64-unknown-linux-gnu/lib"
++LIBRARY_DIR="$BUILD_DIR/rust/build/$TARGETTRIPLE/stage1/lib/rustlib/$TARGETTRIPLE/lib"
+ RLIBS=$(find $LIBRARY_DIR -name "*.rlib")
+ cp $TEST/../total.ll $TEST
+ 
+diff --git a/benchmarks/bytes-buf/test/asan/asan-bytes.sh b/benchmarks/bytes-buf/test/asan/asan-bytes.sh
+index a5f8613..b1bfa1e 100755
+--- a/benchmarks/bytes-buf/test/asan/asan-bytes.sh
++++ b/benchmarks/bytes-buf/test/asan/asan-bytes.sh
+@@ -1,4 +1,5 @@
+ #!/bin/bash
++TARGETTRIPLE=$(uname -m)-unknown-linux-gnu
+ 
+ # immediately stop building if error occurs
+ set -e
+@@ -13,7 +14,7 @@ set -e
+ 
+ export TEST=$PWD
+ export BINARY_DIR=$TEST/../../build/bytes
+-LIBRARY_DIR="$BUILD_DIR/rust/build/x86_64-unknown-linux-gnu/stage1/lib/rustlib/x86_64-unknown-linux-gnu/lib"
++LIBRARY_DIR="$BUILD_DIR/rust/build/$TARGETTRIPLE/stage1/lib/rustlib/$TARGETTRIPLE/lib"
+ RLIBS=$(find $LIBRARY_DIR -name "*.rlib")
+ cp $TEST/../total.ll $TEST
+ 
+diff --git a/benchmarks/bytes-buf/test/erasan-debloating/erasan-debloating-bytes.sh b/benchmarks/bytes-buf/test/erasan-debloating/erasan-debloating-bytes.sh
+index 1c3397a..00b928a 100755
+--- a/benchmarks/bytes-buf/test/erasan-debloating/erasan-debloating-bytes.sh
++++ b/benchmarks/bytes-buf/test/erasan-debloating/erasan-debloating-bytes.sh
+@@ -1,4 +1,5 @@
+ #!/bin/bash
++TARGETTRIPLE=$(uname -m)-unknown-linux-gnu
+ 
+ # immediately stop building if error occurs
+ set -e
+@@ -13,7 +14,7 @@ set -e
+ 
+ export TEST=$PWD
+ export BINARY_DIR=$TEST/../../build/bytes
+-LIBRARY_DIR="$BUILD_DIR/rust/build/x86_64-unknown-linux-gnu/stage1/lib/rustlib/x86_64-unknown-linux-gnu/lib"
++LIBRARY_DIR="$BUILD_DIR/rust/build/$TARGETTRIPLE/stage1/lib/rustlib/$TARGETTRIPLE/lib"
+ RLIBS=$(find $LIBRARY_DIR -name "*.rlib")
+ cp $TEST/../total.ll $TEST
+ 
+diff --git a/benchmarks/bytes-buf/test/erasan-rawptr/erasan-rawptr-bytes.sh b/benchmarks/bytes-buf/test/erasan-rawptr/erasan-rawptr-bytes.sh
+index 052165d..9980694 100755
+--- a/benchmarks/bytes-buf/test/erasan-rawptr/erasan-rawptr-bytes.sh
++++ b/benchmarks/bytes-buf/test/erasan-rawptr/erasan-rawptr-bytes.sh
+@@ -1,4 +1,5 @@
+ #!/bin/bash
++TARGETTRIPLE=$(uname -m)-unknown-linux-gnu
+ 
+ # immediately stop building if error occurs
+ set -e
+@@ -13,7 +14,7 @@ set -e
+ 
+ export TEST=$PWD
+ export BINARY_DIR=$TEST/../../build/bytes
+-LIBRARY_DIR="$BUILD_DIR/rust/build/x86_64-unknown-linux-gnu/stage1/lib/rustlib/x86_64-unknown-linux-gnu/lib"
++LIBRARY_DIR="$BUILD_DIR/rust/build/$TARGETTRIPLE/stage1/lib/rustlib/$TARGETTRIPLE/lib"
+ RLIBS=$(find $LIBRARY_DIR -name "*.rlib")
+ cp $TEST/../total.ll $TEST
+ 
+diff --git a/benchmarks/bytes-buf/test/erasan-threadsafe/erasan-threadsafe-bytes.sh b/benchmarks/bytes-buf/test/erasan-threadsafe/erasan-threadsafe-bytes.sh
+index 42a3e2b..74c7bef 100755
+--- a/benchmarks/bytes-buf/test/erasan-threadsafe/erasan-threadsafe-bytes.sh
++++ b/benchmarks/bytes-buf/test/erasan-threadsafe/erasan-threadsafe-bytes.sh
+@@ -1,4 +1,5 @@
+ #!/bin/bash
++TARGETTRIPLE=$(uname -m)-unknown-linux-gnu
+ 
+ # immediately stop building if error occurs
+ set -e
+@@ -13,7 +14,7 @@ set -e
+ 
+ export TEST=$PWD
+ export BINARY_DIR=$TEST/../../build/bytes
+-LIBRARY_DIR="$BUILD_DIR/rust/build/x86_64-unknown-linux-gnu/stage1/lib/rustlib/x86_64-unknown-linux-gnu/lib"
++LIBRARY_DIR="$BUILD_DIR/rust/build/$TARGETTRIPLE/stage1/lib/rustlib/$TARGETTRIPLE/lib"
+ RLIBS=$(find $LIBRARY_DIR -name "*.rlib")
+ cp $TEST/../total.ll $TEST
+ 
+diff --git a/benchmarks/bytes-buf/test/erasan-unsafe/erasan-unsafe-bytes.sh b/benchmarks/bytes-buf/test/erasan-unsafe/erasan-unsafe-bytes.sh
+index 559e503..58c8b0d 100755
+--- a/benchmarks/bytes-buf/test/erasan-unsafe/erasan-unsafe-bytes.sh
++++ b/benchmarks/bytes-buf/test/erasan-unsafe/erasan-unsafe-bytes.sh
+@@ -1,4 +1,5 @@
+ #!/bin/bash
++TARGETTRIPLE=$(uname -m)-unknown-linux-gnu
+ 
+ # immediately stop building if error occurs
+ set -e
+@@ -13,7 +14,7 @@ set -e
+ 
+ export TEST=$PWD
+ export BINARY_DIR=$TEST/../../build/bytes
+-LIBRARY_DIR="$BUILD_DIR/rust/build/x86_64-unknown-linux-gnu/stage1/lib/rustlib/x86_64-unknown-linux-gnu/lib"
++LIBRARY_DIR="$BUILD_DIR/rust/build/$TARGETTRIPLE/stage1/lib/rustlib/$TARGETTRIPLE/lib"
+ RLIBS=$(find $LIBRARY_DIR -name "*.rlib")
+ cp $TEST/../total.ll $TEST/../total_debug.ll $TEST
+ 
+diff --git a/benchmarks/bytes-buf/test/erasan/erasan-bytes.sh b/benchmarks/bytes-buf/test/erasan/erasan-bytes.sh
+index 0c6ef3a..3929e3f 100755
+--- a/benchmarks/bytes-buf/test/erasan/erasan-bytes.sh
++++ b/benchmarks/bytes-buf/test/erasan/erasan-bytes.sh
+@@ -1,4 +1,5 @@
+ #!/bin/bash
++TARGETTRIPLE=$(uname -m)-unknown-linux-gnu
+ 
+ # immediately stop building if error occurs
+ set -e
+@@ -13,7 +14,7 @@ set -e
+ 
+ export TEST=$PWD
+ export BINARY_DIR=$TEST/../../build/bytes
+-LIBRARY_DIR="$BUILD_DIR/rust/build/x86_64-unknown-linux-gnu/stage1/lib/rustlib/x86_64-unknown-linux-gnu/lib"
++LIBRARY_DIR="$BUILD_DIR/rust/build/$TARGETTRIPLE/stage1/lib/rustlib/$TARGETTRIPLE/lib"
+ RLIBS=$(find $LIBRARY_DIR -name "*.rlib")
+ cp $TEST/../total.ll $TEST
+ 
+diff --git a/benchmarks/bytes-buf/test/native/native-bytes.sh b/benchmarks/bytes-buf/test/native/native-bytes.sh
+index 3fbb639..6a38f96 100755
+--- a/benchmarks/bytes-buf/test/native/native-bytes.sh
++++ b/benchmarks/bytes-buf/test/native/native-bytes.sh
+@@ -1,4 +1,5 @@
+ #!/bin/bash
++TARGETTRIPLE=$(uname -m)-unknown-linux-gnu
+ 
+ # immediately stop building if error occurs
+ set -e
+@@ -6,7 +7,7 @@ set -e
+ # Make sure that you set the environmetal settings by ERASan/env/env.sh
+ export TEST=$PWD
+ export BINARY_DIR=$TEST/../../build/bytes
+-LIBRARY_DIR="$BUILD_DIR/rust/build/x86_64-unknown-linux-gnu/stage1/lib/rustlib/x86_64-unknown-linux-gnu/lib"
++LIBRARY_DIR="$BUILD_DIR/rust/build/$TARGETTRIPLE/stage1/lib/rustlib/$TARGETTRIPLE/lib"
+ RLIBS=$(find $LIBRARY_DIR -name "*.rlib")
+ cp $TEST/../total.ll $TEST
+ 
+diff --git a/benchmarks/bytes-bytes/test/asan/asan-bytes.sh b/benchmarks/bytes-bytes/test/asan/asan-bytes.sh
+index a5f8613..b1bfa1e 100755
+--- a/benchmarks/bytes-bytes/test/asan/asan-bytes.sh
++++ b/benchmarks/bytes-bytes/test/asan/asan-bytes.sh
+@@ -1,4 +1,5 @@
+ #!/bin/bash
++TARGETTRIPLE=$(uname -m)-unknown-linux-gnu
+ 
+ # immediately stop building if error occurs
+ set -e
+@@ -13,7 +14,7 @@ set -e
+ 
+ export TEST=$PWD
+ export BINARY_DIR=$TEST/../../build/bytes
+-LIBRARY_DIR="$BUILD_DIR/rust/build/x86_64-unknown-linux-gnu/stage1/lib/rustlib/x86_64-unknown-linux-gnu/lib"
++LIBRARY_DIR="$BUILD_DIR/rust/build/$TARGETTRIPLE/stage1/lib/rustlib/$TARGETTRIPLE/lib"
+ RLIBS=$(find $LIBRARY_DIR -name "*.rlib")
+ cp $TEST/../total.ll $TEST
+ 
+diff --git a/benchmarks/bytes-bytes/test/erasan-debloating/erasan-debloating-bytes.sh b/benchmarks/bytes-bytes/test/erasan-debloating/erasan-debloating-bytes.sh
+index 1c3397a..00b928a 100755
+--- a/benchmarks/bytes-bytes/test/erasan-debloating/erasan-debloating-bytes.sh
++++ b/benchmarks/bytes-bytes/test/erasan-debloating/erasan-debloating-bytes.sh
+@@ -1,4 +1,5 @@
+ #!/bin/bash
++TARGETTRIPLE=$(uname -m)-unknown-linux-gnu
+ 
+ # immediately stop building if error occurs
+ set -e
+@@ -13,7 +14,7 @@ set -e
+ 
+ export TEST=$PWD
+ export BINARY_DIR=$TEST/../../build/bytes
+-LIBRARY_DIR="$BUILD_DIR/rust/build/x86_64-unknown-linux-gnu/stage1/lib/rustlib/x86_64-unknown-linux-gnu/lib"
++LIBRARY_DIR="$BUILD_DIR/rust/build/$TARGETTRIPLE/stage1/lib/rustlib/$TARGETTRIPLE/lib"
+ RLIBS=$(find $LIBRARY_DIR -name "*.rlib")
+ cp $TEST/../total.ll $TEST
+ 
+diff --git a/benchmarks/bytes-bytes/test/erasan-rawptr/erasan-rawptr-bytes.sh b/benchmarks/bytes-bytes/test/erasan-rawptr/erasan-rawptr-bytes.sh
+index 052165d..9980694 100755
+--- a/benchmarks/bytes-bytes/test/erasan-rawptr/erasan-rawptr-bytes.sh
++++ b/benchmarks/bytes-bytes/test/erasan-rawptr/erasan-rawptr-bytes.sh
+@@ -1,4 +1,5 @@
+ #!/bin/bash
++TARGETTRIPLE=$(uname -m)-unknown-linux-gnu
+ 
+ # immediately stop building if error occurs
+ set -e
+@@ -13,7 +14,7 @@ set -e
+ 
+ export TEST=$PWD
+ export BINARY_DIR=$TEST/../../build/bytes
+-LIBRARY_DIR="$BUILD_DIR/rust/build/x86_64-unknown-linux-gnu/stage1/lib/rustlib/x86_64-unknown-linux-gnu/lib"
++LIBRARY_DIR="$BUILD_DIR/rust/build/$TARGETTRIPLE/stage1/lib/rustlib/$TARGETTRIPLE/lib"
+ RLIBS=$(find $LIBRARY_DIR -name "*.rlib")
+ cp $TEST/../total.ll $TEST
+ 
+diff --git a/benchmarks/bytes-bytes/test/erasan-threadsafe/erasan-threadsafe-bytes.sh b/benchmarks/bytes-bytes/test/erasan-threadsafe/erasan-threadsafe-bytes.sh
+index 42a3e2b..74c7bef 100755
+--- a/benchmarks/bytes-bytes/test/erasan-threadsafe/erasan-threadsafe-bytes.sh
++++ b/benchmarks/bytes-bytes/test/erasan-threadsafe/erasan-threadsafe-bytes.sh
+@@ -1,4 +1,5 @@
+ #!/bin/bash
++TARGETTRIPLE=$(uname -m)-unknown-linux-gnu
+ 
+ # immediately stop building if error occurs
+ set -e
+@@ -13,7 +14,7 @@ set -e
+ 
+ export TEST=$PWD
+ export BINARY_DIR=$TEST/../../build/bytes
+-LIBRARY_DIR="$BUILD_DIR/rust/build/x86_64-unknown-linux-gnu/stage1/lib/rustlib/x86_64-unknown-linux-gnu/lib"
++LIBRARY_DIR="$BUILD_DIR/rust/build/$TARGETTRIPLE/stage1/lib/rustlib/$TARGETTRIPLE/lib"
+ RLIBS=$(find $LIBRARY_DIR -name "*.rlib")
+ cp $TEST/../total.ll $TEST
+ 
+diff --git a/benchmarks/bytes-bytes/test/erasan-unsafe/erasan-unsafe-bytes.sh b/benchmarks/bytes-bytes/test/erasan-unsafe/erasan-unsafe-bytes.sh
+index 559e503..58c8b0d 100755
+--- a/benchmarks/bytes-bytes/test/erasan-unsafe/erasan-unsafe-bytes.sh
++++ b/benchmarks/bytes-bytes/test/erasan-unsafe/erasan-unsafe-bytes.sh
+@@ -1,4 +1,5 @@
+ #!/bin/bash
++TARGETTRIPLE=$(uname -m)-unknown-linux-gnu
+ 
+ # immediately stop building if error occurs
+ set -e
+@@ -13,7 +14,7 @@ set -e
+ 
+ export TEST=$PWD
+ export BINARY_DIR=$TEST/../../build/bytes
+-LIBRARY_DIR="$BUILD_DIR/rust/build/x86_64-unknown-linux-gnu/stage1/lib/rustlib/x86_64-unknown-linux-gnu/lib"
++LIBRARY_DIR="$BUILD_DIR/rust/build/$TARGETTRIPLE/stage1/lib/rustlib/$TARGETTRIPLE/lib"
+ RLIBS=$(find $LIBRARY_DIR -name "*.rlib")
+ cp $TEST/../total.ll $TEST/../total_debug.ll $TEST
+ 
+diff --git a/benchmarks/bytes-bytes/test/erasan/erasan-bytes.sh b/benchmarks/bytes-bytes/test/erasan/erasan-bytes.sh
+index 0c6ef3a..3929e3f 100755
+--- a/benchmarks/bytes-bytes/test/erasan/erasan-bytes.sh
++++ b/benchmarks/bytes-bytes/test/erasan/erasan-bytes.sh
+@@ -1,4 +1,5 @@
+ #!/bin/bash
++TARGETTRIPLE=$(uname -m)-unknown-linux-gnu
+ 
+ # immediately stop building if error occurs
+ set -e
+@@ -13,7 +14,7 @@ set -e
+ 
+ export TEST=$PWD
+ export BINARY_DIR=$TEST/../../build/bytes
+-LIBRARY_DIR="$BUILD_DIR/rust/build/x86_64-unknown-linux-gnu/stage1/lib/rustlib/x86_64-unknown-linux-gnu/lib"
++LIBRARY_DIR="$BUILD_DIR/rust/build/$TARGETTRIPLE/stage1/lib/rustlib/$TARGETTRIPLE/lib"
+ RLIBS=$(find $LIBRARY_DIR -name "*.rlib")
+ cp $TEST/../total.ll $TEST
+ 
+diff --git a/benchmarks/bytes-bytes/test/native/native-bytes.sh b/benchmarks/bytes-bytes/test/native/native-bytes.sh
+index 3fbb639..6a38f96 100755
+--- a/benchmarks/bytes-bytes/test/native/native-bytes.sh
++++ b/benchmarks/bytes-bytes/test/native/native-bytes.sh
+@@ -1,4 +1,5 @@
+ #!/bin/bash
++TARGETTRIPLE=$(uname -m)-unknown-linux-gnu
+ 
+ # immediately stop building if error occurs
+ set -e
+@@ -6,7 +7,7 @@ set -e
+ # Make sure that you set the environmetal settings by ERASan/env/env.sh
+ export TEST=$PWD
+ export BINARY_DIR=$TEST/../../build/bytes
+-LIBRARY_DIR="$BUILD_DIR/rust/build/x86_64-unknown-linux-gnu/stage1/lib/rustlib/x86_64-unknown-linux-gnu/lib"
++LIBRARY_DIR="$BUILD_DIR/rust/build/$TARGETTRIPLE/stage1/lib/rustlib/$TARGETTRIPLE/lib"
+ RLIBS=$(find $LIBRARY_DIR -name "*.rlib")
+ cp $TEST/../total.ll $TEST
+ 
+diff --git a/benchmarks/bytes-mut/test/asan/asan-bytes.sh b/benchmarks/bytes-mut/test/asan/asan-bytes.sh
+index a5f8613..b1bfa1e 100755
+--- a/benchmarks/bytes-mut/test/asan/asan-bytes.sh
++++ b/benchmarks/bytes-mut/test/asan/asan-bytes.sh
+@@ -1,4 +1,5 @@
+ #!/bin/bash
++TARGETTRIPLE=$(uname -m)-unknown-linux-gnu
+ 
+ # immediately stop building if error occurs
+ set -e
+@@ -13,7 +14,7 @@ set -e
+ 
+ export TEST=$PWD
+ export BINARY_DIR=$TEST/../../build/bytes
+-LIBRARY_DIR="$BUILD_DIR/rust/build/x86_64-unknown-linux-gnu/stage1/lib/rustlib/x86_64-unknown-linux-gnu/lib"
++LIBRARY_DIR="$BUILD_DIR/rust/build/$TARGETTRIPLE/stage1/lib/rustlib/$TARGETTRIPLE/lib"
+ RLIBS=$(find $LIBRARY_DIR -name "*.rlib")
+ cp $TEST/../total.ll $TEST
+ 
+diff --git a/benchmarks/bytes-mut/test/erasan-debloating/erasan-debloating-bytes.sh b/benchmarks/bytes-mut/test/erasan-debloating/erasan-debloating-bytes.sh
+index 1c3397a..00b928a 100755
+--- a/benchmarks/bytes-mut/test/erasan-debloating/erasan-debloating-bytes.sh
++++ b/benchmarks/bytes-mut/test/erasan-debloating/erasan-debloating-bytes.sh
+@@ -1,4 +1,5 @@
+ #!/bin/bash
++TARGETTRIPLE=$(uname -m)-unknown-linux-gnu
+ 
+ # immediately stop building if error occurs
+ set -e
+@@ -13,7 +14,7 @@ set -e
+ 
+ export TEST=$PWD
+ export BINARY_DIR=$TEST/../../build/bytes
+-LIBRARY_DIR="$BUILD_DIR/rust/build/x86_64-unknown-linux-gnu/stage1/lib/rustlib/x86_64-unknown-linux-gnu/lib"
++LIBRARY_DIR="$BUILD_DIR/rust/build/$TARGETTRIPLE/stage1/lib/rustlib/$TARGETTRIPLE/lib"
+ RLIBS=$(find $LIBRARY_DIR -name "*.rlib")
+ cp $TEST/../total.ll $TEST
+ 
+diff --git a/benchmarks/bytes-mut/test/erasan-rawptr/erasan-rawptr-bytes.sh b/benchmarks/bytes-mut/test/erasan-rawptr/erasan-rawptr-bytes.sh
+index 052165d..9980694 100755
+--- a/benchmarks/bytes-mut/test/erasan-rawptr/erasan-rawptr-bytes.sh
++++ b/benchmarks/bytes-mut/test/erasan-rawptr/erasan-rawptr-bytes.sh
+@@ -1,4 +1,5 @@
+ #!/bin/bash
++TARGETTRIPLE=$(uname -m)-unknown-linux-gnu
+ 
+ # immediately stop building if error occurs
+ set -e
+@@ -13,7 +14,7 @@ set -e
+ 
+ export TEST=$PWD
+ export BINARY_DIR=$TEST/../../build/bytes
+-LIBRARY_DIR="$BUILD_DIR/rust/build/x86_64-unknown-linux-gnu/stage1/lib/rustlib/x86_64-unknown-linux-gnu/lib"
++LIBRARY_DIR="$BUILD_DIR/rust/build/$TARGETTRIPLE/stage1/lib/rustlib/$TARGETTRIPLE/lib"
+ RLIBS=$(find $LIBRARY_DIR -name "*.rlib")
+ cp $TEST/../total.ll $TEST
+ 
+diff --git a/benchmarks/bytes-mut/test/erasan-threadsafe/erasan-threadsafe-bytes.sh b/benchmarks/bytes-mut/test/erasan-threadsafe/erasan-threadsafe-bytes.sh
+index 42a3e2b..74c7bef 100755
+--- a/benchmarks/bytes-mut/test/erasan-threadsafe/erasan-threadsafe-bytes.sh
++++ b/benchmarks/bytes-mut/test/erasan-threadsafe/erasan-threadsafe-bytes.sh
+@@ -1,4 +1,5 @@
+ #!/bin/bash
++TARGETTRIPLE=$(uname -m)-unknown-linux-gnu
+ 
+ # immediately stop building if error occurs
+ set -e
+@@ -13,7 +14,7 @@ set -e
+ 
+ export TEST=$PWD
+ export BINARY_DIR=$TEST/../../build/bytes
+-LIBRARY_DIR="$BUILD_DIR/rust/build/x86_64-unknown-linux-gnu/stage1/lib/rustlib/x86_64-unknown-linux-gnu/lib"
++LIBRARY_DIR="$BUILD_DIR/rust/build/$TARGETTRIPLE/stage1/lib/rustlib/$TARGETTRIPLE/lib"
+ RLIBS=$(find $LIBRARY_DIR -name "*.rlib")
+ cp $TEST/../total.ll $TEST
+ 
+diff --git a/benchmarks/bytes-mut/test/erasan-unsafe/erasan-unsafe-bytes.sh b/benchmarks/bytes-mut/test/erasan-unsafe/erasan-unsafe-bytes.sh
+index 559e503..58c8b0d 100755
+--- a/benchmarks/bytes-mut/test/erasan-unsafe/erasan-unsafe-bytes.sh
++++ b/benchmarks/bytes-mut/test/erasan-unsafe/erasan-unsafe-bytes.sh
+@@ -1,4 +1,5 @@
+ #!/bin/bash
++TARGETTRIPLE=$(uname -m)-unknown-linux-gnu
+ 
+ # immediately stop building if error occurs
+ set -e
+@@ -13,7 +14,7 @@ set -e
+ 
+ export TEST=$PWD
+ export BINARY_DIR=$TEST/../../build/bytes
+-LIBRARY_DIR="$BUILD_DIR/rust/build/x86_64-unknown-linux-gnu/stage1/lib/rustlib/x86_64-unknown-linux-gnu/lib"
++LIBRARY_DIR="$BUILD_DIR/rust/build/$TARGETTRIPLE/stage1/lib/rustlib/$TARGETTRIPLE/lib"
+ RLIBS=$(find $LIBRARY_DIR -name "*.rlib")
+ cp $TEST/../total.ll $TEST/../total_debug.ll $TEST
+ 
+diff --git a/benchmarks/bytes-mut/test/erasan/erasan-bytes.sh b/benchmarks/bytes-mut/test/erasan/erasan-bytes.sh
+index 0c6ef3a..3929e3f 100755
+--- a/benchmarks/bytes-mut/test/erasan/erasan-bytes.sh
++++ b/benchmarks/bytes-mut/test/erasan/erasan-bytes.sh
+@@ -1,4 +1,5 @@
+ #!/bin/bash
++TARGETTRIPLE=$(uname -m)-unknown-linux-gnu
+ 
+ # immediately stop building if error occurs
+ set -e
+@@ -13,7 +14,7 @@ set -e
+ 
+ export TEST=$PWD
+ export BINARY_DIR=$TEST/../../build/bytes
+-LIBRARY_DIR="$BUILD_DIR/rust/build/x86_64-unknown-linux-gnu/stage1/lib/rustlib/x86_64-unknown-linux-gnu/lib"
++LIBRARY_DIR="$BUILD_DIR/rust/build/$TARGETTRIPLE/stage1/lib/rustlib/$TARGETTRIPLE/lib"
+ RLIBS=$(find $LIBRARY_DIR -name "*.rlib")
+ cp $TEST/../total.ll $TEST
+ 
+diff --git a/benchmarks/bytes-mut/test/native/native-bytes.sh b/benchmarks/bytes-mut/test/native/native-bytes.sh
+index 3fbb639..6a38f96 100755
+--- a/benchmarks/bytes-mut/test/native/native-bytes.sh
++++ b/benchmarks/bytes-mut/test/native/native-bytes.sh
+@@ -1,4 +1,5 @@
+ #!/bin/bash
++TARGETTRIPLE=$(uname -m)-unknown-linux-gnu
+ 
+ # immediately stop building if error occurs
+ set -e
+@@ -6,7 +7,7 @@ set -e
+ # Make sure that you set the environmetal settings by ERASan/env/env.sh
+ export TEST=$PWD
+ export BINARY_DIR=$TEST/../../build/bytes
+-LIBRARY_DIR="$BUILD_DIR/rust/build/x86_64-unknown-linux-gnu/stage1/lib/rustlib/x86_64-unknown-linux-gnu/lib"
++LIBRARY_DIR="$BUILD_DIR/rust/build/$TARGETTRIPLE/stage1/lib/rustlib/$TARGETTRIPLE/lib"
+ RLIBS=$(find $LIBRARY_DIR -name "*.rlib")
+ cp $TEST/../total.ll $TEST
+ 
+diff --git a/benchmarks/crossbeam/test/asan/asan-crossbeam.sh b/benchmarks/crossbeam/test/asan/asan-crossbeam.sh
+index ddbe77d..ed73532 100755
+--- a/benchmarks/crossbeam/test/asan/asan-crossbeam.sh
++++ b/benchmarks/crossbeam/test/asan/asan-crossbeam.sh
+@@ -1,4 +1,5 @@
+ #!/bin/bash
++TARGETTRIPLE=$(uname -m)-unknown-linux-gnu
+ 
+ # immediately stop building if error occurs
+ set -e
+@@ -13,7 +14,7 @@ set -e
+ 
+ export TEST=$PWD
+ export BINARY_DIR=$TEST/../../build/crossbeam/crossbeam-utils
+-LIBRARY_DIR="$BUILD_DIR/rust/build/x86_64-unknown-linux-gnu/stage1/lib/rustlib/x86_64-unknown-linux-gnu/lib"
++LIBRARY_DIR="$BUILD_DIR/rust/build/$TARGETTRIPLE/stage1/lib/rustlib/$TARGETTRIPLE/lib"
+ RLIBS=$(find $LIBRARY_DIR -name "*.rlib")
+ cp $TEST/../total.ll $TEST
+ 
+diff --git a/benchmarks/crossbeam/test/erasan-debloating/erasan-debloating-crossbeam.sh b/benchmarks/crossbeam/test/erasan-debloating/erasan-debloating-crossbeam.sh
+index 836e198..406ffe4 100755
+--- a/benchmarks/crossbeam/test/erasan-debloating/erasan-debloating-crossbeam.sh
++++ b/benchmarks/crossbeam/test/erasan-debloating/erasan-debloating-crossbeam.sh
+@@ -1,4 +1,5 @@
+ #!/bin/bash
++TARGETTRIPLE=$(uname -m)-unknown-linux-gnu
+ 
+ # immediately stop building if error occurs
+ set -e
+@@ -13,7 +14,7 @@ set -e
+ 
+ export TEST=$PWD
+ export BINARY_DIR=$TEST/../../build/crossbeam/crossbeam-utils
+-LIBRARY_DIR="$BUILD_DIR/rust/build/x86_64-unknown-linux-gnu/stage1/lib/rustlib/x86_64-unknown-linux-gnu/lib"
++LIBRARY_DIR="$BUILD_DIR/rust/build/$TARGETTRIPLE/stage1/lib/rustlib/$TARGETTRIPLE/lib"
+ RLIBS=$(find $LIBRARY_DIR -name "*.rlib")
+ cp $TEST/../total.ll $TEST
+ 
+diff --git a/benchmarks/crossbeam/test/erasan-rawptr/erasan-rawptr-crossbeam.sh b/benchmarks/crossbeam/test/erasan-rawptr/erasan-rawptr-crossbeam.sh
+index fcea550..eae3ca3 100755
+--- a/benchmarks/crossbeam/test/erasan-rawptr/erasan-rawptr-crossbeam.sh
++++ b/benchmarks/crossbeam/test/erasan-rawptr/erasan-rawptr-crossbeam.sh
+@@ -1,4 +1,5 @@
+ #!/bin/bash
++TARGETTRIPLE=$(uname -m)-unknown-linux-gnu
+ 
+ # immediately stop building if error occurs
+ set -e
+@@ -13,7 +14,7 @@ set -e
+ 
+ export TEST=$PWD
+ export BINARY_DIR=$TEST/../../build/crossbeam/crossbeam-utils
+-LIBRARY_DIR="$BUILD_DIR/rust/build/x86_64-unknown-linux-gnu/stage1/lib/rustlib/x86_64-unknown-linux-gnu/lib"
++LIBRARY_DIR="$BUILD_DIR/rust/build/$TARGETTRIPLE/stage1/lib/rustlib/$TARGETTRIPLE/lib"
+ RLIBS=$(find $LIBRARY_DIR -name "*.rlib")
+ cp $TEST/../total.ll $TEST
+ 
+diff --git a/benchmarks/crossbeam/test/erasan-threadsafe/erasan-threadsafe-crossbeam.sh b/benchmarks/crossbeam/test/erasan-threadsafe/erasan-threadsafe-crossbeam.sh
+index a3b63c9..ed97b42 100755
+--- a/benchmarks/crossbeam/test/erasan-threadsafe/erasan-threadsafe-crossbeam.sh
++++ b/benchmarks/crossbeam/test/erasan-threadsafe/erasan-threadsafe-crossbeam.sh
+@@ -1,4 +1,5 @@
+ #!/bin/bash
++TARGETTRIPLE=$(uname -m)-unknown-linux-gnu
+ 
+ # immediately stop building if error occurs
+ set -e
+@@ -13,7 +14,7 @@ set -e
+ 
+ export TEST=$PWD
+ export BINARY_DIR=$TEST/../../build/crossbeam/crossbeam-utils
+-LIBRARY_DIR="$BUILD_DIR/rust/build/x86_64-unknown-linux-gnu/stage1/lib/rustlib/x86_64-unknown-linux-gnu/lib"
++LIBRARY_DIR="$BUILD_DIR/rust/build/$TARGETTRIPLE/stage1/lib/rustlib/$TARGETTRIPLE/lib"
+ RLIBS=$(find $LIBRARY_DIR -name "*.rlib")
+ cp $TEST/../total.ll $TEST
+ 
+diff --git a/benchmarks/crossbeam/test/erasan-unsafe/erasan-unsafe-crossbeam.sh b/benchmarks/crossbeam/test/erasan-unsafe/erasan-unsafe-crossbeam.sh
+index 75e3110..9779a17 100755
+--- a/benchmarks/crossbeam/test/erasan-unsafe/erasan-unsafe-crossbeam.sh
++++ b/benchmarks/crossbeam/test/erasan-unsafe/erasan-unsafe-crossbeam.sh
+@@ -1,4 +1,5 @@
+ #!/bin/bash
++TARGETTRIPLE=$(uname -m)-unknown-linux-gnu
+ 
+ # immediately stop building if error occurs
+ set -e
+@@ -13,7 +14,7 @@ set -e
+ 
+ export TEST=$PWD
+ export BINARY_DIR=$TEST/../../build/crossbeam/crossbeam-utils
+-LIBRARY_DIR="$BUILD_DIR/rust/build/x86_64-unknown-linux-gnu/stage1/lib/rustlib/x86_64-unknown-linux-gnu/lib"
++LIBRARY_DIR="$BUILD_DIR/rust/build/$TARGETTRIPLE/stage1/lib/rustlib/$TARGETTRIPLE/lib"
+ RLIBS=$(find $LIBRARY_DIR -name "*.rlib")
+ cp $TEST/../total.ll $TEST/../total_debug.ll $TEST
+ 
+diff --git a/benchmarks/crossbeam/test/erasan/erasan-crossbeam.sh b/benchmarks/crossbeam/test/erasan/erasan-crossbeam.sh
+index 9839c38..41f2306 100755
+--- a/benchmarks/crossbeam/test/erasan/erasan-crossbeam.sh
++++ b/benchmarks/crossbeam/test/erasan/erasan-crossbeam.sh
+@@ -1,4 +1,5 @@
+ #!/bin/bash
++TARGETTRIPLE=$(uname -m)-unknown-linux-gnu
+ 
+ # immediately stop building if error occurs
+ set -e
+@@ -13,7 +14,7 @@ set -e
+ 
+ export TEST=$PWD
+ export BINARY_DIR=$TEST/../../build/crossbeam/crossbeam-utils
+-LIBRARY_DIR="$BUILD_DIR/rust/build/x86_64-unknown-linux-gnu/stage1/lib/rustlib/x86_64-unknown-linux-gnu/lib"
++LIBRARY_DIR="$BUILD_DIR/rust/build/$TARGETTRIPLE/stage1/lib/rustlib/$TARGETTRIPLE/lib"
+ RLIBS=$(find $LIBRARY_DIR -name "*.rlib")
+ cp $TEST/../total.ll $TEST
+ 
+diff --git a/benchmarks/crossbeam/test/native/native-crossbeam.sh b/benchmarks/crossbeam/test/native/native-crossbeam.sh
+index 0bd3a7d..b11bb47 100755
+--- a/benchmarks/crossbeam/test/native/native-crossbeam.sh
++++ b/benchmarks/crossbeam/test/native/native-crossbeam.sh
+@@ -1,4 +1,5 @@
+ #!/bin/bash
++TARGETTRIPLE=$(uname -m)-unknown-linux-gnu
+ 
+ # immediately stop building if error occurs
+ set -e
+@@ -6,7 +7,7 @@ set -e
+ # Make sure that you set the environmetal settings by ERASan/env/env.sh
+ export TEST=$PWD
+ export BINARY_DIR=$TEST/../../build/crossbeam/crossbeam-utils
+-LIBRARY_DIR="$BUILD_DIR/rust/build/x86_64-unknown-linux-gnu/stage1/lib/rustlib/x86_64-unknown-linux-gnu/lib"
++LIBRARY_DIR="$BUILD_DIR/rust/build/$TARGETTRIPLE/stage1/lib/rustlib/$TARGETTRIPLE/lib"
+ RLIBS=$(find $LIBRARY_DIR -name "*.rlib")
+ cp $TEST/../total.ll $TEST
+ 
+diff --git a/benchmarks/hashbrown/test/asan/asan-hashbrown.sh b/benchmarks/hashbrown/test/asan/asan-hashbrown.sh
+index 47927f1..62ba0d5 100755
+--- a/benchmarks/hashbrown/test/asan/asan-hashbrown.sh
++++ b/benchmarks/hashbrown/test/asan/asan-hashbrown.sh
+@@ -1,4 +1,5 @@
+ #!/bin/bash
++TARGETTRIPLE=$(uname -m)-unknown-linux-gnu
+ 
+ # immediately stop building if error occurs
+ set -e
+@@ -13,7 +14,7 @@ set -e
+ 
+ export TEST=$PWD
+ export BINARY_DIR=$TEST/../../build/hashbrown
+-LIBRARY_DIR="$BUILD_DIR/rust/build/x86_64-unknown-linux-gnu/stage1/lib/rustlib/x86_64-unknown-linux-gnu/lib"
++LIBRARY_DIR="$BUILD_DIR/rust/build/$TARGETTRIPLE/stage1/lib/rustlib/$TARGETTRIPLE/lib"
+ RLIBS=$(find $LIBRARY_DIR -name "*.rlib")
+ cp $TEST/../total.ll $TEST
+ 
+diff --git a/benchmarks/hashbrown/test/erasan-debloating/erasan-debloating-hashbrown.sh b/benchmarks/hashbrown/test/erasan-debloating/erasan-debloating-hashbrown.sh
+index cacda2b..4d3589c 100755
+--- a/benchmarks/hashbrown/test/erasan-debloating/erasan-debloating-hashbrown.sh
++++ b/benchmarks/hashbrown/test/erasan-debloating/erasan-debloating-hashbrown.sh
+@@ -1,4 +1,5 @@
+ #!/bin/bash
++TARGETTRIPLE=$(uname -m)-unknown-linux-gnu
+ 
+ # immediately stop building if error occurs
+ set -e
+@@ -13,7 +14,7 @@ set -e
+ 
+ export TEST=$PWD
+ export BINARY_DIR=$TEST/../../build/hashbrown
+-LIBRARY_DIR="$BUILD_DIR/rust/build/x86_64-unknown-linux-gnu/stage1/lib/rustlib/x86_64-unknown-linux-gnu/lib"
++LIBRARY_DIR="$BUILD_DIR/rust/build/$TARGETTRIPLE/stage1/lib/rustlib/$TARGETTRIPLE/lib"
+ RLIBS=$(find $LIBRARY_DIR -name "*.rlib")
+ cp $TEST/../total.ll $TEST
+ 
+diff --git a/benchmarks/hashbrown/test/erasan-rawptr/erasan-rawptr-hashbrown.sh b/benchmarks/hashbrown/test/erasan-rawptr/erasan-rawptr-hashbrown.sh
+index bf68f83..ae2a47e 100755
+--- a/benchmarks/hashbrown/test/erasan-rawptr/erasan-rawptr-hashbrown.sh
++++ b/benchmarks/hashbrown/test/erasan-rawptr/erasan-rawptr-hashbrown.sh
+@@ -1,4 +1,5 @@
+ #!/bin/bash
++TARGETTRIPLE=$(uname -m)-unknown-linux-gnu
+ 
+ # immediately stop building if error occurs
+ set -e
+@@ -13,7 +14,7 @@ set -e
+ 
+ export TEST=$PWD
+ export BINARY_DIR=$TEST/../../build/hashbrown
+-LIBRARY_DIR="$BUILD_DIR/rust/build/x86_64-unknown-linux-gnu/stage1/lib/rustlib/x86_64-unknown-linux-gnu/lib"
++LIBRARY_DIR="$BUILD_DIR/rust/build/$TARGETTRIPLE/stage1/lib/rustlib/$TARGETTRIPLE/lib"
+ RLIBS=$(find $LIBRARY_DIR -name "*.rlib")
+ cp $TEST/../total.ll $TEST
+ 
+diff --git a/benchmarks/hashbrown/test/erasan-threadsafe/erasan-threadsafe-hashbrown.sh b/benchmarks/hashbrown/test/erasan-threadsafe/erasan-threadsafe-hashbrown.sh
+index 1fbfb2b..74fe1f9 100755
+--- a/benchmarks/hashbrown/test/erasan-threadsafe/erasan-threadsafe-hashbrown.sh
++++ b/benchmarks/hashbrown/test/erasan-threadsafe/erasan-threadsafe-hashbrown.sh
+@@ -1,4 +1,5 @@
+ #!/bin/bash
++TARGETTRIPLE=$(uname -m)-unknown-linux-gnu
+ 
+ # immediately stop building if error occurs
+ set -e
+@@ -13,7 +14,7 @@ set -e
+ 
+ export TEST=$PWD
+ export BINARY_DIR=$TEST/../../build/hashbrown
+-LIBRARY_DIR="$BUILD_DIR/rust/build/x86_64-unknown-linux-gnu/stage1/lib/rustlib/x86_64-unknown-linux-gnu/lib"
++LIBRARY_DIR="$BUILD_DIR/rust/build/$TARGETTRIPLE/stage1/lib/rustlib/$TARGETTRIPLE/lib"
+ RLIBS=$(find $LIBRARY_DIR -name "*.rlib")
+ cp $TEST/../total.ll $TEST
+ 
+diff --git a/benchmarks/hashbrown/test/erasan-unsafe/erasan-unsafe-hashbrown.sh b/benchmarks/hashbrown/test/erasan-unsafe/erasan-unsafe-hashbrown.sh
+index 42a3df6..e359a7b 100755
+--- a/benchmarks/hashbrown/test/erasan-unsafe/erasan-unsafe-hashbrown.sh
++++ b/benchmarks/hashbrown/test/erasan-unsafe/erasan-unsafe-hashbrown.sh
+@@ -1,4 +1,5 @@
+ #!/bin/bash
++TARGETTRIPLE=$(uname -m)-unknown-linux-gnu
+ 
+ # immediately stop building if error occurs
+ set -e
+@@ -13,7 +14,7 @@ set -e
+ 
+ export TEST=$PWD
+ export BINARY_DIR=$TEST/../../build/hashbrown
+-LIBRARY_DIR="$BUILD_DIR/rust/build/x86_64-unknown-linux-gnu/stage1/lib/rustlib/x86_64-unknown-linux-gnu/lib"
++LIBRARY_DIR="$BUILD_DIR/rust/build/$TARGETTRIPLE/stage1/lib/rustlib/$TARGETTRIPLE/lib"
+ RLIBS=$(find $LIBRARY_DIR -name "*.rlib")
+ cp $TEST/../total.ll $TEST/../total_debug.ll $TEST
+ 
+diff --git a/benchmarks/hashbrown/test/erasan/erasan-hashbrown.sh b/benchmarks/hashbrown/test/erasan/erasan-hashbrown.sh
+index 75cc853..924b40e 100755
+--- a/benchmarks/hashbrown/test/erasan/erasan-hashbrown.sh
++++ b/benchmarks/hashbrown/test/erasan/erasan-hashbrown.sh
+@@ -1,4 +1,5 @@
+ #!/bin/bash
++TARGETTRIPLE=$(uname -m)-unknown-linux-gnu
+ 
+ # immediately stop building if error occurs
+ set -e
+@@ -13,7 +14,7 @@ set -e
+ 
+ export TEST=$PWD
+ export BINARY_DIR=$TEST/../../build/hashbrown
+-LIBRARY_DIR="$BUILD_DIR/rust/build/x86_64-unknown-linux-gnu/stage1/lib/rustlib/x86_64-unknown-linux-gnu/lib"
++LIBRARY_DIR="$BUILD_DIR/rust/build/$TARGETTRIPLE/stage1/lib/rustlib/$TARGETTRIPLE/lib"
+ RLIBS=$(find $LIBRARY_DIR -name "*.rlib")
+ cp $TEST/../total.ll $TEST
+ 
+diff --git a/benchmarks/hashbrown/test/native/native-hashbrown.sh b/benchmarks/hashbrown/test/native/native-hashbrown.sh
+index 3d5cfe7..9e2d755 100755
+--- a/benchmarks/hashbrown/test/native/native-hashbrown.sh
++++ b/benchmarks/hashbrown/test/native/native-hashbrown.sh
+@@ -1,4 +1,5 @@
+ #!/bin/bash
++TARGETTRIPLE=$(uname -m)-unknown-linux-gnu
+ 
+ # immediately stop building if error occurs
+ set -e
+@@ -6,7 +7,7 @@ set -e
+ # Make sure that you set the environmetal settings by ERASan/env/env.sh
+ export TEST=$PWD
+ export BINARY_DIR=$TEST/../../build/hashbrown
+-LIBRARY_DIR="$BUILD_DIR/rust/build/x86_64-unknown-linux-gnu/stage1/lib/rustlib/x86_64-unknown-linux-gnu/lib"
++LIBRARY_DIR="$BUILD_DIR/rust/build/$TARGETTRIPLE/stage1/lib/rustlib/$TARGETTRIPLE/lib"
+ RLIBS=$(find $LIBRARY_DIR -name "*.rlib")
+ cp $TEST/../total.ll $TEST
+ 
+diff --git a/benchmarks/indexmap/test/asan/asan-indexmap.sh b/benchmarks/indexmap/test/asan/asan-indexmap.sh
+index e970a2b..fc72878 100755
+--- a/benchmarks/indexmap/test/asan/asan-indexmap.sh
++++ b/benchmarks/indexmap/test/asan/asan-indexmap.sh
+@@ -1,4 +1,5 @@
+ #!/bin/bash
++TARGETTRIPLE=$(uname -m)-unknown-linux-gnu
+ 
+ # immediately stop building if error occurs
+ set -e
+@@ -13,7 +14,7 @@ set -e
+ 
+ export TEST=$PWD
+ export BINARY_DIR=$TEST/../../build/indexmap
+-LIBRARY_DIR="$BUILD_DIR/rust/build/x86_64-unknown-linux-gnu/stage1/lib/rustlib/x86_64-unknown-linux-gnu/lib"
++LIBRARY_DIR="$BUILD_DIR/rust/build/$TARGETTRIPLE/stage1/lib/rustlib/$TARGETTRIPLE/lib"
+ RLIBS=$(find $LIBRARY_DIR -name "*.rlib")
+ cp $TEST/../total.ll $TEST
+ 
+diff --git a/benchmarks/indexmap/test/erasan-debloating/erasan-debloating-indexmap.sh b/benchmarks/indexmap/test/erasan-debloating/erasan-debloating-indexmap.sh
+index 1764034..ea0c9b4 100755
+--- a/benchmarks/indexmap/test/erasan-debloating/erasan-debloating-indexmap.sh
++++ b/benchmarks/indexmap/test/erasan-debloating/erasan-debloating-indexmap.sh
+@@ -1,4 +1,5 @@
+ #!/bin/bash
++TARGETTRIPLE=$(uname -m)-unknown-linux-gnu
+ 
+ # immediately stop building if error occurs
+ set -e
+@@ -13,7 +14,7 @@ set -e
+ 
+ export TEST=$PWD
+ export BINARY_DIR=$TEST/../../build/indexmap
+-LIBRARY_DIR="$BUILD_DIR/rust/build/x86_64-unknown-linux-gnu/stage1/lib/rustlib/x86_64-unknown-linux-gnu/lib"
++LIBRARY_DIR="$BUILD_DIR/rust/build/$TARGETTRIPLE/stage1/lib/rustlib/$TARGETTRIPLE/lib"
+ RLIBS=$(find $LIBRARY_DIR -name "*.rlib")
+ cp $TEST/../total.ll $TEST
+ 
+diff --git a/benchmarks/indexmap/test/erasan-rawptr/erasan-rawptr-indexmap.sh b/benchmarks/indexmap/test/erasan-rawptr/erasan-rawptr-indexmap.sh
+index c63d117..a36a178 100755
+--- a/benchmarks/indexmap/test/erasan-rawptr/erasan-rawptr-indexmap.sh
++++ b/benchmarks/indexmap/test/erasan-rawptr/erasan-rawptr-indexmap.sh
+@@ -1,4 +1,5 @@
+ #!/bin/bash
++TARGETTRIPLE=$(uname -m)-unknown-linux-gnu
+ 
+ # immediately stop building if error occurs
+ set -e
+@@ -13,7 +14,7 @@ set -e
+ 
+ export TEST=$PWD
+ export BINARY_DIR=$TEST/../../build/indexmap
+-LIBRARY_DIR="$BUILD_DIR/rust/build/x86_64-unknown-linux-gnu/stage1/lib/rustlib/x86_64-unknown-linux-gnu/lib"
++LIBRARY_DIR="$BUILD_DIR/rust/build/$TARGETTRIPLE/stage1/lib/rustlib/$TARGETTRIPLE/lib"
+ RLIBS=$(find $LIBRARY_DIR -name "*.rlib")
+ cp $TEST/../total.ll $TEST
+ 
+diff --git a/benchmarks/indexmap/test/erasan-threadsafe/erasan-threadsafe-indexmap.sh b/benchmarks/indexmap/test/erasan-threadsafe/erasan-threadsafe-indexmap.sh
+index 8030160..0bbdc1d 100755
+--- a/benchmarks/indexmap/test/erasan-threadsafe/erasan-threadsafe-indexmap.sh
++++ b/benchmarks/indexmap/test/erasan-threadsafe/erasan-threadsafe-indexmap.sh
+@@ -1,4 +1,5 @@
+ #!/bin/bash
++TARGETTRIPLE=$(uname -m)-unknown-linux-gnu
+ 
+ # immediately stop building if error occurs
+ set -e
+@@ -13,7 +14,7 @@ set -e
+ 
+ export TEST=$PWD
+ export BINARY_DIR=$TEST/../../build/indexmap
+-LIBRARY_DIR="$BUILD_DIR/rust/build/x86_64-unknown-linux-gnu/stage1/lib/rustlib/x86_64-unknown-linux-gnu/lib"
++LIBRARY_DIR="$BUILD_DIR/rust/build/$TARGETTRIPLE/stage1/lib/rustlib/$TARGETTRIPLE/lib"
+ RLIBS=$(find $LIBRARY_DIR -name "*.rlib")
+ cp $TEST/../total.ll $TEST
+ 
+diff --git a/benchmarks/indexmap/test/erasan-unsafe/erasan-unsafe-indexmap.sh b/benchmarks/indexmap/test/erasan-unsafe/erasan-unsafe-indexmap.sh
+index 45de9fd..2600442 100755
+--- a/benchmarks/indexmap/test/erasan-unsafe/erasan-unsafe-indexmap.sh
++++ b/benchmarks/indexmap/test/erasan-unsafe/erasan-unsafe-indexmap.sh
+@@ -1,4 +1,5 @@
+ #!/bin/bash
++TARGETTRIPLE=$(uname -m)-unknown-linux-gnu
+ 
+ # immediately stop building if error occurs
+ set -e
+@@ -13,7 +14,7 @@ set -e
+ 
+ export TEST=$PWD
+ export BINARY_DIR=$TEST/../../build/indexmap
+-LIBRARY_DIR="$BUILD_DIR/rust/build/x86_64-unknown-linux-gnu/stage1/lib/rustlib/x86_64-unknown-linux-gnu/lib"
++LIBRARY_DIR="$BUILD_DIR/rust/build/$TARGETTRIPLE/stage1/lib/rustlib/$TARGETTRIPLE/lib"
+ RLIBS=$(find $LIBRARY_DIR -name "*.rlib")
+ cp $TEST/../total.ll $TEST/../total_debug.ll $TEST
+ 
+diff --git a/benchmarks/indexmap/test/erasan/erasan-indexmap.sh b/benchmarks/indexmap/test/erasan/erasan-indexmap.sh
+index 4efbaa7..b44abd9 100755
+--- a/benchmarks/indexmap/test/erasan/erasan-indexmap.sh
++++ b/benchmarks/indexmap/test/erasan/erasan-indexmap.sh
+@@ -1,4 +1,5 @@
+ #!/bin/bash
++TARGETTRIPLE=$(uname -m)-unknown-linux-gnu
+ 
+ # immediately stop building if error occurs
+ set -e
+@@ -13,7 +14,7 @@ set -e
+ 
+ export TEST=$PWD
+ export BINARY_DIR=$TEST/../../build/indexmap
+-LIBRARY_DIR="$BUILD_DIR/rust/build/x86_64-unknown-linux-gnu/stage1/lib/rustlib/x86_64-unknown-linux-gnu/lib"
++LIBRARY_DIR="$BUILD_DIR/rust/build/$TARGETTRIPLE/stage1/lib/rustlib/$TARGETTRIPLE/lib"
+ RLIBS=$(find $LIBRARY_DIR -name "*.rlib")
+ cp $TEST/../total.ll $TEST
+ 
+diff --git a/benchmarks/indexmap/test/native/native-indexmap.sh b/benchmarks/indexmap/test/native/native-indexmap.sh
+index 9ba2338..2e8132f 100755
+--- a/benchmarks/indexmap/test/native/native-indexmap.sh
++++ b/benchmarks/indexmap/test/native/native-indexmap.sh
+@@ -1,4 +1,5 @@
+ #!/bin/bash
++TARGETTRIPLE=$(uname -m)-unknown-linux-gnu
+ 
+ # immediately stop building if error occurs
+ set -e
+@@ -6,7 +7,7 @@ set -e
+ # Make sure that you set the environmetal settings by ERASan/env/env.sh
+ export TEST=$PWD
+ export BINARY_DIR=$TEST/../../build/indexmap
+-LIBRARY_DIR="$BUILD_DIR/rust/build/x86_64-unknown-linux-gnu/stage1/lib/rustlib/x86_64-unknown-linux-gnu/lib"
++LIBRARY_DIR="$BUILD_DIR/rust/build/$TARGETTRIPLE/stage1/lib/rustlib/$TARGETTRIPLE/lib"
+ RLIBS=$(find $LIBRARY_DIR -name "*.rlib")
+ cp $TEST/../total.ll $TEST
+ 
+diff --git a/benchmarks/itoa/test/asan/asan-itoa.sh b/benchmarks/itoa/test/asan/asan-itoa.sh
+index 3a2aacb..f2bd754 100755
+--- a/benchmarks/itoa/test/asan/asan-itoa.sh
++++ b/benchmarks/itoa/test/asan/asan-itoa.sh
+@@ -1,4 +1,5 @@
+ #!/bin/bash
++TARGETTRIPLE=$(uname -m)-unknown-linux-gnu
+ 
+ # immediately stop building if error occurs
+ set -e
+@@ -13,7 +14,7 @@ set -e
+ 
+ export TEST=$PWD
+ export BINARY_DIR=$TEST/../../build/itoa
+-LIBRARY_DIR="$BUILD_DIR/rust/build/x86_64-unknown-linux-gnu/stage1/lib/rustlib/x86_64-unknown-linux-gnu/lib"
++LIBRARY_DIR="$BUILD_DIR/rust/build/$TARGETTRIPLE/stage1/lib/rustlib/$TARGETTRIPLE/lib"
+ RLIBS=$(find $LIBRARY_DIR -name "*.rlib")
+ cp $TEST/../total.ll $TEST
+ 
+diff --git a/benchmarks/itoa/test/erasan-debloating/erasan-debloating-itoa.sh b/benchmarks/itoa/test/erasan-debloating/erasan-debloating-itoa.sh
+index 6ec2437..c3ff8eb 100755
+--- a/benchmarks/itoa/test/erasan-debloating/erasan-debloating-itoa.sh
++++ b/benchmarks/itoa/test/erasan-debloating/erasan-debloating-itoa.sh
+@@ -1,4 +1,5 @@
+ #!/bin/bash
++TARGETTRIPLE=$(uname -m)-unknown-linux-gnu
+ 
+ # immediately stop building if error occurs
+ set -e
+@@ -13,7 +14,7 @@ set -e
+ 
+ export TEST=$PWD
+ export BINARY_DIR=$TEST/../../build/itoa
+-LIBRARY_DIR="$BUILD_DIR/rust/build/x86_64-unknown-linux-gnu/stage1/lib/rustlib/x86_64-unknown-linux-gnu/lib"
++LIBRARY_DIR="$BUILD_DIR/rust/build/$TARGETTRIPLE/stage1/lib/rustlib/$TARGETTRIPLE/lib"
+ RLIBS=$(find $LIBRARY_DIR -name "*.rlib")
+ cp $TEST/../total.ll $TEST
+ 
+diff --git a/benchmarks/itoa/test/erasan-rawptr/erasan-rawptr-itoa.sh b/benchmarks/itoa/test/erasan-rawptr/erasan-rawptr-itoa.sh
+index ee0ca55..3f50d9f 100755
+--- a/benchmarks/itoa/test/erasan-rawptr/erasan-rawptr-itoa.sh
++++ b/benchmarks/itoa/test/erasan-rawptr/erasan-rawptr-itoa.sh
+@@ -1,4 +1,5 @@
+ #!/bin/bash
++TARGETTRIPLE=$(uname -m)-unknown-linux-gnu
+ 
+ # immediately stop building if error occurs
+ set -e
+@@ -13,7 +14,7 @@ set -e
+ 
+ export TEST=$PWD
+ export BINARY_DIR=$TEST/../../build/itoa
+-LIBRARY_DIR="$BUILD_DIR/rust/build/x86_64-unknown-linux-gnu/stage1/lib/rustlib/x86_64-unknown-linux-gnu/lib"
++LIBRARY_DIR="$BUILD_DIR/rust/build/$TARGETTRIPLE/stage1/lib/rustlib/$TARGETTRIPLE/lib"
+ RLIBS=$(find $LIBRARY_DIR -name "*.rlib")
+ cp $TEST/../total.ll $TEST
+ 
+diff --git a/benchmarks/itoa/test/erasan-threadsafe/erasan-threadsafe-itoa.sh b/benchmarks/itoa/test/erasan-threadsafe/erasan-threadsafe-itoa.sh
+index 1d1197b..4240a02 100755
+--- a/benchmarks/itoa/test/erasan-threadsafe/erasan-threadsafe-itoa.sh
++++ b/benchmarks/itoa/test/erasan-threadsafe/erasan-threadsafe-itoa.sh
+@@ -1,4 +1,5 @@
+ #!/bin/bash
++TARGETTRIPLE=$(uname -m)-unknown-linux-gnu
+ 
+ # immediately stop building if error occurs
+ set -e
+@@ -13,7 +14,7 @@ set -e
+ 
+ export TEST=$PWD
+ export BINARY_DIR=$TEST/../../build/itoa
+-LIBRARY_DIR="$BUILD_DIR/rust/build/x86_64-unknown-linux-gnu/stage1/lib/rustlib/x86_64-unknown-linux-gnu/lib"
++LIBRARY_DIR="$BUILD_DIR/rust/build/$TARGETTRIPLE/stage1/lib/rustlib/$TARGETTRIPLE/lib"
+ RLIBS=$(find $LIBRARY_DIR -name "*.rlib")
+ cp $TEST/../total.ll $TEST
+ 
+diff --git a/benchmarks/itoa/test/erasan-unsafe/erasan-unsafe-itoa.sh b/benchmarks/itoa/test/erasan-unsafe/erasan-unsafe-itoa.sh
+index 5aad7e2..d3fe606 100755
+--- a/benchmarks/itoa/test/erasan-unsafe/erasan-unsafe-itoa.sh
++++ b/benchmarks/itoa/test/erasan-unsafe/erasan-unsafe-itoa.sh
+@@ -1,4 +1,5 @@
+ #!/bin/bash
++TARGETTRIPLE=$(uname -m)-unknown-linux-gnu
+ 
+ # immediately stop building if error occurs
+ set -e
+@@ -13,7 +14,7 @@ set -e
+ 
+ export TEST=$PWD
+ export BINARY_DIR=$TEST/../../build/itoa
+-LIBRARY_DIR="$BUILD_DIR/rust/build/x86_64-unknown-linux-gnu/stage1/lib/rustlib/x86_64-unknown-linux-gnu/lib"
++LIBRARY_DIR="$BUILD_DIR/rust/build/$TARGETTRIPLE/stage1/lib/rustlib/$TARGETTRIPLE/lib"
+ RLIBS=$(find $LIBRARY_DIR -name "*.rlib")
+ cp $TEST/../total.ll $TEST/../total_debug.ll $TEST
+ 
+diff --git a/benchmarks/itoa/test/erasan/erasan-itoa.sh b/benchmarks/itoa/test/erasan/erasan-itoa.sh
+index b0a92cc..63647e5 100755
+--- a/benchmarks/itoa/test/erasan/erasan-itoa.sh
++++ b/benchmarks/itoa/test/erasan/erasan-itoa.sh
+@@ -1,4 +1,5 @@
+ #!/bin/bash
++TARGETTRIPLE=$(uname -m)-unknown-linux-gnu
+ 
+ # immediately stop building if error occurs
+ set -e
+@@ -13,7 +14,7 @@ set -e
+ 
+ export TEST=$PWD
+ export BINARY_DIR=$TEST/../../build/itoa
+-LIBRARY_DIR="$BUILD_DIR/rust/build/x86_64-unknown-linux-gnu/stage1/lib/rustlib/x86_64-unknown-linux-gnu/lib"
++LIBRARY_DIR="$BUILD_DIR/rust/build/$TARGETTRIPLE/stage1/lib/rustlib/$TARGETTRIPLE/lib"
+ RLIBS=$(find $LIBRARY_DIR -name "*.rlib")
+ cp $TEST/../total.ll $TEST
+ 
+diff --git a/benchmarks/itoa/test/native/native-itoa.sh b/benchmarks/itoa/test/native/native-itoa.sh
+index 951bdb5..997a94a 100755
+--- a/benchmarks/itoa/test/native/native-itoa.sh
++++ b/benchmarks/itoa/test/native/native-itoa.sh
+@@ -1,4 +1,5 @@
+ #!/bin/bash
++TARGETTRIPLE=$(uname -m)-unknown-linux-gnu
+ 
+ # immediately stop building if error occurs
+ set -e
+@@ -6,7 +7,7 @@ set -e
+ # Make sure that you set the environmetal settings by ERASan/env/env.sh
+ export TEST=$PWD
+ export BINARY_DIR=$TEST/../../build/itoa
+-LIBRARY_DIR="$BUILD_DIR/rust/build/x86_64-unknown-linux-gnu/stage1/lib/rustlib/x86_64-unknown-linux-gnu/lib"
++LIBRARY_DIR="$BUILD_DIR/rust/build/$TARGETTRIPLE/stage1/lib/rustlib/$TARGETTRIPLE/lib"
+ RLIBS=$(find $LIBRARY_DIR -name "*.rlib")
+ cp $TEST/../total.ll $TEST
+ 
+diff --git a/benchmarks/memchr/test/asan/asan-memchr.sh b/benchmarks/memchr/test/asan/asan-memchr.sh
+index 802bbd0..dd181a3 100755
+--- a/benchmarks/memchr/test/asan/asan-memchr.sh
++++ b/benchmarks/memchr/test/asan/asan-memchr.sh
+@@ -1,4 +1,5 @@
+ #!/bin/bash
++TARGETTRIPLE=$(uname -m)-unknown-linux-gnu
+ 
+ # immediately stop building if error occurs
+ set -e
+@@ -13,7 +14,7 @@ set -e
+ export ASAN_OPTIONS=halt_on_error=0
+ export TEST=$PWD
+ export BINARY_DIR=$TEST/../../build/memchr/bench
+-LIBRARY_DIR="$BUILD_DIR/rust/build/x86_64-unknown-linux-gnu/stage1/lib/rustlib/x86_64-unknown-linux-gnu/lib"
++LIBRARY_DIR="$BUILD_DIR/rust/build/$TARGETTRIPLE/stage1/lib/rustlib/$TARGETTRIPLE/lib"
+ RLIBS=$(find $LIBRARY_DIR -name "*.rlib")
+ cp $TEST/../total.ll $TEST
+ 
+diff --git a/benchmarks/memchr/test/erasan-debloating/erasan-debloating-memchr.sh b/benchmarks/memchr/test/erasan-debloating/erasan-debloating-memchr.sh
+index 732a66f..defc10c 100755
+--- a/benchmarks/memchr/test/erasan-debloating/erasan-debloating-memchr.sh
++++ b/benchmarks/memchr/test/erasan-debloating/erasan-debloating-memchr.sh
+@@ -1,4 +1,5 @@
+ #!/bin/bash
++TARGETTRIPLE=$(uname -m)-unknown-linux-gnu
+ 
+ # immediately stop building if error occurs
+ set -e
+@@ -13,7 +14,7 @@ set -e
+ export ASAN_OPTIONS=halt_on_error=0
+ export TEST=$PWD
+ export BINARY_DIR=$TEST/../../build/memchr/bench
+-LIBRARY_DIR="$BUILD_DIR/rust/build/x86_64-unknown-linux-gnu/stage1/lib/rustlib/x86_64-unknown-linux-gnu/lib"
++LIBRARY_DIR="$BUILD_DIR/rust/build/$TARGETTRIPLE/stage1/lib/rustlib/$TARGETTRIPLE/lib"
+ RLIBS=$(find $LIBRARY_DIR -name "*.rlib")
+ cp $TEST/../total.ll $TEST
+ 
+diff --git a/benchmarks/memchr/test/erasan-rawptr/erasan-rawptr-memchr.sh b/benchmarks/memchr/test/erasan-rawptr/erasan-rawptr-memchr.sh
+index ab99beb..81a9393 100755
+--- a/benchmarks/memchr/test/erasan-rawptr/erasan-rawptr-memchr.sh
++++ b/benchmarks/memchr/test/erasan-rawptr/erasan-rawptr-memchr.sh
+@@ -1,4 +1,5 @@
+ #!/bin/bash
++TARGETTRIPLE=$(uname -m)-unknown-linux-gnu
+ 
+ # immediately stop building if error occurs
+ set -e
+@@ -13,7 +14,7 @@ set -e
+ export ASAN_OPTIONS=halt_on_error=0
+ export TEST=$PWD
+ export BINARY_DIR=$TEST/../../build/memchr/bench
+-LIBRARY_DIR="$BUILD_DIR/rust/build/x86_64-unknown-linux-gnu/stage1/lib/rustlib/x86_64-unknown-linux-gnu/lib"
++LIBRARY_DIR="$BUILD_DIR/rust/build/$TARGETTRIPLE/stage1/lib/rustlib/$TARGETTRIPLE/lib"
+ RLIBS=$(find $LIBRARY_DIR -name "*.rlib")
+ cp $TEST/../total.ll $TEST
+ 
+diff --git a/benchmarks/memchr/test/erasan-threadsafe/erasan-threadsafe-memchr.sh b/benchmarks/memchr/test/erasan-threadsafe/erasan-threadsafe-memchr.sh
+index 8985c11..ff47dae 100755
+--- a/benchmarks/memchr/test/erasan-threadsafe/erasan-threadsafe-memchr.sh
++++ b/benchmarks/memchr/test/erasan-threadsafe/erasan-threadsafe-memchr.sh
+@@ -1,4 +1,5 @@
+ #!/bin/bash
++TARGETTRIPLE=$(uname -m)-unknown-linux-gnu
+ 
+ # immediately stop building if error occurs
+ set -e
+@@ -13,7 +14,7 @@ set -e
+ export ASAN_OPTIONS=halt_on_error=0
+ export TEST=$PWD
+ export BINARY_DIR=$TEST/../../build/memchr/bench
+-LIBRARY_DIR="$BUILD_DIR/rust/build/x86_64-unknown-linux-gnu/stage1/lib/rustlib/x86_64-unknown-linux-gnu/lib"
++LIBRARY_DIR="$BUILD_DIR/rust/build/$TARGETTRIPLE/stage1/lib/rustlib/$TARGETTRIPLE/lib"
+ RLIBS=$(find $LIBRARY_DIR -name "*.rlib")
+ cp $TEST/../total.ll $TEST
+ 
+diff --git a/benchmarks/memchr/test/erasan-unsafe/erasan-unsafe-memchr.sh b/benchmarks/memchr/test/erasan-unsafe/erasan-unsafe-memchr.sh
+index 0d7ff7c..cde7373 100755
+--- a/benchmarks/memchr/test/erasan-unsafe/erasan-unsafe-memchr.sh
++++ b/benchmarks/memchr/test/erasan-unsafe/erasan-unsafe-memchr.sh
+@@ -1,4 +1,5 @@
+ #!/bin/bash
++TARGETTRIPLE=$(uname -m)-unknown-linux-gnu
+ 
+ # immediately stop building if error occurs
+ set -e
+@@ -13,7 +14,7 @@ set -e
+ export ASAN_OPTIONS=halt_on_error=0
+ export TEST=$PWD
+ export BINARY_DIR=$TEST/../../build/memchr/bench
+-LIBRARY_DIR="$BUILD_DIR/rust/build/x86_64-unknown-linux-gnu/stage1/lib/rustlib/x86_64-unknown-linux-gnu/lib"
++LIBRARY_DIR="$BUILD_DIR/rust/build/$TARGETTRIPLE/stage1/lib/rustlib/$TARGETTRIPLE/lib"
+ RLIBS=$(find $LIBRARY_DIR -name "*.rlib")
+ cp $TEST/../total.ll $TEST/../total_debug.ll $TEST
+ 
+diff --git a/benchmarks/memchr/test/erasan/erasan-memchr.sh b/benchmarks/memchr/test/erasan/erasan-memchr.sh
+index d9baa32..b8484c0 100755
+--- a/benchmarks/memchr/test/erasan/erasan-memchr.sh
++++ b/benchmarks/memchr/test/erasan/erasan-memchr.sh
+@@ -1,4 +1,5 @@
+ #!/bin/bash
++TARGETTRIPLE=$(uname -m)-unknown-linux-gnu
+ 
+ # immediately stop building if error occurs
+ set -e
+@@ -13,7 +14,7 @@ set -e
+ export ASAN_OPTIONS=halt_on_error=0
+ export TEST=$PWD
+ export BINARY_DIR=$TEST/../../build/memchr/bench
+-LIBRARY_DIR="$BUILD_DIR/rust/build/x86_64-unknown-linux-gnu/stage1/lib/rustlib/x86_64-unknown-linux-gnu/lib"
++LIBRARY_DIR="$BUILD_DIR/rust/build/$TARGETTRIPLE/stage1/lib/rustlib/$TARGETTRIPLE/lib"
+ RLIBS=$(find $LIBRARY_DIR -name "*.rlib")
+ cp $TEST/../total.ll $TEST
+ 
+diff --git a/benchmarks/memchr/test/native/native-memchr.sh b/benchmarks/memchr/test/native/native-memchr.sh
+index b642a3a..7fe1170 100755
+--- a/benchmarks/memchr/test/native/native-memchr.sh
++++ b/benchmarks/memchr/test/native/native-memchr.sh
+@@ -1,4 +1,5 @@
+ #!/bin/bash
++TARGETTRIPLE=$(uname -m)-unknown-linux-gnu
+ 
+ # immediately stop building if error occurs
+ set -e
+@@ -6,7 +7,7 @@ set -e
+ # Make sure that you set the environmetal settings by ERASan/env/env.sh
+ export TEST=$PWD
+ export BINARY_DIR=$TEST/../../build/memchr/bench
+-LIBRARY_DIR="$BUILD_DIR/rust/build/x86_64-unknown-linux-gnu/stage1/lib/rustlib/x86_64-unknown-linux-gnu/lib"
++LIBRARY_DIR="$BUILD_DIR/rust/build/$TARGETTRIPLE/stage1/lib/rustlib/$TARGETTRIPLE/lib"
+ RLIBS=$(find $LIBRARY_DIR -name "*.rlib")
+ cp $TEST/../total.ll $TEST
+ 
+diff --git a/benchmarks/num-integer/test/asan/asan-num-integer.sh b/benchmarks/num-integer/test/asan/asan-num-integer.sh
+index 0d6952c..3b3d4be 100755
+--- a/benchmarks/num-integer/test/asan/asan-num-integer.sh
++++ b/benchmarks/num-integer/test/asan/asan-num-integer.sh
+@@ -1,4 +1,5 @@
+ #!/bin/bash
++TARGETTRIPLE=$(uname -m)-unknown-linux-gnu
+ 
+ # immediately stop building if error occurs
+ set -e
+@@ -13,7 +14,7 @@ set -e
+ 
+ export TEST=$PWD
+ export BINARY_DIR=$TEST/../../build/num-integer
+-LIBRARY_DIR="$BUILD_DIR/rust/build/x86_64-unknown-linux-gnu/stage1/lib/rustlib/x86_64-unknown-linux-gnu/lib"
++LIBRARY_DIR="$BUILD_DIR/rust/build/$TARGETTRIPLE/stage1/lib/rustlib/$TARGETTRIPLE/lib"
+ RLIBS=$(find $LIBRARY_DIR -name "*.rlib")
+ cp $TEST/../total.ll $TEST
+ 
+diff --git a/benchmarks/num-integer/test/erasan-debloating/erasan-debloating-num-integer.sh b/benchmarks/num-integer/test/erasan-debloating/erasan-debloating-num-integer.sh
+index 64328e3..a6c7f18 100755
+--- a/benchmarks/num-integer/test/erasan-debloating/erasan-debloating-num-integer.sh
++++ b/benchmarks/num-integer/test/erasan-debloating/erasan-debloating-num-integer.sh
+@@ -1,4 +1,5 @@
+ #!/bin/bash
++TARGETTRIPLE=$(uname -m)-unknown-linux-gnu
+ 
+ # immediately stop building if error occurs
+ set -e
+@@ -13,7 +14,7 @@ set -e
+ 
+ export TEST=$PWD
+ export BINARY_DIR=$TEST/../../build/num-integer
+-LIBRARY_DIR="$BUILD_DIR/rust/build/x86_64-unknown-linux-gnu/stage1/lib/rustlib/x86_64-unknown-linux-gnu/lib"
++LIBRARY_DIR="$BUILD_DIR/rust/build/$TARGETTRIPLE/stage1/lib/rustlib/$TARGETTRIPLE/lib"
+ RLIBS=$(find $LIBRARY_DIR -name "*.rlib")
+ cp $TEST/../total.ll $TEST
+ 
+diff --git a/benchmarks/num-integer/test/erasan-rawptr/erasan-rawptr-num-integer.sh b/benchmarks/num-integer/test/erasan-rawptr/erasan-rawptr-num-integer.sh
+index 680a8cb..c113b7f 100755
+--- a/benchmarks/num-integer/test/erasan-rawptr/erasan-rawptr-num-integer.sh
++++ b/benchmarks/num-integer/test/erasan-rawptr/erasan-rawptr-num-integer.sh
+@@ -1,4 +1,5 @@
+ #!/bin/bash
++TARGETTRIPLE=$(uname -m)-unknown-linux-gnu
+ 
+ # immediately stop building if error occurs
+ set -e
+@@ -13,7 +14,7 @@ set -e
+ 
+ export TEST=$PWD
+ export BINARY_DIR=$TEST/../../build/num-integer
+-LIBRARY_DIR="$BUILD_DIR/rust/build/x86_64-unknown-linux-gnu/stage1/lib/rustlib/x86_64-unknown-linux-gnu/lib"
++LIBRARY_DIR="$BUILD_DIR/rust/build/$TARGETTRIPLE/stage1/lib/rustlib/$TARGETTRIPLE/lib"
+ RLIBS=$(find $LIBRARY_DIR -name "*.rlib")
+ cp $TEST/../total.ll $TEST
+ 
+diff --git a/benchmarks/num-integer/test/erasan-threadsafe/erasan-threadsafe-num-integer.sh b/benchmarks/num-integer/test/erasan-threadsafe/erasan-threadsafe-num-integer.sh
+index bdf5613..09f1830 100755
+--- a/benchmarks/num-integer/test/erasan-threadsafe/erasan-threadsafe-num-integer.sh
++++ b/benchmarks/num-integer/test/erasan-threadsafe/erasan-threadsafe-num-integer.sh
+@@ -1,4 +1,5 @@
+ #!/bin/bash
++TARGETTRIPLE=$(uname -m)-unknown-linux-gnu
+ 
+ # immediately stop building if error occurs
+ set -e
+@@ -13,7 +14,7 @@ set -e
+ 
+ export TEST=$PWD
+ export BINARY_DIR=$TEST/../../build/num-integer
+-LIBRARY_DIR="$BUILD_DIR/rust/build/x86_64-unknown-linux-gnu/stage1/lib/rustlib/x86_64-unknown-linux-gnu/lib"
++LIBRARY_DIR="$BUILD_DIR/rust/build/$TARGETTRIPLE/stage1/lib/rustlib/$TARGETTRIPLE/lib"
+ RLIBS=$(find $LIBRARY_DIR -name "*.rlib")
+ cp $TEST/../total.ll $TEST
+ 
+diff --git a/benchmarks/num-integer/test/erasan-unsafe/erasan-unsafe-num-integer.sh b/benchmarks/num-integer/test/erasan-unsafe/erasan-unsafe-num-integer.sh
+index 84f0f43..b9d2a62 100755
+--- a/benchmarks/num-integer/test/erasan-unsafe/erasan-unsafe-num-integer.sh
++++ b/benchmarks/num-integer/test/erasan-unsafe/erasan-unsafe-num-integer.sh
+@@ -1,4 +1,5 @@
+ #!/bin/bash
++TARGETTRIPLE=$(uname -m)-unknown-linux-gnu
+ 
+ # immediately stop building if error occurs
+ set -e
+@@ -13,7 +14,7 @@ set -e
+ 
+ export TEST=$PWD
+ export BINARY_DIR=$TEST/../../build/num-integer
+-LIBRARY_DIR="$BUILD_DIR/rust/build/x86_64-unknown-linux-gnu/stage1/lib/rustlib/x86_64-unknown-linux-gnu/lib"
++LIBRARY_DIR="$BUILD_DIR/rust/build/$TARGETTRIPLE/stage1/lib/rustlib/$TARGETTRIPLE/lib"
+ RLIBS=$(find $LIBRARY_DIR -name "*.rlib")
+ cp $TEST/../total.ll $TEST/../total_debug.ll $TEST
+ 
+diff --git a/benchmarks/num-integer/test/erasan/erasan-num-integer.sh b/benchmarks/num-integer/test/erasan/erasan-num-integer.sh
+index b1103f9..34599db 100755
+--- a/benchmarks/num-integer/test/erasan/erasan-num-integer.sh
++++ b/benchmarks/num-integer/test/erasan/erasan-num-integer.sh
+@@ -1,4 +1,5 @@
+ #!/bin/bash
++TARGETTRIPLE=$(uname -m)-unknown-linux-gnu
+ 
+ # immediately stop building if error occurs
+ set -e
+@@ -13,7 +14,7 @@ set -e
+ 
+ export TEST=$PWD
+ export BINARY_DIR=$TEST/../../build/num-integer
+-LIBRARY_DIR="$BUILD_DIR/rust/build/x86_64-unknown-linux-gnu/stage1/lib/rustlib/x86_64-unknown-linux-gnu/lib"
++LIBRARY_DIR="$BUILD_DIR/rust/build/$TARGETTRIPLE/stage1/lib/rustlib/$TARGETTRIPLE/lib"
+ RLIBS=$(find $LIBRARY_DIR -name "*.rlib")
+ cp $TEST/../total.ll $TEST
+ 
+diff --git a/benchmarks/num-integer/test/native/native-num-integer.sh b/benchmarks/num-integer/test/native/native-num-integer.sh
+index 0be8a0b..d6840b8 100755
+--- a/benchmarks/num-integer/test/native/native-num-integer.sh
++++ b/benchmarks/num-integer/test/native/native-num-integer.sh
+@@ -1,4 +1,5 @@
+ #!/bin/bash
++TARGETTRIPLE=$(uname -m)-unknown-linux-gnu
+ 
+ # immediately stop building if error occurs
+ set -e
+@@ -6,7 +7,7 @@ set -e
+ # Make sure that you set the environmetal settings by ERASan/env/env.sh
+ export TEST=$PWD
+ export BINARY_DIR=$TEST/../../build/num-integer
+-LIBRARY_DIR="$BUILD_DIR/rust/build/x86_64-unknown-linux-gnu/stage1/lib/rustlib/x86_64-unknown-linux-gnu/lib"
++LIBRARY_DIR="$BUILD_DIR/rust/build/$TARGETTRIPLE/stage1/lib/rustlib/$TARGETTRIPLE/lib"
+ RLIBS=$(find $LIBRARY_DIR -name "*.rlib")
+ cp $TEST/../total.ll $TEST
+ 
+diff --git a/benchmarks/rand-generator/test/asan/asan-rand-generator.sh b/benchmarks/rand-generator/test/asan/asan-rand-generator.sh
+index 4dbd59c..23d3b6f 100755
+--- a/benchmarks/rand-generator/test/asan/asan-rand-generator.sh
++++ b/benchmarks/rand-generator/test/asan/asan-rand-generator.sh
+@@ -1,4 +1,5 @@
+ #!/bin/bash
++TARGETTRIPLE=$(uname -m)-unknown-linux-gnu
+ 
+ # immediately stop building if error occurs
+ set -e
+@@ -13,7 +14,7 @@ set -e
+ 
+ export TEST=$PWD
+ export BINARY_DIR=$TEST/../../build/rand
+-LIBRARY_DIR="$BUILD_DIR/rust/build/x86_64-unknown-linux-gnu/stage1/lib/rustlib/x86_64-unknown-linux-gnu/lib"
++LIBRARY_DIR="$BUILD_DIR/rust/build/$TARGETTRIPLE/stage1/lib/rustlib/$TARGETTRIPLE/lib"
+ RLIBS=$(find $LIBRARY_DIR -name "*.rlib")
+ cp $TEST/../total.ll $TEST
+ 
+diff --git a/benchmarks/rand-generator/test/erasan-debloating/erasan-debloating-rand-generator.sh b/benchmarks/rand-generator/test/erasan-debloating/erasan-debloating-rand-generator.sh
+index de26b6a..b6114bc 100755
+--- a/benchmarks/rand-generator/test/erasan-debloating/erasan-debloating-rand-generator.sh
++++ b/benchmarks/rand-generator/test/erasan-debloating/erasan-debloating-rand-generator.sh
+@@ -1,4 +1,5 @@
+ #!/bin/bash
++TARGETTRIPLE=$(uname -m)-unknown-linux-gnu
+ 
+ # immediately stop building if error occurs
+ set -e
+@@ -13,7 +14,7 @@ set -e
+ 
+ export TEST=$PWD
+ export BINARY_DIR=$TEST/../../build/rand
+-LIBRARY_DIR="$BUILD_DIR/rust/build/x86_64-unknown-linux-gnu/stage1/lib/rustlib/x86_64-unknown-linux-gnu/lib"
++LIBRARY_DIR="$BUILD_DIR/rust/build/$TARGETTRIPLE/stage1/lib/rustlib/$TARGETTRIPLE/lib"
+ RLIBS=$(find $LIBRARY_DIR -name "*.rlib")
+ cp $TEST/../total.ll $TEST
+ 
+diff --git a/benchmarks/rand-generator/test/erasan-rawptr/erasan-rawptr-rand-generator.sh b/benchmarks/rand-generator/test/erasan-rawptr/erasan-rawptr-rand-generator.sh
+index a6e6ac8..159bb4e 100755
+--- a/benchmarks/rand-generator/test/erasan-rawptr/erasan-rawptr-rand-generator.sh
++++ b/benchmarks/rand-generator/test/erasan-rawptr/erasan-rawptr-rand-generator.sh
+@@ -1,4 +1,5 @@
+ #!/bin/bash
++TARGETTRIPLE=$(uname -m)-unknown-linux-gnu
+ 
+ # immediately stop building if error occurs
+ set -e
+@@ -13,7 +14,7 @@ set -e
+ 
+ export TEST=$PWD
+ export BINARY_DIR=$TEST/../../build/rand
+-LIBRARY_DIR="$BUILD_DIR/rust/build/x86_64-unknown-linux-gnu/stage1/lib/rustlib/x86_64-unknown-linux-gnu/lib"
++LIBRARY_DIR="$BUILD_DIR/rust/build/$TARGETTRIPLE/stage1/lib/rustlib/$TARGETTRIPLE/lib"
+ RLIBS=$(find $LIBRARY_DIR -name "*.rlib")
+ cp $TEST/../total.ll $TEST
+ 
+diff --git a/benchmarks/rand-generator/test/erasan-threadsafe/erasan-threadsafe-rand-generator.sh b/benchmarks/rand-generator/test/erasan-threadsafe/erasan-threadsafe-rand-generator.sh
+index e21b616..70298c4 100755
+--- a/benchmarks/rand-generator/test/erasan-threadsafe/erasan-threadsafe-rand-generator.sh
++++ b/benchmarks/rand-generator/test/erasan-threadsafe/erasan-threadsafe-rand-generator.sh
+@@ -1,4 +1,5 @@
+ #!/bin/bash
++TARGETTRIPLE=$(uname -m)-unknown-linux-gnu
+ 
+ # immediately stop building if error occurs
+ set -e
+@@ -13,7 +14,7 @@ set -e
+ 
+ export TEST=$PWD
+ export BINARY_DIR=$TEST/../../build/rand
+-LIBRARY_DIR="$BUILD_DIR/rust/build/x86_64-unknown-linux-gnu/stage1/lib/rustlib/x86_64-unknown-linux-gnu/lib"
++LIBRARY_DIR="$BUILD_DIR/rust/build/$TARGETTRIPLE/stage1/lib/rustlib/$TARGETTRIPLE/lib"
+ RLIBS=$(find $LIBRARY_DIR -name "*.rlib")
+ cp $TEST/../total.ll $TEST
+ 
+diff --git a/benchmarks/rand-generator/test/erasan-unsafe/erasan-unsafe-rand-generator.sh b/benchmarks/rand-generator/test/erasan-unsafe/erasan-unsafe-rand-generator.sh
+index 667366d..4e85e4a 100755
+--- a/benchmarks/rand-generator/test/erasan-unsafe/erasan-unsafe-rand-generator.sh
++++ b/benchmarks/rand-generator/test/erasan-unsafe/erasan-unsafe-rand-generator.sh
+@@ -1,4 +1,5 @@
+ #!/bin/bash
++TARGETTRIPLE=$(uname -m)-unknown-linux-gnu
+ 
+ # immediately stop building if error occurs
+ set -e
+@@ -13,7 +14,7 @@ set -e
+ 
+ export TEST=$PWD
+ export BINARY_DIR=$TEST/../../build/rand
+-LIBRARY_DIR="$BUILD_DIR/rust/build/x86_64-unknown-linux-gnu/stage1/lib/rustlib/x86_64-unknown-linux-gnu/lib"
++LIBRARY_DIR="$BUILD_DIR/rust/build/$TARGETTRIPLE/stage1/lib/rustlib/$TARGETTRIPLE/lib"
+ RLIBS=$(find $LIBRARY_DIR -name "*.rlib")
+ cp $TEST/../total.ll $TEST/../total_debug.ll $TEST
+ 
+diff --git a/benchmarks/rand-generator/test/erasan/erasan-rand-generator.sh b/benchmarks/rand-generator/test/erasan/erasan-rand-generator.sh
+index 86ee022..ee90684 100755
+--- a/benchmarks/rand-generator/test/erasan/erasan-rand-generator.sh
++++ b/benchmarks/rand-generator/test/erasan/erasan-rand-generator.sh
+@@ -1,4 +1,5 @@
+ #!/bin/bash
++TARGETTRIPLE=$(uname -m)-unknown-linux-gnu
+ 
+ # immediately stop building if error occurs
+ set -e
+@@ -13,7 +14,7 @@ set -e
+ 
+ export TEST=$PWD
+ export BINARY_DIR=$TEST/../../build/rand
+-LIBRARY_DIR="$BUILD_DIR/rust/build/x86_64-unknown-linux-gnu/stage1/lib/rustlib/x86_64-unknown-linux-gnu/lib"
++LIBRARY_DIR="$BUILD_DIR/rust/build/$TARGETTRIPLE/stage1/lib/rustlib/$TARGETTRIPLE/lib"
+ RLIBS=$(find $LIBRARY_DIR -name "*.rlib")
+ cp $TEST/../total.ll $TEST
+ 
+diff --git a/benchmarks/rand-generator/test/native/native-rand-generator.sh b/benchmarks/rand-generator/test/native/native-rand-generator.sh
+index a9e7b66..acb8b5e 100755
+--- a/benchmarks/rand-generator/test/native/native-rand-generator.sh
++++ b/benchmarks/rand-generator/test/native/native-rand-generator.sh
+@@ -1,4 +1,5 @@
+ #!/bin/bash
++TARGETTRIPLE=$(uname -m)-unknown-linux-gnu
+ 
+ # immediately stop building if error occurs
+ set -e
+@@ -6,7 +7,7 @@ set -e
+ # Make sure that you set the environmetal settings by ERASan/env/env.sh
+ export TEST=$PWD
+ export BINARY_DIR=$TEST/../../build/rand
+-LIBRARY_DIR="$BUILD_DIR/rust/build/x86_64-unknown-linux-gnu/stage1/lib/rustlib/x86_64-unknown-linux-gnu/lib"
++LIBRARY_DIR="$BUILD_DIR/rust/build/$TARGETTRIPLE/stage1/lib/rustlib/$TARGETTRIPLE/lib"
+ RLIBS=$(find $LIBRARY_DIR -name "*.rlib")
+ cp $TEST/../total.ll $TEST
+ 
+diff --git a/benchmarks/rand-misc/test/asan/asan-rand-misc.sh b/benchmarks/rand-misc/test/asan/asan-rand-misc.sh
+index 4dbd59c..23d3b6f 100755
+--- a/benchmarks/rand-misc/test/asan/asan-rand-misc.sh
++++ b/benchmarks/rand-misc/test/asan/asan-rand-misc.sh
+@@ -1,4 +1,5 @@
+ #!/bin/bash
++TARGETTRIPLE=$(uname -m)-unknown-linux-gnu
+ 
+ # immediately stop building if error occurs
+ set -e
+@@ -13,7 +14,7 @@ set -e
+ 
+ export TEST=$PWD
+ export BINARY_DIR=$TEST/../../build/rand
+-LIBRARY_DIR="$BUILD_DIR/rust/build/x86_64-unknown-linux-gnu/stage1/lib/rustlib/x86_64-unknown-linux-gnu/lib"
++LIBRARY_DIR="$BUILD_DIR/rust/build/$TARGETTRIPLE/stage1/lib/rustlib/$TARGETTRIPLE/lib"
+ RLIBS=$(find $LIBRARY_DIR -name "*.rlib")
+ cp $TEST/../total.ll $TEST
+ 
+diff --git a/benchmarks/rand-misc/test/erasan-debloating/erasan-debloating-rand-misc.sh b/benchmarks/rand-misc/test/erasan-debloating/erasan-debloating-rand-misc.sh
+index de26b6a..b6114bc 100755
+--- a/benchmarks/rand-misc/test/erasan-debloating/erasan-debloating-rand-misc.sh
++++ b/benchmarks/rand-misc/test/erasan-debloating/erasan-debloating-rand-misc.sh
+@@ -1,4 +1,5 @@
+ #!/bin/bash
++TARGETTRIPLE=$(uname -m)-unknown-linux-gnu
+ 
+ # immediately stop building if error occurs
+ set -e
+@@ -13,7 +14,7 @@ set -e
+ 
+ export TEST=$PWD
+ export BINARY_DIR=$TEST/../../build/rand
+-LIBRARY_DIR="$BUILD_DIR/rust/build/x86_64-unknown-linux-gnu/stage1/lib/rustlib/x86_64-unknown-linux-gnu/lib"
++LIBRARY_DIR="$BUILD_DIR/rust/build/$TARGETTRIPLE/stage1/lib/rustlib/$TARGETTRIPLE/lib"
+ RLIBS=$(find $LIBRARY_DIR -name "*.rlib")
+ cp $TEST/../total.ll $TEST
+ 
+diff --git a/benchmarks/rand-misc/test/erasan-rawptr/erasan-rawptr-rand-misc.sh b/benchmarks/rand-misc/test/erasan-rawptr/erasan-rawptr-rand-misc.sh
+index a6e6ac8..159bb4e 100755
+--- a/benchmarks/rand-misc/test/erasan-rawptr/erasan-rawptr-rand-misc.sh
++++ b/benchmarks/rand-misc/test/erasan-rawptr/erasan-rawptr-rand-misc.sh
+@@ -1,4 +1,5 @@
+ #!/bin/bash
++TARGETTRIPLE=$(uname -m)-unknown-linux-gnu
+ 
+ # immediately stop building if error occurs
+ set -e
+@@ -13,7 +14,7 @@ set -e
+ 
+ export TEST=$PWD
+ export BINARY_DIR=$TEST/../../build/rand
+-LIBRARY_DIR="$BUILD_DIR/rust/build/x86_64-unknown-linux-gnu/stage1/lib/rustlib/x86_64-unknown-linux-gnu/lib"
++LIBRARY_DIR="$BUILD_DIR/rust/build/$TARGETTRIPLE/stage1/lib/rustlib/$TARGETTRIPLE/lib"
+ RLIBS=$(find $LIBRARY_DIR -name "*.rlib")
+ cp $TEST/../total.ll $TEST
+ 
+diff --git a/benchmarks/rand-misc/test/erasan-threadsafe/erasan-threadsafe-rand-misc.sh b/benchmarks/rand-misc/test/erasan-threadsafe/erasan-threadsafe-rand-misc.sh
+index e21b616..70298c4 100755
+--- a/benchmarks/rand-misc/test/erasan-threadsafe/erasan-threadsafe-rand-misc.sh
++++ b/benchmarks/rand-misc/test/erasan-threadsafe/erasan-threadsafe-rand-misc.sh
+@@ -1,4 +1,5 @@
+ #!/bin/bash
++TARGETTRIPLE=$(uname -m)-unknown-linux-gnu
+ 
+ # immediately stop building if error occurs
+ set -e
+@@ -13,7 +14,7 @@ set -e
+ 
+ export TEST=$PWD
+ export BINARY_DIR=$TEST/../../build/rand
+-LIBRARY_DIR="$BUILD_DIR/rust/build/x86_64-unknown-linux-gnu/stage1/lib/rustlib/x86_64-unknown-linux-gnu/lib"
++LIBRARY_DIR="$BUILD_DIR/rust/build/$TARGETTRIPLE/stage1/lib/rustlib/$TARGETTRIPLE/lib"
+ RLIBS=$(find $LIBRARY_DIR -name "*.rlib")
+ cp $TEST/../total.ll $TEST
+ 
+diff --git a/benchmarks/rand-misc/test/erasan-unsafe/erasan-unsafe-rand-misc.sh b/benchmarks/rand-misc/test/erasan-unsafe/erasan-unsafe-rand-misc.sh
+index 667366d..4e85e4a 100755
+--- a/benchmarks/rand-misc/test/erasan-unsafe/erasan-unsafe-rand-misc.sh
++++ b/benchmarks/rand-misc/test/erasan-unsafe/erasan-unsafe-rand-misc.sh
+@@ -1,4 +1,5 @@
+ #!/bin/bash
++TARGETTRIPLE=$(uname -m)-unknown-linux-gnu
+ 
+ # immediately stop building if error occurs
+ set -e
+@@ -13,7 +14,7 @@ set -e
+ 
+ export TEST=$PWD
+ export BINARY_DIR=$TEST/../../build/rand
+-LIBRARY_DIR="$BUILD_DIR/rust/build/x86_64-unknown-linux-gnu/stage1/lib/rustlib/x86_64-unknown-linux-gnu/lib"
++LIBRARY_DIR="$BUILD_DIR/rust/build/$TARGETTRIPLE/stage1/lib/rustlib/$TARGETTRIPLE/lib"
+ RLIBS=$(find $LIBRARY_DIR -name "*.rlib")
+ cp $TEST/../total.ll $TEST/../total_debug.ll $TEST
+ 
+diff --git a/benchmarks/rand-misc/test/erasan/erasan-rand-misc.sh b/benchmarks/rand-misc/test/erasan/erasan-rand-misc.sh
+index 86ee022..ee90684 100755
+--- a/benchmarks/rand-misc/test/erasan/erasan-rand-misc.sh
++++ b/benchmarks/rand-misc/test/erasan/erasan-rand-misc.sh
+@@ -1,4 +1,5 @@
+ #!/bin/bash
++TARGETTRIPLE=$(uname -m)-unknown-linux-gnu
+ 
+ # immediately stop building if error occurs
+ set -e
+@@ -13,7 +14,7 @@ set -e
+ 
+ export TEST=$PWD
+ export BINARY_DIR=$TEST/../../build/rand
+-LIBRARY_DIR="$BUILD_DIR/rust/build/x86_64-unknown-linux-gnu/stage1/lib/rustlib/x86_64-unknown-linux-gnu/lib"
++LIBRARY_DIR="$BUILD_DIR/rust/build/$TARGETTRIPLE/stage1/lib/rustlib/$TARGETTRIPLE/lib"
+ RLIBS=$(find $LIBRARY_DIR -name "*.rlib")
+ cp $TEST/../total.ll $TEST
+ 
+diff --git a/benchmarks/rand-misc/test/native/native-rand-generator.sh b/benchmarks/rand-misc/test/native/native-rand-generator.sh
+index a9e7b66..acb8b5e 100755
+--- a/benchmarks/rand-misc/test/native/native-rand-generator.sh
++++ b/benchmarks/rand-misc/test/native/native-rand-generator.sh
+@@ -1,4 +1,5 @@
+ #!/bin/bash
++TARGETTRIPLE=$(uname -m)-unknown-linux-gnu
+ 
+ # immediately stop building if error occurs
+ set -e
+@@ -6,7 +7,7 @@ set -e
+ # Make sure that you set the environmetal settings by ERASan/env/env.sh
+ export TEST=$PWD
+ export BINARY_DIR=$TEST/../../build/rand
+-LIBRARY_DIR="$BUILD_DIR/rust/build/x86_64-unknown-linux-gnu/stage1/lib/rustlib/x86_64-unknown-linux-gnu/lib"
++LIBRARY_DIR="$BUILD_DIR/rust/build/$TARGETTRIPLE/stage1/lib/rustlib/$TARGETTRIPLE/lib"
+ RLIBS=$(find $LIBRARY_DIR -name "*.rlib")
+ cp $TEST/../total.ll $TEST
+ 
+diff --git a/benchmarks/regex/test/asan/asan-regex.sh b/benchmarks/regex/test/asan/asan-regex.sh
+index 792e4b1..9cd774c 100755
+--- a/benchmarks/regex/test/asan/asan-regex.sh
++++ b/benchmarks/regex/test/asan/asan-regex.sh
+@@ -1,4 +1,5 @@
+ #!/bin/bash
++TARGETTRIPLE=$(uname -m)-unknown-linux-gnu
+ 
+ # immediately stop building if error occurs
+ set -e
+@@ -13,7 +14,7 @@ set -e
+ 
+ export TEST=$PWD
+ export BINARY_DIR=$TEST/../../build/regex/regex-syntax
+-LIBRARY_DIR="$BUILD_DIR/rust/build/x86_64-unknown-linux-gnu/stage1/lib/rustlib/x86_64-unknown-linux-gnu/lib"
++LIBRARY_DIR="$BUILD_DIR/rust/build/$TARGETTRIPLE/stage1/lib/rustlib/$TARGETTRIPLE/lib"
+ RLIBS=$(find $LIBRARY_DIR -name "*.rlib")
+ cp $TEST/../total.ll $TEST
+ 
+diff --git a/benchmarks/regex/test/erasan-debloating/erasan-debloating-regex.sh b/benchmarks/regex/test/erasan-debloating/erasan-debloating-regex.sh
+index bce501a..7a67e58 100755
+--- a/benchmarks/regex/test/erasan-debloating/erasan-debloating-regex.sh
++++ b/benchmarks/regex/test/erasan-debloating/erasan-debloating-regex.sh
+@@ -1,4 +1,5 @@
+ #!/bin/bash
++TARGETTRIPLE=$(uname -m)-unknown-linux-gnu
+ 
+ # immediately stop building if error occurs
+ set -e
+@@ -13,7 +14,7 @@ set -e
+ 
+ export TEST=$PWD
+ export BINARY_DIR=$TEST/../../build/regex/regex-syntax
+-LIBRARY_DIR="$BUILD_DIR/rust/build/x86_64-unknown-linux-gnu/stage1/lib/rustlib/x86_64-unknown-linux-gnu/lib"
++LIBRARY_DIR="$BUILD_DIR/rust/build/$TARGETTRIPLE/stage1/lib/rustlib/$TARGETTRIPLE/lib"
+ RLIBS=$(find $LIBRARY_DIR -name "*.rlib")
+ cp $TEST/../total.ll $TEST
+ 
+diff --git a/benchmarks/regex/test/erasan-rawptr/erasan-rawptr-regex.sh b/benchmarks/regex/test/erasan-rawptr/erasan-rawptr-regex.sh
+index 5f3ce12..6577181 100755
+--- a/benchmarks/regex/test/erasan-rawptr/erasan-rawptr-regex.sh
++++ b/benchmarks/regex/test/erasan-rawptr/erasan-rawptr-regex.sh
+@@ -1,4 +1,5 @@
+ #!/bin/bash
++TARGETTRIPLE=$(uname -m)-unknown-linux-gnu
+ 
+ # immediately stop building if error occurs
+ set -e
+@@ -13,7 +14,7 @@ set -e
+ 
+ export TEST=$PWD
+ export BINARY_DIR=$TEST/../../build/regex/regex-syntax
+-LIBRARY_DIR="$BUILD_DIR/rust/build/x86_64-unknown-linux-gnu/stage1/lib/rustlib/x86_64-unknown-linux-gnu/lib"
++LIBRARY_DIR="$BUILD_DIR/rust/build/$TARGETTRIPLE/stage1/lib/rustlib/$TARGETTRIPLE/lib"
+ RLIBS=$(find $LIBRARY_DIR -name "*.rlib")
+ cp $TEST/../total.ll $TEST
+ 
+diff --git a/benchmarks/regex/test/erasan-threadsafe/erasan-threadsafe-regex.sh b/benchmarks/regex/test/erasan-threadsafe/erasan-threadsafe-regex.sh
+index fa929d4..e05444e 100755
+--- a/benchmarks/regex/test/erasan-threadsafe/erasan-threadsafe-regex.sh
++++ b/benchmarks/regex/test/erasan-threadsafe/erasan-threadsafe-regex.sh
+@@ -1,4 +1,5 @@
+ #!/bin/bash
++TARGETTRIPLE=$(uname -m)-unknown-linux-gnu
+ 
+ # immediately stop building if error occurs
+ set -e
+@@ -13,7 +14,7 @@ set -e
+ 
+ export TEST=$PWD
+ export BINARY_DIR=$TEST/../../build/regex/regex-syntax
+-LIBRARY_DIR="$BUILD_DIR/rust/build/x86_64-unknown-linux-gnu/stage1/lib/rustlib/x86_64-unknown-linux-gnu/lib"
++LIBRARY_DIR="$BUILD_DIR/rust/build/$TARGETTRIPLE/stage1/lib/rustlib/$TARGETTRIPLE/lib"
+ RLIBS=$(find $LIBRARY_DIR -name "*.rlib")
+ cp $TEST/../total.ll $TEST
+ 
+diff --git a/benchmarks/regex/test/erasan-unsafe/erasan-unsafe-regex.sh b/benchmarks/regex/test/erasan-unsafe/erasan-unsafe-regex.sh
+index 963eaf8..d51e366 100755
+--- a/benchmarks/regex/test/erasan-unsafe/erasan-unsafe-regex.sh
++++ b/benchmarks/regex/test/erasan-unsafe/erasan-unsafe-regex.sh
+@@ -1,4 +1,5 @@
+ #!/bin/bash
++TARGETTRIPLE=$(uname -m)-unknown-linux-gnu
+ 
+ # immediately stop building if error occurs
+ set -e
+@@ -13,7 +14,7 @@ set -e
+ 
+ export TEST=$PWD
+ export BINARY_DIR=$TEST/../../build/regex/regex-syntax
+-LIBRARY_DIR="$BUILD_DIR/rust/build/x86_64-unknown-linux-gnu/stage1/lib/rustlib/x86_64-unknown-linux-gnu/lib"
++LIBRARY_DIR="$BUILD_DIR/rust/build/$TARGETTRIPLE/stage1/lib/rustlib/$TARGETTRIPLE/lib"
+ RLIBS=$(find $LIBRARY_DIR -name "*.rlib")
+ cp $TEST/../total.ll $TEST/../total_debug.ll $TEST
+ 
+diff --git a/benchmarks/regex/test/erasan/erasan-regex.sh b/benchmarks/regex/test/erasan/erasan-regex.sh
+index 47b86bb..f6ece4e 100755
+--- a/benchmarks/regex/test/erasan/erasan-regex.sh
++++ b/benchmarks/regex/test/erasan/erasan-regex.sh
+@@ -1,4 +1,5 @@
+ #!/bin/bash
++TARGETTRIPLE=$(uname -m)-unknown-linux-gnu
+ 
+ # immediately stop building if error occurs
+ set -e
+@@ -13,7 +14,7 @@ set -e
+ 
+ export TEST=$PWD
+ export BINARY_DIR=$TEST/../../build/regex/regex-syntax
+-LIBRARY_DIR="$BUILD_DIR/rust/build/x86_64-unknown-linux-gnu/stage1/lib/rustlib/x86_64-unknown-linux-gnu/lib"
++LIBRARY_DIR="$BUILD_DIR/rust/build/$TARGETTRIPLE/stage1/lib/rustlib/$TARGETTRIPLE/lib"
+ RLIBS=$(find $LIBRARY_DIR -name "*.rlib")
+ cp $TEST/../total.ll $TEST
+ 
+diff --git a/benchmarks/regex/test/native/native-regex.sh b/benchmarks/regex/test/native/native-regex.sh
+index d5ed88f..230393f 100755
+--- a/benchmarks/regex/test/native/native-regex.sh
++++ b/benchmarks/regex/test/native/native-regex.sh
+@@ -1,4 +1,5 @@
+ #!/bin/bash
++TARGETTRIPLE=$(uname -m)-unknown-linux-gnu
+ 
+ # immediately stop building if error occurs
+ set -e
+@@ -6,7 +7,7 @@ set -e
+ # Make sure that you set the environmetal settings by ERASan/env/env.sh
+ export TEST=$PWD
+ export BINARY_DIR=$TEST/../../build/regex/regex-syntax
+-LIBRARY_DIR="$BUILD_DIR/rust/build/x86_64-unknown-linux-gnu/stage1/lib/rustlib/x86_64-unknown-linux-gnu/lib"
++LIBRARY_DIR="$BUILD_DIR/rust/build/$TARGETTRIPLE/stage1/lib/rustlib/$TARGETTRIPLE/lib"
+ RLIBS=$(find $LIBRARY_DIR -name "*.rlib")
+ cp $TEST/../total.ll $TEST
+ 
+diff --git a/benchmarks/ryu/test/asan/asan-ryu.sh b/benchmarks/ryu/test/asan/asan-ryu.sh
+index 7b32f4e..eb237fc 100755
+--- a/benchmarks/ryu/test/asan/asan-ryu.sh
++++ b/benchmarks/ryu/test/asan/asan-ryu.sh
+@@ -1,4 +1,5 @@
+ #!/bin/bash
++TARGETTRIPLE=$(uname -m)-unknown-linux-gnu
+ 
+ # immediately stop building if error occurs
+ set -e
+@@ -13,7 +14,7 @@ set -e
+ 
+ export TEST=$PWD
+ export BINARY_DIR=$TEST/../../build/ryu
+-LIBRARY_DIR="$BUILD_DIR/rust/build/x86_64-unknown-linux-gnu/stage1/lib/rustlib/x86_64-unknown-linux-gnu/lib"
++LIBRARY_DIR="$BUILD_DIR/rust/build/$TARGETTRIPLE/stage1/lib/rustlib/$TARGETTRIPLE/lib"
+ RLIBS=$(find $LIBRARY_DIR -name "*.rlib")
+ cp $TEST/../total.ll $TEST
+ 
+diff --git a/benchmarks/ryu/test/erasan-debloating/erasan-debloating-ryu.sh b/benchmarks/ryu/test/erasan-debloating/erasan-debloating-ryu.sh
+index e7d369c..f3e62d4 100755
+--- a/benchmarks/ryu/test/erasan-debloating/erasan-debloating-ryu.sh
++++ b/benchmarks/ryu/test/erasan-debloating/erasan-debloating-ryu.sh
+@@ -1,4 +1,5 @@
+ #!/bin/bash
++TARGETTRIPLE=$(uname -m)-unknown-linux-gnu
+ 
+ # immediately stop building if error occurs
+ set -e
+@@ -13,7 +14,7 @@ set -e
+ 
+ export TEST=$PWD
+ export BINARY_DIR=$TEST/../../build/ryu
+-LIBRARY_DIR="$BUILD_DIR/rust/build/x86_64-unknown-linux-gnu/stage1/lib/rustlib/x86_64-unknown-linux-gnu/lib"
++LIBRARY_DIR="$BUILD_DIR/rust/build/$TARGETTRIPLE/stage1/lib/rustlib/$TARGETTRIPLE/lib"
+ RLIBS=$(find $LIBRARY_DIR -name "*.rlib")
+ cp $TEST/../total.ll $TEST
+ 
+diff --git a/benchmarks/ryu/test/erasan-rawptr/erasan-rawptr-ryu.sh b/benchmarks/ryu/test/erasan-rawptr/erasan-rawptr-ryu.sh
+index 02d9e25..ff3d0d4 100755
+--- a/benchmarks/ryu/test/erasan-rawptr/erasan-rawptr-ryu.sh
++++ b/benchmarks/ryu/test/erasan-rawptr/erasan-rawptr-ryu.sh
+@@ -1,4 +1,5 @@
+ #!/bin/bash
++TARGETTRIPLE=$(uname -m)-unknown-linux-gnu
+ 
+ # immediately stop building if error occurs
+ set -e
+@@ -13,7 +14,7 @@ set -e
+ 
+ export TEST=$PWD
+ export BINARY_DIR=$TEST/../../build/ryu
+-LIBRARY_DIR="$BUILD_DIR/rust/build/x86_64-unknown-linux-gnu/stage1/lib/rustlib/x86_64-unknown-linux-gnu/lib"
++LIBRARY_DIR="$BUILD_DIR/rust/build/$TARGETTRIPLE/stage1/lib/rustlib/$TARGETTRIPLE/lib"
+ RLIBS=$(find $LIBRARY_DIR -name "*.rlib")
+ cp $TEST/../total.ll $TEST
+ 
+diff --git a/benchmarks/ryu/test/erasan-threadsafe/erasan-threadsafe-ryu.sh b/benchmarks/ryu/test/erasan-threadsafe/erasan-threadsafe-ryu.sh
+index f9cc431..32e9adc 100755
+--- a/benchmarks/ryu/test/erasan-threadsafe/erasan-threadsafe-ryu.sh
++++ b/benchmarks/ryu/test/erasan-threadsafe/erasan-threadsafe-ryu.sh
+@@ -1,4 +1,5 @@
+ #!/bin/bash
++TARGETTRIPLE=$(uname -m)-unknown-linux-gnu
+ 
+ # immediately stop building if error occurs
+ set -e
+@@ -13,7 +14,7 @@ set -e
+ 
+ export TEST=$PWD
+ export BINARY_DIR=$TEST/../../build/ryu
+-LIBRARY_DIR="$BUILD_DIR/rust/build/x86_64-unknown-linux-gnu/stage1/lib/rustlib/x86_64-unknown-linux-gnu/lib"
++LIBRARY_DIR="$BUILD_DIR/rust/build/$TARGETTRIPLE/stage1/lib/rustlib/$TARGETTRIPLE/lib"
+ RLIBS=$(find $LIBRARY_DIR -name "*.rlib")
+ cp $TEST/../total.ll $TEST
+ 
+diff --git a/benchmarks/ryu/test/erasan-unsafe/erasan-unsafe-ryu.sh b/benchmarks/ryu/test/erasan-unsafe/erasan-unsafe-ryu.sh
+index ed13e83..0393cfd 100755
+--- a/benchmarks/ryu/test/erasan-unsafe/erasan-unsafe-ryu.sh
++++ b/benchmarks/ryu/test/erasan-unsafe/erasan-unsafe-ryu.sh
+@@ -1,4 +1,5 @@
+ #!/bin/bash
++TARGETTRIPLE=$(uname -m)-unknown-linux-gnu
+ 
+ # immediately stop building if error occurs
+ set -e
+@@ -13,7 +14,7 @@ set -e
+ 
+ export TEST=$PWD
+ export BINARY_DIR=$TEST/../../build/ryu
+-LIBRARY_DIR="$BUILD_DIR/rust/build/x86_64-unknown-linux-gnu/stage1/lib/rustlib/x86_64-unknown-linux-gnu/lib"
++LIBRARY_DIR="$BUILD_DIR/rust/build/$TARGETTRIPLE/stage1/lib/rustlib/$TARGETTRIPLE/lib"
+ RLIBS=$(find $LIBRARY_DIR -name "*.rlib")
+ cp $TEST/../total.ll $TEST/../total_debug.ll $TEST
+ 
+diff --git a/benchmarks/ryu/test/erasan/erasan-ryu.sh b/benchmarks/ryu/test/erasan/erasan-ryu.sh
+index a7e3766..b0ce0e9 100755
+--- a/benchmarks/ryu/test/erasan/erasan-ryu.sh
++++ b/benchmarks/ryu/test/erasan/erasan-ryu.sh
+@@ -1,4 +1,5 @@
+ #!/bin/bash
++TARGETTRIPLE=$(uname -m)-unknown-linux-gnu
+ 
+ # immediately stop building if error occurs
+ set -e
+@@ -13,7 +14,7 @@ set -e
+ 
+ export TEST=$PWD
+ export BINARY_DIR=$TEST/../../build/ryu
+-LIBRARY_DIR="$BUILD_DIR/rust/build/x86_64-unknown-linux-gnu/stage1/lib/rustlib/x86_64-unknown-linux-gnu/lib"
++LIBRARY_DIR="$BUILD_DIR/rust/build/$TARGETTRIPLE/stage1/lib/rustlib/$TARGETTRIPLE/lib"
+ RLIBS=$(find $LIBRARY_DIR -name "*.rlib")
+ cp $TEST/../total.ll $TEST
+ 
+diff --git a/benchmarks/ryu/test/native/native-ryu.sh b/benchmarks/ryu/test/native/native-ryu.sh
+index a5d5453..521b105 100755
+--- a/benchmarks/ryu/test/native/native-ryu.sh
++++ b/benchmarks/ryu/test/native/native-ryu.sh
+@@ -1,4 +1,5 @@
+ #!/bin/bash
++TARGETTRIPLE=$(uname -m)-unknown-linux-gnu
+ 
+ # immediately stop building if error occurs
+ set -e
+@@ -6,7 +7,7 @@ set -e
+ # Make sure that you set the environmetal settings by ERASan/env/env.sh
+ export TEST=$PWD
+ export BINARY_DIR=$TEST/../../build/ryu
+-LIBRARY_DIR="$BUILD_DIR/rust/build/x86_64-unknown-linux-gnu/stage1/lib/rustlib/x86_64-unknown-linux-gnu/lib"
++LIBRARY_DIR="$BUILD_DIR/rust/build/$TARGETTRIPLE/stage1/lib/rustlib/$TARGETTRIPLE/lib"
+ RLIBS=$(find $LIBRARY_DIR -name "*.rlib")
+ cp $TEST/../total.ll $TEST
+ 
+diff --git a/benchmarks/semver/test/asan/asan-semver.sh b/benchmarks/semver/test/asan/asan-semver.sh
+index 42dc454..6b6d933 100755
+--- a/benchmarks/semver/test/asan/asan-semver.sh
++++ b/benchmarks/semver/test/asan/asan-semver.sh
+@@ -1,4 +1,5 @@
+ #!/bin/bash
++TARGETTRIPLE=$(uname -m)-unknown-linux-gnu
+ 
+ # immediately stop building if error occurs
+ set -e
+@@ -13,7 +14,7 @@ set -e
+ 
+ export TEST=$PWD
+ export BINARY_DIR=$TEST/../../build/semver
+-LIBRARY_DIR="$BUILD_DIR/rust/build/x86_64-unknown-linux-gnu/stage1/lib/rustlib/x86_64-unknown-linux-gnu/lib"
++LIBRARY_DIR="$BUILD_DIR/rust/build/$TARGETTRIPLE/stage1/lib/rustlib/$TARGETTRIPLE/lib"
+ RLIBS=$(find $LIBRARY_DIR -name "*.rlib")
+ cp $TEST/../total.ll $TEST
+ 
+diff --git a/benchmarks/semver/test/erasan-debloating/erasan-debloating-semver.sh b/benchmarks/semver/test/erasan-debloating/erasan-debloating-semver.sh
+index 4ce8e6d..bdcf9b3 100755
+--- a/benchmarks/semver/test/erasan-debloating/erasan-debloating-semver.sh
++++ b/benchmarks/semver/test/erasan-debloating/erasan-debloating-semver.sh
+@@ -1,4 +1,5 @@
+ #!/bin/bash
++TARGETTRIPLE=$(uname -m)-unknown-linux-gnu
+ 
+ # immediately stop building if error occurs
+ set -e
+@@ -13,7 +14,7 @@ set -e
+ 
+ export TEST=$PWD
+ export BINARY_DIR=$TEST/../../build/semver
+-LIBRARY_DIR="$BUILD_DIR/rust/build/x86_64-unknown-linux-gnu/stage1/lib/rustlib/x86_64-unknown-linux-gnu/lib"
++LIBRARY_DIR="$BUILD_DIR/rust/build/$TARGETTRIPLE/stage1/lib/rustlib/$TARGETTRIPLE/lib"
+ RLIBS=$(find $LIBRARY_DIR -name "*.rlib")
+ cp $TEST/../total.ll $TEST
+ 
+diff --git a/benchmarks/semver/test/erasan-rawptr/erasan-rawptr-semver.sh b/benchmarks/semver/test/erasan-rawptr/erasan-rawptr-semver.sh
+index 9ed222c..9015ade 100755
+--- a/benchmarks/semver/test/erasan-rawptr/erasan-rawptr-semver.sh
++++ b/benchmarks/semver/test/erasan-rawptr/erasan-rawptr-semver.sh
+@@ -1,4 +1,5 @@
+ #!/bin/bash
++TARGETTRIPLE=$(uname -m)-unknown-linux-gnu
+ 
+ # immediately stop building if error occurs
+ set -e
+@@ -13,7 +14,7 @@ set -e
+ 
+ export TEST=$PWD
+ export BINARY_DIR=$TEST/../../build/semver
+-LIBRARY_DIR="$BUILD_DIR/rust/build/x86_64-unknown-linux-gnu/stage1/lib/rustlib/x86_64-unknown-linux-gnu/lib"
++LIBRARY_DIR="$BUILD_DIR/rust/build/$TARGETTRIPLE/stage1/lib/rustlib/$TARGETTRIPLE/lib"
+ RLIBS=$(find $LIBRARY_DIR -name "*.rlib")
+ cp $TEST/../total.ll $TEST
+ 
+diff --git a/benchmarks/semver/test/erasan-threadsafe/erasan-threadsafe-semver.sh b/benchmarks/semver/test/erasan-threadsafe/erasan-threadsafe-semver.sh
+index 9c08447..28f9e86 100755
+--- a/benchmarks/semver/test/erasan-threadsafe/erasan-threadsafe-semver.sh
++++ b/benchmarks/semver/test/erasan-threadsafe/erasan-threadsafe-semver.sh
+@@ -1,4 +1,5 @@
+ #!/bin/bash
++TARGETTRIPLE=$(uname -m)-unknown-linux-gnu
+ 
+ # immediately stop building if error occurs
+ set -e
+@@ -13,7 +14,7 @@ set -e
+ 
+ export TEST=$PWD
+ export BINARY_DIR=$TEST/../../build/semver
+-LIBRARY_DIR="$BUILD_DIR/rust/build/x86_64-unknown-linux-gnu/stage1/lib/rustlib/x86_64-unknown-linux-gnu/lib"
++LIBRARY_DIR="$BUILD_DIR/rust/build/$TARGETTRIPLE/stage1/lib/rustlib/$TARGETTRIPLE/lib"
+ RLIBS=$(find $LIBRARY_DIR -name "*.rlib")
+ cp $TEST/../total.ll $TEST
+ 
+diff --git a/benchmarks/semver/test/erasan-unsafe/erasan-unsafe-semver.sh b/benchmarks/semver/test/erasan-unsafe/erasan-unsafe-semver.sh
+index db1b1d6..944ea3f 100755
+--- a/benchmarks/semver/test/erasan-unsafe/erasan-unsafe-semver.sh
++++ b/benchmarks/semver/test/erasan-unsafe/erasan-unsafe-semver.sh
+@@ -1,4 +1,5 @@
+ #!/bin/bash
++TARGETTRIPLE=$(uname -m)-unknown-linux-gnu
+ 
+ # immediately stop building if error occurs
+ set -e
+@@ -13,7 +14,7 @@ set -e
+ 
+ export TEST=$PWD
+ export BINARY_DIR=$TEST/../../build/semver
+-LIBRARY_DIR="$BUILD_DIR/rust/build/x86_64-unknown-linux-gnu/stage1/lib/rustlib/x86_64-unknown-linux-gnu/lib"
++LIBRARY_DIR="$BUILD_DIR/rust/build/$TARGETTRIPLE/stage1/lib/rustlib/$TARGETTRIPLE/lib"
+ RLIBS=$(find $LIBRARY_DIR -name "*.rlib")
+ cp $TEST/../total.ll $TEST/../total_debug.ll $TEST
+ 
+diff --git a/benchmarks/semver/test/erasan/erasan-semver.sh b/benchmarks/semver/test/erasan/erasan-semver.sh
+index 46b118c..1c914d4 100755
+--- a/benchmarks/semver/test/erasan/erasan-semver.sh
++++ b/benchmarks/semver/test/erasan/erasan-semver.sh
+@@ -1,4 +1,5 @@
+ #!/bin/bash
++TARGETTRIPLE=$(uname -m)-unknown-linux-gnu
+ 
+ # immediately stop building if error occurs
+ set -e
+@@ -13,7 +14,7 @@ set -e
+ 
+ export TEST=$PWD
+ export BINARY_DIR=$TEST/../../build/semver
+-LIBRARY_DIR="$BUILD_DIR/rust/build/x86_64-unknown-linux-gnu/stage1/lib/rustlib/x86_64-unknown-linux-gnu/lib"
++LIBRARY_DIR="$BUILD_DIR/rust/build/$TARGETTRIPLE/stage1/lib/rustlib/$TARGETTRIPLE/lib"
+ RLIBS=$(find $LIBRARY_DIR -name "*.rlib")
+ cp $TEST/../total.ll $TEST
+ 
+diff --git a/benchmarks/semver/test/native/native-semver.sh b/benchmarks/semver/test/native/native-semver.sh
+index d6ccacc..784dbce 100755
+--- a/benchmarks/semver/test/native/native-semver.sh
++++ b/benchmarks/semver/test/native/native-semver.sh
+@@ -1,4 +1,5 @@
+ #!/bin/bash
++TARGETTRIPLE=$(uname -m)-unknown-linux-gnu
+ 
+ # immediately stop building if error occurs
+ set -e
+@@ -6,7 +7,7 @@ set -e
+ # Make sure that you set the environmetal settings by ERASan/env/env.sh
+ export TEST=$PWD
+ export BINARY_DIR=$TEST/../../build/semver
+-LIBRARY_DIR="$BUILD_DIR/rust/build/x86_64-unknown-linux-gnu/stage1/lib/rustlib/x86_64-unknown-linux-gnu/lib"
++LIBRARY_DIR="$BUILD_DIR/rust/build/$TARGETTRIPLE/stage1/lib/rustlib/$TARGETTRIPLE/lib"
+ RLIBS=$(find $LIBRARY_DIR -name "*.rlib")
+ cp $TEST/../total.ll $TEST
+ 
+diff --git a/benchmarks/smallvec/test/asan/asan-smallvec.sh b/benchmarks/smallvec/test/asan/asan-smallvec.sh
+index c29a76f..659ad21 100755
+--- a/benchmarks/smallvec/test/asan/asan-smallvec.sh
++++ b/benchmarks/smallvec/test/asan/asan-smallvec.sh
+@@ -1,4 +1,5 @@
+ #!/bin/bash
++TARGETTRIPLE=$(uname -m)-unknown-linux-gnu
+ 
+ # immediately stop building if error occurs
+ set -e
+@@ -13,7 +14,7 @@ set -e
+ 
+ export TEST=$PWD
+ export BINARY_DIR=$TEST/../../build/rust-smallvec
+-LIBRARY_DIR="$BUILD_DIR/rust/build/x86_64-unknown-linux-gnu/stage1/lib/rustlib/x86_64-unknown-linux-gnu/lib"
++LIBRARY_DIR="$BUILD_DIR/rust/build/$TARGETTRIPLE/stage1/lib/rustlib/$TARGETTRIPLE/lib"
+ RLIBS=$(find $LIBRARY_DIR -name "*.rlib")
+ cp $TEST/../total.ll $TEST
+ 
+diff --git a/benchmarks/smallvec/test/erasan-debloating/erasan-debloating-smallvec.sh b/benchmarks/smallvec/test/erasan-debloating/erasan-debloating-smallvec.sh
+index f32ae70..eaaf242 100755
+--- a/benchmarks/smallvec/test/erasan-debloating/erasan-debloating-smallvec.sh
++++ b/benchmarks/smallvec/test/erasan-debloating/erasan-debloating-smallvec.sh
+@@ -1,4 +1,5 @@
+ #!/bin/bash
++TARGETTRIPLE=$(uname -m)-unknown-linux-gnu
+ 
+ # immediately stop building if error occurs
+ set -e
+@@ -13,7 +14,7 @@ set -e
+ 
+ export TEST=$PWD
+ export BINARY_DIR=$TEST/../../build/rust-smallvec
+-LIBRARY_DIR="$BUILD_DIR/rust/build/x86_64-unknown-linux-gnu/stage1/lib/rustlib/x86_64-unknown-linux-gnu/lib"
++LIBRARY_DIR="$BUILD_DIR/rust/build/$TARGETTRIPLE/stage1/lib/rustlib/$TARGETTRIPLE/lib"
+ RLIBS=$(find $LIBRARY_DIR -name "*.rlib")
+ cp $TEST/../total.ll $TEST
+ 
+diff --git a/benchmarks/smallvec/test/erasan-rawptr/erasan-rawptr-smallvec.sh b/benchmarks/smallvec/test/erasan-rawptr/erasan-rawptr-smallvec.sh
+index cfccbca..8461ca0 100755
+--- a/benchmarks/smallvec/test/erasan-rawptr/erasan-rawptr-smallvec.sh
++++ b/benchmarks/smallvec/test/erasan-rawptr/erasan-rawptr-smallvec.sh
+@@ -1,4 +1,5 @@
+ #!/bin/bash
++TARGETTRIPLE=$(uname -m)-unknown-linux-gnu
+ 
+ # immediately stop building if error occurs
+ set -e
+@@ -13,7 +14,7 @@ set -e
+ 
+ export TEST=$PWD
+ export BINARY_DIR=$TEST/../../build/rust-smallvec
+-LIBRARY_DIR="$BUILD_DIR/rust/build/x86_64-unknown-linux-gnu/stage1/lib/rustlib/x86_64-unknown-linux-gnu/lib"
++LIBRARY_DIR="$BUILD_DIR/rust/build/$TARGETTRIPLE/stage1/lib/rustlib/$TARGETTRIPLE/lib"
+ RLIBS=$(find $LIBRARY_DIR -name "*.rlib")
+ cp $TEST/../total.ll $TEST
+ 
+diff --git a/benchmarks/smallvec/test/erasan-threadsafe/erasan-threadsafe-smallvec.sh b/benchmarks/smallvec/test/erasan-threadsafe/erasan-threadsafe-smallvec.sh
+index c5428ab..7ad91ce 100755
+--- a/benchmarks/smallvec/test/erasan-threadsafe/erasan-threadsafe-smallvec.sh
++++ b/benchmarks/smallvec/test/erasan-threadsafe/erasan-threadsafe-smallvec.sh
+@@ -1,4 +1,5 @@
+ #!/bin/bash
++TARGETTRIPLE=$(uname -m)-unknown-linux-gnu
+ 
+ # immediately stop building if error occurs
+ set -e
+@@ -13,7 +14,7 @@ set -e
+ 
+ export TEST=$PWD
+ export BINARY_DIR=$TEST/../../build/rust-smallvec
+-LIBRARY_DIR="$BUILD_DIR/rust/build/x86_64-unknown-linux-gnu/stage1/lib/rustlib/x86_64-unknown-linux-gnu/lib"
++LIBRARY_DIR="$BUILD_DIR/rust/build/$TARGETTRIPLE/stage1/lib/rustlib/$TARGETTRIPLE/lib"
+ RLIBS=$(find $LIBRARY_DIR -name "*.rlib")
+ cp $TEST/../total.ll $TEST
+ 
+diff --git a/benchmarks/smallvec/test/erasan-unsafe/erasan-unsafe-smallvec.sh b/benchmarks/smallvec/test/erasan-unsafe/erasan-unsafe-smallvec.sh
+index d28a3ce..48ef725 100755
+--- a/benchmarks/smallvec/test/erasan-unsafe/erasan-unsafe-smallvec.sh
++++ b/benchmarks/smallvec/test/erasan-unsafe/erasan-unsafe-smallvec.sh
+@@ -1,4 +1,5 @@
+ #!/bin/bash
++TARGETTRIPLE=$(uname -m)-unknown-linux-gnu
+ 
+ # immediately stop building if error occurs
+ set -e
+@@ -13,7 +14,7 @@ set -e
+ 
+ export TEST=$PWD
+ export BINARY_DIR=$TEST/../../build/rust-smallvec
+-LIBRARY_DIR="$BUILD_DIR/rust/build/x86_64-unknown-linux-gnu/stage1/lib/rustlib/x86_64-unknown-linux-gnu/lib"
++LIBRARY_DIR="$BUILD_DIR/rust/build/$TARGETTRIPLE/stage1/lib/rustlib/$TARGETTRIPLE/lib"
+ RLIBS=$(find $LIBRARY_DIR -name "*.rlib")
+ cp $TEST/../total.ll $TEST/../total_debug.ll $TEST
+ 
+diff --git a/benchmarks/smallvec/test/erasan/erasan-smallvec.sh b/benchmarks/smallvec/test/erasan/erasan-smallvec.sh
+index 85dd903..529fe2f 100755
+--- a/benchmarks/smallvec/test/erasan/erasan-smallvec.sh
++++ b/benchmarks/smallvec/test/erasan/erasan-smallvec.sh
+@@ -1,4 +1,5 @@
+ #!/bin/bash
++TARGETTRIPLE=$(uname -m)-unknown-linux-gnu
+ 
+ # immediately stop building if error occurs
+ set -e
+@@ -13,7 +14,7 @@ set -e
+ 
+ export TEST=$PWD
+ export BINARY_DIR=$TEST/../../build/rust-smallvec
+-LIBRARY_DIR="$BUILD_DIR/rust/build/x86_64-unknown-linux-gnu/stage1/lib/rustlib/x86_64-unknown-linux-gnu/lib"
++LIBRARY_DIR="$BUILD_DIR/rust/build/$TARGETTRIPLE/stage1/lib/rustlib/$TARGETTRIPLE/lib"
+ RLIBS=$(find $LIBRARY_DIR -name "*.rlib")
+ cp $TEST/../total.ll $TEST
+ 
+diff --git a/benchmarks/smallvec/test/native/native-smallvec.sh b/benchmarks/smallvec/test/native/native-smallvec.sh
+index 349c9bc..530e3f5 100755
+--- a/benchmarks/smallvec/test/native/native-smallvec.sh
++++ b/benchmarks/smallvec/test/native/native-smallvec.sh
+@@ -1,4 +1,5 @@
+ #!/bin/bash
++TARGETTRIPLE=$(uname -m)-unknown-linux-gnu
+ 
+ # immediately stop building if error occurs
+ set -e
+@@ -6,7 +7,7 @@ set -e
+ # Make sure that you set the environmetal settings by ERASan/env/env.sh
+ export TEST=$PWD
+ export BINARY_DIR=$TEST/../../build/rust-smallvec
+-LIBRARY_DIR="$BUILD_DIR/rust/build/x86_64-unknown-linux-gnu/stage1/lib/rustlib/x86_64-unknown-linux-gnu/lib"
++LIBRARY_DIR="$BUILD_DIR/rust/build/$TARGETTRIPLE/stage1/lib/rustlib/$TARGETTRIPLE/lib"
+ RLIBS=$(find $LIBRARY_DIR -name "*.rlib")
+ cp $TEST/../total.ll $TEST
+ 
+diff --git a/benchmarks/strsim/test/asan/asan-strsim.sh b/benchmarks/strsim/test/asan/asan-strsim.sh
+index 73c7f3f..0cdd3ff 100755
+--- a/benchmarks/strsim/test/asan/asan-strsim.sh
++++ b/benchmarks/strsim/test/asan/asan-strsim.sh
+@@ -1,4 +1,5 @@
+ #!/bin/bash
++TARGETTRIPLE=$(uname -m)-unknown-linux-gnu
+ 
+ # immediately stop building if error occurs
+ set -e
+@@ -13,7 +14,7 @@ set -e
+ 
+ export TEST=$PWD
+ export BINARY_DIR=$TEST/../../build/strsim-rs
+-LIBRARY_DIR="$BUILD_DIR/rust/build/x86_64-unknown-linux-gnu/stage1/lib/rustlib/x86_64-unknown-linux-gnu/lib"
++LIBRARY_DIR="$BUILD_DIR/rust/build/$TARGETTRIPLE/stage1/lib/rustlib/$TARGETTRIPLE/lib"
+ RLIBS=$(find $LIBRARY_DIR -name "*.rlib")
+ cp $TEST/../total.ll $TEST
+ 
+diff --git a/benchmarks/strsim/test/erasan-debloating/erasan-debloating-strsim.sh b/benchmarks/strsim/test/erasan-debloating/erasan-debloating-strsim.sh
+index e224eec..f54380b 100755
+--- a/benchmarks/strsim/test/erasan-debloating/erasan-debloating-strsim.sh
++++ b/benchmarks/strsim/test/erasan-debloating/erasan-debloating-strsim.sh
+@@ -1,4 +1,5 @@
+ #!/bin/bash
++TARGETTRIPLE=$(uname -m)-unknown-linux-gnu
+ 
+ # immediately stop building if error occurs
+ set -e
+@@ -13,7 +14,7 @@ set -e
+ 
+ export TEST=$PWD
+ export BINARY_DIR=$TEST/../../build/strsim-rs
+-LIBRARY_DIR="$BUILD_DIR/rust/build/x86_64-unknown-linux-gnu/stage1/lib/rustlib/x86_64-unknown-linux-gnu/lib"
++LIBRARY_DIR="$BUILD_DIR/rust/build/$TARGETTRIPLE/stage1/lib/rustlib/$TARGETTRIPLE/lib"
+ RLIBS=$(find $LIBRARY_DIR -name "*.rlib")
+ cp $TEST/../total.ll $TEST
+ 
+diff --git a/benchmarks/strsim/test/erasan-rawptr/erasan-rawptr-strsim.sh b/benchmarks/strsim/test/erasan-rawptr/erasan-rawptr-strsim.sh
+index ad7dd1a..f7aa43e 100755
+--- a/benchmarks/strsim/test/erasan-rawptr/erasan-rawptr-strsim.sh
++++ b/benchmarks/strsim/test/erasan-rawptr/erasan-rawptr-strsim.sh
+@@ -1,4 +1,5 @@
+ #!/bin/bash
++TARGETTRIPLE=$(uname -m)-unknown-linux-gnu
+ 
+ # immediately stop building if error occurs
+ set -e
+@@ -13,7 +14,7 @@ set -e
+ 
+ export TEST=$PWD
+ export BINARY_DIR=$TEST/../../build/strsim-rs
+-LIBRARY_DIR="$BUILD_DIR/rust/build/x86_64-unknown-linux-gnu/stage1/lib/rustlib/x86_64-unknown-linux-gnu/lib"
++LIBRARY_DIR="$BUILD_DIR/rust/build/$TARGETTRIPLE/stage1/lib/rustlib/$TARGETTRIPLE/lib"
+ RLIBS=$(find $LIBRARY_DIR -name "*.rlib")
+ cp $TEST/../total.ll $TEST
+ 
+diff --git a/benchmarks/strsim/test/erasan-threadsafe/erasan-threadsafe-strsim.sh b/benchmarks/strsim/test/erasan-threadsafe/erasan-threadsafe-strsim.sh
+index 0459113..cdbac25 100755
+--- a/benchmarks/strsim/test/erasan-threadsafe/erasan-threadsafe-strsim.sh
++++ b/benchmarks/strsim/test/erasan-threadsafe/erasan-threadsafe-strsim.sh
+@@ -1,4 +1,5 @@
+ #!/bin/bash
++TARGETTRIPLE=$(uname -m)-unknown-linux-gnu
+ 
+ # immediately stop building if error occurs
+ set -e
+@@ -13,7 +14,7 @@ set -e
+ 
+ export TEST=$PWD
+ export BINARY_DIR=$TEST/../../build/strsim-rs
+-LIBRARY_DIR="$BUILD_DIR/rust/build/x86_64-unknown-linux-gnu/stage1/lib/rustlib/x86_64-unknown-linux-gnu/lib"
++LIBRARY_DIR="$BUILD_DIR/rust/build/$TARGETTRIPLE/stage1/lib/rustlib/$TARGETTRIPLE/lib"
+ RLIBS=$(find $LIBRARY_DIR -name "*.rlib")
+ cp $TEST/../total.ll $TEST
+ 
+diff --git a/benchmarks/strsim/test/erasan-unsafe/erasan-unsafe-strsim.sh b/benchmarks/strsim/test/erasan-unsafe/erasan-unsafe-strsim.sh
+index 91a4b0a..c9a2800 100755
+--- a/benchmarks/strsim/test/erasan-unsafe/erasan-unsafe-strsim.sh
++++ b/benchmarks/strsim/test/erasan-unsafe/erasan-unsafe-strsim.sh
+@@ -1,4 +1,5 @@
+ #!/bin/bash
++TARGETTRIPLE=$(uname -m)-unknown-linux-gnu
+ 
+ # immediately stop building if error occurs
+ set -e
+@@ -13,7 +14,7 @@ set -e
+ 
+ export TEST=$PWD
+ export BINARY_DIR=$TEST/../../build/strsim-rs
+-LIBRARY_DIR="$BUILD_DIR/rust/build/x86_64-unknown-linux-gnu/stage1/lib/rustlib/x86_64-unknown-linux-gnu/lib"
++LIBRARY_DIR="$BUILD_DIR/rust/build/$TARGETTRIPLE/stage1/lib/rustlib/$TARGETTRIPLE/lib"
+ RLIBS=$(find $LIBRARY_DIR -name "*.rlib")
+ cp $TEST/../total.ll $TEST/../total_debug.ll $TEST
+ 
+diff --git a/benchmarks/strsim/test/erasan/erasan-strsim.sh b/benchmarks/strsim/test/erasan/erasan-strsim.sh
+index 278d85a..6fa10b7 100755
+--- a/benchmarks/strsim/test/erasan/erasan-strsim.sh
++++ b/benchmarks/strsim/test/erasan/erasan-strsim.sh
+@@ -1,4 +1,5 @@
+ #!/bin/bash
++TARGETTRIPLE=$(uname -m)-unknown-linux-gnu
+ 
+ # immediately stop building if error occurs
+ set -e
+@@ -13,7 +14,7 @@ set -e
+ 
+ export TEST=$PWD
+ export BINARY_DIR=$TEST/../../build/strsim-rs
+-LIBRARY_DIR="$BUILD_DIR/rust/build/x86_64-unknown-linux-gnu/stage1/lib/rustlib/x86_64-unknown-linux-gnu/lib"
++LIBRARY_DIR="$BUILD_DIR/rust/build/$TARGETTRIPLE/stage1/lib/rustlib/$TARGETTRIPLE/lib"
+ RLIBS=$(find $LIBRARY_DIR -name "*.rlib")
+ cp $TEST/../total.ll $TEST
+ 
+diff --git a/benchmarks/strsim/test/native/native-strsim.sh b/benchmarks/strsim/test/native/native-strsim.sh
+index 1bbed51..54844f5 100755
+--- a/benchmarks/strsim/test/native/native-strsim.sh
++++ b/benchmarks/strsim/test/native/native-strsim.sh
+@@ -1,4 +1,5 @@
+ #!/bin/bash
++TARGETTRIPLE=$(uname -m)-unknown-linux-gnu
+ 
+ # immediately stop building if error occurs
+ set -e
+@@ -6,7 +7,7 @@ set -e
+ # Make sure that you set the environmetal settings by ERASan/env/env.sh
+ export TEST=$PWD
+ export BINARY_DIR=$TEST/../../build/strsim-rs
+-LIBRARY_DIR="$BUILD_DIR/rust/build/x86_64-unknown-linux-gnu/stage1/lib/rustlib/x86_64-unknown-linux-gnu/lib"
++LIBRARY_DIR="$BUILD_DIR/rust/build/$TARGETTRIPLE/stage1/lib/rustlib/$TARGETTRIPLE/lib"
+ RLIBS=$(find $LIBRARY_DIR -name "*.rlib")
+ cp $TEST/../total.ll $TEST
+ 
+diff --git a/benchmarks/syn/test/asan/asan-syn.sh b/benchmarks/syn/test/asan/asan-syn.sh
+index 3cd8ce6..25aba51 100755
+--- a/benchmarks/syn/test/asan/asan-syn.sh
++++ b/benchmarks/syn/test/asan/asan-syn.sh
+@@ -1,4 +1,5 @@
+ #!/bin/bash
++TARGETTRIPLE=$(uname -m)-unknown-linux-gnu
+ 
+ # immediately stop building if error occurs
+ set -e
+@@ -13,7 +14,7 @@ set -e
+ 
+ export TEST=$PWD
+ export BINARY_DIR=$TEST/../../build/syn
+-LIBRARY_DIR="$BUILD_DIR/rust/build/x86_64-unknown-linux-gnu/stage1/lib/rustlib/x86_64-unknown-linux-gnu/lib"
++LIBRARY_DIR="$BUILD_DIR/rust/build/$TARGETTRIPLE/stage1/lib/rustlib/$TARGETTRIPLE/lib"
+ RLIBS=$(find $LIBRARY_DIR -name "*.rlib")
+ DLIBRARY_DIR="$BINARY_DIR/target/release/deps"
+ DRLIBS=$(find $DLIBRARY_DIR \( -name "libinsta-1b61eebac4d4080f.rlib" -o -name "libbuild_alert-75b3e1be82fcc672.rlib" -o -name "libsyn-4750b322bd35b9d0.rlib" -o -name "libhyper-73701e5b620d2e98.rlib" -o -name "libopenssl_macros-e71daa9728d792b8.rlib" -o -name "libautomod-78a62550c23f3151.rlib" -o -name "libidna-928873a6548ef19c.rlib" -o -name "libproc_macro2-32ec7a3ae76bb3b8.rlib" -o -name "libh2-77f3f14114df7858.rlib" -o -name "liburl-032ff7efda34ffc1.rlib" -o -name "libopenssl-c0398c1ebfb386f5.rlib" -o -name "libreqwest-c5f17ad973bdd06e.rlib" -o -name "librustversion-9fda689abfd9f4b2.rlib" -o -name "libproc_macro2-f22092cd4c730ba0.rlib" -o -name "libhttp-789e989cc0727f49.rlib" -o -name "libconsole-fa89f8bee720336e.rlib" -o -name "libref_cast_impl-48b08ef3cd1fad98.rlib" -o -name "libtokio_util-57a858402af6c73b.rlib" -o -name "libindexmap-2e2dc417a04ce89b.rlib" -o -name "libhashbrown-c95c4cdb2df4d744.rlib" \))
+diff --git a/benchmarks/syn/test/erasan-debloating/erasan-debloating-syn.sh b/benchmarks/syn/test/erasan-debloating/erasan-debloating-syn.sh
+index 4be0ea2..4f5fb06 100755
+--- a/benchmarks/syn/test/erasan-debloating/erasan-debloating-syn.sh
++++ b/benchmarks/syn/test/erasan-debloating/erasan-debloating-syn.sh
+@@ -1,4 +1,5 @@
+ #!/bin/bash
++TARGETTRIPLE=$(uname -m)-unknown-linux-gnu
+ 
+ # immediately stop building if error occurs
+ set -e
+@@ -13,7 +14,7 @@ set -e
+ 
+ export TEST=$PWD
+ export BINARY_DIR=$TEST/../../build/syn
+-LIBRARY_DIR="$BUILD_DIR/rust/build/x86_64-unknown-linux-gnu/stage1/lib/rustlib/x86_64-unknown-linux-gnu/lib"
++LIBRARY_DIR="$BUILD_DIR/rust/build/$TARGETTRIPLE/stage1/lib/rustlib/$TARGETTRIPLE/lib"
+ RLIBS=$(find $LIBRARY_DIR -name "*.rlib")
+ DLIBRARY_DIR="$BINARY_DIR/target/release/deps"
+ DRLIBS=$(find $DLIBRARY_DIR \( -name "libinsta-1b61eebac4d4080f.rlib" -o -name "libbuild_alert-75b3e1be82fcc672.rlib" -o -name "libsyn-4750b322bd35b9d0.rlib" -o -name "libhyper-73701e5b620d2e98.rlib" -o -name "libopenssl_macros-e71daa9728d792b8.rlib" -o -name "libautomod-78a62550c23f3151.rlib" -o -name "libidna-928873a6548ef19c.rlib" -o -name "libproc_macro2-32ec7a3ae76bb3b8.rlib" -o -name "libh2-77f3f14114df7858.rlib" -o -name "liburl-032ff7efda34ffc1.rlib" -o -name "libopenssl-c0398c1ebfb386f5.rlib" -o -name "libreqwest-c5f17ad973bdd06e.rlib" -o -name "librustversion-9fda689abfd9f4b2.rlib" -o -name "libproc_macro2-f22092cd4c730ba0.rlib" -o -name "libhttp-789e989cc0727f49.rlib" -o -name "libconsole-fa89f8bee720336e.rlib" -o -name "libref_cast_impl-48b08ef3cd1fad98.rlib" -o -name "libtokio_util-57a858402af6c73b.rlib" -o -name "libindexmap-2e2dc417a04ce89b.rlib" -o -name "libhashbrown-c95c4cdb2df4d744.rlib" \))
+diff --git a/benchmarks/syn/test/erasan-rawptr/erasan-rawptr-syn.sh b/benchmarks/syn/test/erasan-rawptr/erasan-rawptr-syn.sh
+index 121761b..95fbc5d 100755
+--- a/benchmarks/syn/test/erasan-rawptr/erasan-rawptr-syn.sh
++++ b/benchmarks/syn/test/erasan-rawptr/erasan-rawptr-syn.sh
+@@ -1,4 +1,5 @@
+ #!/bin/bash
++TARGETTRIPLE=$(uname -m)-unknown-linux-gnu
+ 
+ # immediately stop building if error occurs
+ set -e
+@@ -13,7 +14,7 @@ set -e
+ 
+ export TEST=$PWD
+ export BINARY_DIR=$TEST/../../build/syn
+-LIBRARY_DIR="$BUILD_DIR/rust/build/x86_64-unknown-linux-gnu/stage1/lib/rustlib/x86_64-unknown-linux-gnu/lib"
++LIBRARY_DIR="$BUILD_DIR/rust/build/$TARGETTRIPLE/stage1/lib/rustlib/$TARGETTRIPLE/lib"
+ RLIBS=$(find $LIBRARY_DIR -name "*.rlib")
+ DLIBRARY_DIR="$BINARY_DIR/target/release/deps"
+ DRLIBS=$(find $DLIBRARY_DIR \( -name "libinsta-1b61eebac4d4080f.rlib" -o -name "libbuild_alert-75b3e1be82fcc672.rlib" -o -name "libsyn-4750b322bd35b9d0.rlib" -o -name "libhyper-73701e5b620d2e98.rlib" -o -name "libopenssl_macros-e71daa9728d792b8.rlib" -o -name "libautomod-78a62550c23f3151.rlib" -o -name "libidna-928873a6548ef19c.rlib" -o -name "libproc_macro2-32ec7a3ae76bb3b8.rlib" -o -name "libh2-77f3f14114df7858.rlib" -o -name "liburl-032ff7efda34ffc1.rlib" -o -name "libopenssl-c0398c1ebfb386f5.rlib" -o -name "libreqwest-c5f17ad973bdd06e.rlib" -o -name "librustversion-9fda689abfd9f4b2.rlib" -o -name "libproc_macro2-f22092cd4c730ba0.rlib" -o -name "libhttp-789e989cc0727f49.rlib" -o -name "libconsole-fa89f8bee720336e.rlib" -o -name "libref_cast_impl-48b08ef3cd1fad98.rlib" -o -name "libtokio_util-57a858402af6c73b.rlib" -o -name "libindexmap-2e2dc417a04ce89b.rlib" -o -name "libhashbrown-c95c4cdb2df4d744.rlib" \))
+diff --git a/benchmarks/syn/test/erasan-threadsafe/erasan-threadsafe-syn.sh b/benchmarks/syn/test/erasan-threadsafe/erasan-threadsafe-syn.sh
+index f1237c0..c841a65 100755
+--- a/benchmarks/syn/test/erasan-threadsafe/erasan-threadsafe-syn.sh
++++ b/benchmarks/syn/test/erasan-threadsafe/erasan-threadsafe-syn.sh
+@@ -1,4 +1,5 @@
+ #!/bin/bash
++TARGETTRIPLE=$(uname -m)-unknown-linux-gnu
+ 
+ # immediately stop building if error occurs
+ set -e
+@@ -13,7 +14,7 @@ set -e
+ 
+ export TEST=$PWD
+ export BINARY_DIR=$TEST/../../build/syn
+-LIBRARY_DIR="$BUILD_DIR/rust/build/x86_64-unknown-linux-gnu/stage1/lib/rustlib/x86_64-unknown-linux-gnu/lib"
++LIBRARY_DIR="$BUILD_DIR/rust/build/$TARGETTRIPLE/stage1/lib/rustlib/$TARGETTRIPLE/lib"
+ RLIBS=$(find $LIBRARY_DIR -name "*.rlib")
+ DLIBRARY_DIR="$BINARY_DIR/target/release/deps"
+ DRLIBS=$(find $DLIBRARY_DIR \( -name "libinsta-1b61eebac4d4080f.rlib" -o -name "libbuild_alert-75b3e1be82fcc672.rlib" -o -name "libsyn-4750b322bd35b9d0.rlib" -o -name "libhyper-73701e5b620d2e98.rlib" -o -name "libopenssl_macros-e71daa9728d792b8.rlib" -o -name "libautomod-78a62550c23f3151.rlib" -o -name "libidna-928873a6548ef19c.rlib" -o -name "libproc_macro2-32ec7a3ae76bb3b8.rlib" -o -name "libh2-77f3f14114df7858.rlib" -o -name "liburl-032ff7efda34ffc1.rlib" -o -name "libopenssl-c0398c1ebfb386f5.rlib" -o -name "libreqwest-c5f17ad973bdd06e.rlib" -o -name "librustversion-9fda689abfd9f4b2.rlib" -o -name "libproc_macro2-f22092cd4c730ba0.rlib" -o -name "libhttp-789e989cc0727f49.rlib" -o -name "libconsole-fa89f8bee720336e.rlib" -o -name "libref_cast_impl-48b08ef3cd1fad98.rlib" -o -name "libtokio_util-57a858402af6c73b.rlib" -o -name "libindexmap-2e2dc417a04ce89b.rlib" -o -name "libhashbrown-c95c4cdb2df4d744.rlib" \))
+diff --git a/benchmarks/syn/test/erasan-unsafe/erasan-unsafe-syn.sh b/benchmarks/syn/test/erasan-unsafe/erasan-unsafe-syn.sh
+index acd6c7c..34e2b77 100755
+--- a/benchmarks/syn/test/erasan-unsafe/erasan-unsafe-syn.sh
++++ b/benchmarks/syn/test/erasan-unsafe/erasan-unsafe-syn.sh
+@@ -1,4 +1,5 @@
+ #!/bin/bash
++TARGETTRIPLE=$(uname -m)-unknown-linux-gnu
+ 
+ # immediately stop building if error occurs
+ set -e
+@@ -13,7 +14,7 @@ set -e
+ 
+ export TEST=$PWD
+ export BINARY_DIR=$TEST/../../build/syn
+-LIBRARY_DIR="$BUILD_DIR/rust/build/x86_64-unknown-linux-gnu/stage1/lib/rustlib/x86_64-unknown-linux-gnu/lib"
++LIBRARY_DIR="$BUILD_DIR/rust/build/$TARGETTRIPLE/stage1/lib/rustlib/$TARGETTRIPLE/lib"
+ RLIBS=$(find $LIBRARY_DIR -name "*.rlib")
+ DLIBRARY_DIR="$BINARY_DIR/target/release/deps"
+ DRLIBS=$(find $DLIBRARY_DIR \( -name "libinsta-1b61eebac4d4080f.rlib" -o -name "libbuild_alert-75b3e1be82fcc672.rlib" -o -name "libsyn-4750b322bd35b9d0.rlib" -o -name "libhyper-73701e5b620d2e98.rlib" -o -name "libopenssl_macros-e71daa9728d792b8.rlib" -o -name "libautomod-78a62550c23f3151.rlib" -o -name "libidna-928873a6548ef19c.rlib" -o -name "libproc_macro2-32ec7a3ae76bb3b8.rlib" -o -name "libh2-77f3f14114df7858.rlib" -o -name "liburl-032ff7efda34ffc1.rlib" -o -name "libopenssl-c0398c1ebfb386f5.rlib" -o -name "libreqwest-c5f17ad973bdd06e.rlib" -o -name "librustversion-9fda689abfd9f4b2.rlib" -o -name "libproc_macro2-f22092cd4c730ba0.rlib" -o -name "libhttp-789e989cc0727f49.rlib" -o -name "libconsole-fa89f8bee720336e.rlib" -o -name "libref_cast_impl-48b08ef3cd1fad98.rlib" -o -name "libtokio_util-57a858402af6c73b.rlib" -o -name "libindexmap-2e2dc417a04ce89b.rlib" -o -name "libhashbrown-c95c4cdb2df4d744.rlib" \))
+diff --git a/benchmarks/syn/test/erasan/erasan-syn.sh b/benchmarks/syn/test/erasan/erasan-syn.sh
+index 7252d2d..aeabb6d 100755
+--- a/benchmarks/syn/test/erasan/erasan-syn.sh
++++ b/benchmarks/syn/test/erasan/erasan-syn.sh
+@@ -1,4 +1,5 @@
+ #!/bin/bash
++TARGETTRIPLE=$(uname -m)-unknown-linux-gnu
+ 
+ # immediately stop building if error occurs
+ set -e
+@@ -13,7 +14,7 @@ set -e
+ 
+ export TEST=$PWD
+ export BINARY_DIR=$TEST/../../build/syn
+-LIBRARY_DIR="$BUILD_DIR/rust/build/x86_64-unknown-linux-gnu/stage1/lib/rustlib/x86_64-unknown-linux-gnu/lib"
++LIBRARY_DIR="$BUILD_DIR/rust/build/$TARGETTRIPLE/stage1/lib/rustlib/$TARGETTRIPLE/lib"
+ RLIBS=$(find $LIBRARY_DIR -name "*.rlib")
+ DLIBRARY_DIR="$BINARY_DIR/target/release/deps"
+ DRLIBS=$(find $DLIBRARY_DIR \( -name "libinsta-1b61eebac4d4080f.rlib" -o -name "libbuild_alert-75b3e1be82fcc672.rlib" -o -name "libsyn-4750b322bd35b9d0.rlib" -o -name "libhyper-73701e5b620d2e98.rlib" -o -name "libopenssl_macros-e71daa9728d792b8.rlib" -o -name "libautomod-78a62550c23f3151.rlib" -o -name "libidna-928873a6548ef19c.rlib" -o -name "libproc_macro2-32ec7a3ae76bb3b8.rlib" -o -name "libh2-77f3f14114df7858.rlib" -o -name "liburl-032ff7efda34ffc1.rlib" -o -name "libopenssl-c0398c1ebfb386f5.rlib" -o -name "libreqwest-c5f17ad973bdd06e.rlib" -o -name "librustversion-9fda689abfd9f4b2.rlib" -o -name "libproc_macro2-f22092cd4c730ba0.rlib" -o -name "libhttp-789e989cc0727f49.rlib" -o -name "libconsole-fa89f8bee720336e.rlib" -o -name "libref_cast_impl-48b08ef3cd1fad98.rlib" -o -name "libtokio_util-57a858402af6c73b.rlib" -o -name "libindexmap-2e2dc417a04ce89b.rlib" -o -name "libhashbrown-c95c4cdb2df4d744.rlib" \))
+diff --git a/benchmarks/syn/test/native/native-syn.sh b/benchmarks/syn/test/native/native-syn.sh
+index 4b1baca..e4f2c8d 100755
+--- a/benchmarks/syn/test/native/native-syn.sh
++++ b/benchmarks/syn/test/native/native-syn.sh
+@@ -1,4 +1,5 @@
+ #!/bin/bash
++TARGETTRIPLE=$(uname -m)-unknown-linux-gnu
+ 
+ # immediately stop building if error occurs
+ set -e
+@@ -6,7 +7,7 @@ set -e
+ # Make sure that you set the environmetal settings by ERASan/env/env.sh
+ export TEST=$PWD
+ export BINARY_DIR=$TEST/../../build/syn
+-LIBRARY_DIR="$BUILD_DIR/rust/build/x86_64-unknown-linux-gnu/stage1/lib/rustlib/x86_64-unknown-linux-gnu/lib"
++LIBRARY_DIR="$BUILD_DIR/rust/build/$TARGETTRIPLE/stage1/lib/rustlib/$TARGETTRIPLE/lib"
+ RLIBS=$(find $LIBRARY_DIR -name "*.rlib")
+ cp $TEST/../total.ll $TEST
+ 
+diff --git a/benchmarks/unicode/test/asan/asan-unicode.sh b/benchmarks/unicode/test/asan/asan-unicode.sh
+index bd653eb..0bc2955 100755
+--- a/benchmarks/unicode/test/asan/asan-unicode.sh
++++ b/benchmarks/unicode/test/asan/asan-unicode.sh
+@@ -1,4 +1,5 @@
+ #!/bin/bash
++TARGETTRIPLE=$(uname -m)-unknown-linux-gnu
+ 
+ # immediately stop building if error occurs
+ set -e
+@@ -13,7 +14,7 @@ set -e
+ 
+ export TEST=$PWD
+ export BINARY_DIR=$TEST/../../build/unicode-normalization
+-LIBRARY_DIR="$BUILD_DIR/rust/build/x86_64-unknown-linux-gnu/stage1/lib/rustlib/x86_64-unknown-linux-gnu/lib"
++LIBRARY_DIR="$BUILD_DIR/rust/build/$TARGETTRIPLE/stage1/lib/rustlib/$TARGETTRIPLE/lib"
+ RLIBS=$(find $LIBRARY_DIR -name "*.rlib")
+ cp $TEST/../total.ll $TEST
+ 
+diff --git a/benchmarks/unicode/test/erasan-debloating/erasan-debloating-unicode.sh b/benchmarks/unicode/test/erasan-debloating/erasan-debloating-unicode.sh
+index c75533d..fbf059a 100755
+--- a/benchmarks/unicode/test/erasan-debloating/erasan-debloating-unicode.sh
++++ b/benchmarks/unicode/test/erasan-debloating/erasan-debloating-unicode.sh
+@@ -1,4 +1,5 @@
+ #!/bin/bash
++TARGETTRIPLE=$(uname -m)-unknown-linux-gnu
+ 
+ # immediately stop building if error occurs
+ set -e
+@@ -13,7 +14,7 @@ set -e
+ 
+ export TEST=$PWD
+ export BINARY_DIR=$TEST/../../build/unicode-normalization
+-LIBRARY_DIR="$BUILD_DIR/rust/build/x86_64-unknown-linux-gnu/stage1/lib/rustlib/x86_64-unknown-linux-gnu/lib"
++LIBRARY_DIR="$BUILD_DIR/rust/build/$TARGETTRIPLE/stage1/lib/rustlib/$TARGETTRIPLE/lib"
+ RLIBS=$(find $LIBRARY_DIR -name "*.rlib")
+ cp $TEST/../total.ll $TEST
+ 
+diff --git a/benchmarks/unicode/test/erasan-rawptr/erasan-rawptr-unicode.sh b/benchmarks/unicode/test/erasan-rawptr/erasan-rawptr-unicode.sh
+index b07daab..6b46380 100755
+--- a/benchmarks/unicode/test/erasan-rawptr/erasan-rawptr-unicode.sh
++++ b/benchmarks/unicode/test/erasan-rawptr/erasan-rawptr-unicode.sh
+@@ -1,4 +1,5 @@
+ #!/bin/bash
++TARGETTRIPLE=$(uname -m)-unknown-linux-gnu
+ 
+ # immediately stop building if error occurs
+ set -e
+@@ -13,7 +14,7 @@ set -e
+ 
+ export TEST=$PWD
+ export BINARY_DIR=$TEST/../../build/unicode-normalization
+-LIBRARY_DIR="$BUILD_DIR/rust/build/x86_64-unknown-linux-gnu/stage1/lib/rustlib/x86_64-unknown-linux-gnu/lib"
++LIBRARY_DIR="$BUILD_DIR/rust/build/$TARGETTRIPLE/stage1/lib/rustlib/$TARGETTRIPLE/lib"
+ RLIBS=$(find $LIBRARY_DIR -name "*.rlib")
+ cp $TEST/../total.ll $TEST
+ 
+diff --git a/benchmarks/unicode/test/erasan-threadsafe/erasan-threadsafe-unicode.sh b/benchmarks/unicode/test/erasan-threadsafe/erasan-threadsafe-unicode.sh
+index 7450ec9..49e9005 100755
+--- a/benchmarks/unicode/test/erasan-threadsafe/erasan-threadsafe-unicode.sh
++++ b/benchmarks/unicode/test/erasan-threadsafe/erasan-threadsafe-unicode.sh
+@@ -1,4 +1,5 @@
+ #!/bin/bash
++TARGETTRIPLE=$(uname -m)-unknown-linux-gnu
+ 
+ # immediately stop building if error occurs
+ set -e
+@@ -13,7 +14,7 @@ set -e
+ 
+ export TEST=$PWD
+ export BINARY_DIR=$TEST/../../build/unicode-normalization
+-LIBRARY_DIR="$BUILD_DIR/rust/build/x86_64-unknown-linux-gnu/stage1/lib/rustlib/x86_64-unknown-linux-gnu/lib"
++LIBRARY_DIR="$BUILD_DIR/rust/build/$TARGETTRIPLE/stage1/lib/rustlib/$TARGETTRIPLE/lib"
+ RLIBS=$(find $LIBRARY_DIR -name "*.rlib")
+ cp $TEST/../total.ll $TEST
+ 
+diff --git a/benchmarks/unicode/test/erasan-unsafe/erasan-unsafe-unicode.sh b/benchmarks/unicode/test/erasan-unsafe/erasan-unsafe-unicode.sh
+index 59f1172..36b9ad6 100755
+--- a/benchmarks/unicode/test/erasan-unsafe/erasan-unsafe-unicode.sh
++++ b/benchmarks/unicode/test/erasan-unsafe/erasan-unsafe-unicode.sh
+@@ -1,4 +1,5 @@
+ #!/bin/bash
++TARGETTRIPLE=$(uname -m)-unknown-linux-gnu
+ 
+ # immediately stop building if error occurs
+ set -e
+@@ -13,7 +14,7 @@ set -e
+ 
+ export TEST=$PWD
+ export BINARY_DIR=$TEST/../../build/unicode-normalization
+-LIBRARY_DIR="$BUILD_DIR/rust/build/x86_64-unknown-linux-gnu/stage1/lib/rustlib/x86_64-unknown-linux-gnu/lib"
++LIBRARY_DIR="$BUILD_DIR/rust/build/$TARGETTRIPLE/stage1/lib/rustlib/$TARGETTRIPLE/lib"
+ RLIBS=$(find $LIBRARY_DIR -name "*.rlib")
+ cp $TEST/../total.ll $TEST/../total_debug.ll $TEST
+ 
+diff --git a/benchmarks/unicode/test/erasan/erasan-unicode.sh b/benchmarks/unicode/test/erasan/erasan-unicode.sh
+index 412468c..db22114 100755
+--- a/benchmarks/unicode/test/erasan/erasan-unicode.sh
++++ b/benchmarks/unicode/test/erasan/erasan-unicode.sh
+@@ -1,4 +1,5 @@
+ #!/bin/bash
++TARGETTRIPLE=$(uname -m)-unknown-linux-gnu
+ 
+ # immediately stop building if error occurs
+ set -e
+@@ -13,7 +14,7 @@ set -e
+ 
+ export TEST=$PWD
+ export BINARY_DIR=$TEST/../../build/unicode-normalization
+-LIBRARY_DIR="$BUILD_DIR/rust/build/x86_64-unknown-linux-gnu/stage1/lib/rustlib/x86_64-unknown-linux-gnu/lib"
++LIBRARY_DIR="$BUILD_DIR/rust/build/$TARGETTRIPLE/stage1/lib/rustlib/$TARGETTRIPLE/lib"
+ RLIBS=$(find $LIBRARY_DIR -name "*.rlib")
+ cp $TEST/../total.ll $TEST
+ 
+diff --git a/benchmarks/unicode/test/native/native-unicode.sh b/benchmarks/unicode/test/native/native-unicode.sh
+index 404b28d..29201da 100755
+--- a/benchmarks/unicode/test/native/native-unicode.sh
++++ b/benchmarks/unicode/test/native/native-unicode.sh
+@@ -1,4 +1,5 @@
+ #!/bin/bash
++TARGETTRIPLE=$(uname -m)-unknown-linux-gnu
+ 
+ # immediately stop building if error occurs
+ set -e
+@@ -6,7 +7,7 @@ set -e
+ # Make sure that you set the environmetal settings by ERASan/env/env.sh
+ export TEST=$PWD
+ export BINARY_DIR=$TEST/../../build/unicode-normalization
+-LIBRARY_DIR="$BUILD_DIR/rust/build/x86_64-unknown-linux-gnu/stage1/lib/rustlib/x86_64-unknown-linux-gnu/lib"
++LIBRARY_DIR="$BUILD_DIR/rust/build/$TARGETTRIPLE/stage1/lib/rustlib/$TARGETTRIPLE/lib"
+ RLIBS=$(find $LIBRARY_DIR -name "*.rlib")
+ cp $TEST/../total.ll $TEST
+ 
+diff --git a/benchmarks/url/test/asan/asan-url.sh b/benchmarks/url/test/asan/asan-url.sh
+index f4c8b9f..654e7f6 100755
+--- a/benchmarks/url/test/asan/asan-url.sh
++++ b/benchmarks/url/test/asan/asan-url.sh
+@@ -1,4 +1,5 @@
+ #!/bin/bash
++TARGETTRIPLE=$(uname -m)-unknown-linux-gnu
+ 
+ # immediately stop building if error occurs
+ set -e
+@@ -13,7 +14,7 @@ set -e
+ 
+ export TEST=$PWD
+ export BINARY_DIR=$TEST/../../build/rust-url
+-LIBRARY_DIR="$BUILD_DIR/rust/build/x86_64-unknown-linux-gnu/stage1/lib/rustlib/x86_64-unknown-linux-gnu/lib"
++LIBRARY_DIR="$BUILD_DIR/rust/build/$TARGETTRIPLE/stage1/lib/rustlib/$TARGETTRIPLE/lib"
+ RLIBS=$(find $LIBRARY_DIR -name "*.rlib")
+ cp $TEST/../total.ll $TEST
+ 
+diff --git a/benchmarks/url/test/erasan-debloating/erasan-debloating-url.sh b/benchmarks/url/test/erasan-debloating/erasan-debloating-url.sh
+index a24f525..5bb34ce 100755
+--- a/benchmarks/url/test/erasan-debloating/erasan-debloating-url.sh
++++ b/benchmarks/url/test/erasan-debloating/erasan-debloating-url.sh
+@@ -1,4 +1,5 @@
+ #!/bin/bash
++TARGETTRIPLE=$(uname -m)-unknown-linux-gnu
+ 
+ # immediately stop building if error occurs
+ set -e
+@@ -13,7 +14,7 @@ set -e
+ 
+ export TEST=$PWD
+ export BINARY_DIR=$TEST/../../build/rust-url
+-LIBRARY_DIR="$BUILD_DIR/rust/build/x86_64-unknown-linux-gnu/stage1/lib/rustlib/x86_64-unknown-linux-gnu/lib"
++LIBRARY_DIR="$BUILD_DIR/rust/build/$TARGETTRIPLE/stage1/lib/rustlib/$TARGETTRIPLE/lib"
+ RLIBS=$(find $LIBRARY_DIR -name "*.rlib")
+ cp $TEST/../total.ll $TEST
+ 
+diff --git a/benchmarks/url/test/erasan-rawptr/erasan-rawptr-url.sh b/benchmarks/url/test/erasan-rawptr/erasan-rawptr-url.sh
+index 1a1baef..5ed76e6 100755
+--- a/benchmarks/url/test/erasan-rawptr/erasan-rawptr-url.sh
++++ b/benchmarks/url/test/erasan-rawptr/erasan-rawptr-url.sh
+@@ -1,4 +1,5 @@
+ #!/bin/bash
++TARGETTRIPLE=$(uname -m)-unknown-linux-gnu
+ 
+ # immediately stop building if error occurs
+ set -e
+@@ -13,7 +14,7 @@ set -e
+ 
+ export TEST=$PWD
+ export BINARY_DIR=$TEST/../../build/rust-url
+-LIBRARY_DIR="$BUILD_DIR/rust/build/x86_64-unknown-linux-gnu/stage1/lib/rustlib/x86_64-unknown-linux-gnu/lib"
++LIBRARY_DIR="$BUILD_DIR/rust/build/$TARGETTRIPLE/stage1/lib/rustlib/$TARGETTRIPLE/lib"
+ RLIBS=$(find $LIBRARY_DIR -name "*.rlib")
+ cp $TEST/../total.ll $TEST
+ 
+diff --git a/benchmarks/url/test/erasan-threadsafe/erasan-threadsafe-url.sh b/benchmarks/url/test/erasan-threadsafe/erasan-threadsafe-url.sh
+index b89c559..21f991c 100755
+--- a/benchmarks/url/test/erasan-threadsafe/erasan-threadsafe-url.sh
++++ b/benchmarks/url/test/erasan-threadsafe/erasan-threadsafe-url.sh
+@@ -1,4 +1,5 @@
+ #!/bin/bash
++TARGETTRIPLE=$(uname -m)-unknown-linux-gnu
+ 
+ # immediately stop building if error occurs
+ set -e
+@@ -13,7 +14,7 @@ set -e
+ 
+ export TEST=$PWD
+ export BINARY_DIR=$TEST/../../build/rust-url
+-LIBRARY_DIR="$BUILD_DIR/rust/build/x86_64-unknown-linux-gnu/stage1/lib/rustlib/x86_64-unknown-linux-gnu/lib"
++LIBRARY_DIR="$BUILD_DIR/rust/build/$TARGETTRIPLE/stage1/lib/rustlib/$TARGETTRIPLE/lib"
+ RLIBS=$(find $LIBRARY_DIR -name "*.rlib")
+ cp $TEST/../total.ll $TEST
+ 
+diff --git a/benchmarks/url/test/erasan-unsafe/erasan-unsafe-url.sh b/benchmarks/url/test/erasan-unsafe/erasan-unsafe-url.sh
+index 8fde891..36c9856 100755
+--- a/benchmarks/url/test/erasan-unsafe/erasan-unsafe-url.sh
++++ b/benchmarks/url/test/erasan-unsafe/erasan-unsafe-url.sh
+@@ -1,4 +1,5 @@
+ #!/bin/bash
++TARGETTRIPLE=$(uname -m)-unknown-linux-gnu
+ 
+ # immediately stop building if error occurs
+ set -e
+@@ -13,7 +14,7 @@ set -e
+ 
+ export TEST=$PWD
+ export BINARY_DIR=$TEST/../../build/rust-url
+-LIBRARY_DIR="$BUILD_DIR/rust/build/x86_64-unknown-linux-gnu/stage1/lib/rustlib/x86_64-unknown-linux-gnu/lib"
++LIBRARY_DIR="$BUILD_DIR/rust/build/$TARGETTRIPLE/stage1/lib/rustlib/$TARGETTRIPLE/lib"
+ RLIBS=$(find $LIBRARY_DIR -name "*.rlib")
+ cp $TEST/../total.ll $TEST/../total_debug.ll $TEST
+ 
+diff --git a/benchmarks/url/test/erasan/erasan-url.sh b/benchmarks/url/test/erasan/erasan-url.sh
+index f135371..3f3bc35 100755
+--- a/benchmarks/url/test/erasan/erasan-url.sh
++++ b/benchmarks/url/test/erasan/erasan-url.sh
+@@ -1,4 +1,5 @@
+ #!/bin/bash
++TARGETTRIPLE=$(uname -m)-unknown-linux-gnu
+ 
+ # immediately stop building if error occurs
+ set -e
+@@ -13,7 +14,7 @@ set -e
+ 
+ export TEST=$PWD
+ export BINARY_DIR=$TEST/../../build/rust-url
+-LIBRARY_DIR="$BUILD_DIR/rust/build/x86_64-unknown-linux-gnu/stage1/lib/rustlib/x86_64-unknown-linux-gnu/lib"
++LIBRARY_DIR="$BUILD_DIR/rust/build/$TARGETTRIPLE/stage1/lib/rustlib/$TARGETTRIPLE/lib"
+ RLIBS=$(find $LIBRARY_DIR -name "*.rlib")
+ cp $TEST/../total.ll $TEST
+ 
+diff --git a/benchmarks/url/test/native/native-url.sh b/benchmarks/url/test/native/native-url.sh
+index 93c054f..e2e2579 100755
+--- a/benchmarks/url/test/native/native-url.sh
++++ b/benchmarks/url/test/native/native-url.sh
+@@ -1,4 +1,5 @@
+ #!/bin/bash
++TARGETTRIPLE=$(uname -m)-unknown-linux-gnu
+ 
+ # immediately stop building if error occurs
+ set -e
+@@ -6,7 +7,7 @@ set -e
+ # Make sure that you set the environmetal settings by ERASan/env/env.sh
+ export TEST=$PWD
+ export BINARY_DIR=$TEST/../../build/rust-url
+-LIBRARY_DIR="$BUILD_DIR/rust/build/x86_64-unknown-linux-gnu/stage1/lib/rustlib/x86_64-unknown-linux-gnu/lib"
++LIBRARY_DIR="$BUILD_DIR/rust/build/$TARGETTRIPLE/stage1/lib/rustlib/$TARGETTRIPLE/lib"
+ RLIBS=$(find $LIBRARY_DIR -name "*.rlib")
+ cp $TEST/../total.ll $TEST
+ 
+diff --git a/benchmarks/uuid-format/test/asan/asan-uuid.sh b/benchmarks/uuid-format/test/asan/asan-uuid.sh
+index 4dc69bb..65a4990 100755
+--- a/benchmarks/uuid-format/test/asan/asan-uuid.sh
++++ b/benchmarks/uuid-format/test/asan/asan-uuid.sh
+@@ -1,4 +1,5 @@
+ #!/bin/bash
++TARGETTRIPLE=$(uname -m)-unknown-linux-gnu
+ 
+ # immediately stop building if error occurs
+ set -e
+@@ -13,7 +14,7 @@ set -e
+ 
+ export TEST=$PWD
+ export BINARY_DIR=$TEST/../../build/uuid
+-LIBRARY_DIR="$BUILD_DIR/rust/build/x86_64-unknown-linux-gnu/stage1/lib/rustlib/x86_64-unknown-linux-gnu/lib"
++LIBRARY_DIR="$BUILD_DIR/rust/build/$TARGETTRIPLE/stage1/lib/rustlib/$TARGETTRIPLE/lib"
+ RLIBS=$(find $LIBRARY_DIR -name "*.rlib")
+ cp $TEST/../total.ll $TEST
+ 
+diff --git a/benchmarks/uuid-format/test/erasan-debloating/erasan-debloating-uuid.sh b/benchmarks/uuid-format/test/erasan-debloating/erasan-debloating-uuid.sh
+index 2541b60..daacf46 100755
+--- a/benchmarks/uuid-format/test/erasan-debloating/erasan-debloating-uuid.sh
++++ b/benchmarks/uuid-format/test/erasan-debloating/erasan-debloating-uuid.sh
+@@ -1,4 +1,5 @@
+ #!/bin/bash
++TARGETTRIPLE=$(uname -m)-unknown-linux-gnu
+ 
+ # immediately stop building if error occurs
+ set -e
+@@ -13,7 +14,7 @@ set -e
+ 
+ export TEST=$PWD
+ export BINARY_DIR=$TEST/../../build/uuid
+-LIBRARY_DIR="$BUILD_DIR/rust/build/x86_64-unknown-linux-gnu/stage1/lib/rustlib/x86_64-unknown-linux-gnu/lib"
++LIBRARY_DIR="$BUILD_DIR/rust/build/$TARGETTRIPLE/stage1/lib/rustlib/$TARGETTRIPLE/lib"
+ RLIBS=$(find $LIBRARY_DIR -name "*.rlib")
+ cp $TEST/../total.ll $TEST
+ 
+diff --git a/benchmarks/uuid-format/test/erasan-rawptr/erasan-rawptr-uuid.sh b/benchmarks/uuid-format/test/erasan-rawptr/erasan-rawptr-uuid.sh
+index ab84043..ea98648 100755
+--- a/benchmarks/uuid-format/test/erasan-rawptr/erasan-rawptr-uuid.sh
++++ b/benchmarks/uuid-format/test/erasan-rawptr/erasan-rawptr-uuid.sh
+@@ -1,4 +1,5 @@
+ #!/bin/bash
++TARGETTRIPLE=$(uname -m)-unknown-linux-gnu
+ 
+ # immediately stop building if error occurs
+ set -e
+@@ -13,7 +14,7 @@ set -e
+ 
+ export TEST=$PWD
+ export BINARY_DIR=$TEST/../../build/uuid
+-LIBRARY_DIR="$BUILD_DIR/rust/build/x86_64-unknown-linux-gnu/stage1/lib/rustlib/x86_64-unknown-linux-gnu/lib"
++LIBRARY_DIR="$BUILD_DIR/rust/build/$TARGETTRIPLE/stage1/lib/rustlib/$TARGETTRIPLE/lib"
+ RLIBS=$(find $LIBRARY_DIR -name "*.rlib")
+ cp $TEST/../total.ll $TEST
+ 
+diff --git a/benchmarks/uuid-format/test/erasan-threadsafe/erasan-threadsafe-uuid.sh b/benchmarks/uuid-format/test/erasan-threadsafe/erasan-threadsafe-uuid.sh
+index e15db9b..fc7d551 100755
+--- a/benchmarks/uuid-format/test/erasan-threadsafe/erasan-threadsafe-uuid.sh
++++ b/benchmarks/uuid-format/test/erasan-threadsafe/erasan-threadsafe-uuid.sh
+@@ -1,4 +1,5 @@
+ #!/bin/bash
++TARGETTRIPLE=$(uname -m)-unknown-linux-gnu
+ 
+ # immediately stop building if error occurs
+ set -e
+@@ -13,7 +14,7 @@ set -e
+ 
+ export TEST=$PWD
+ export BINARY_DIR=$TEST/../../build/uuid
+-LIBRARY_DIR="$BUILD_DIR/rust/build/x86_64-unknown-linux-gnu/stage1/lib/rustlib/x86_64-unknown-linux-gnu/lib"
++LIBRARY_DIR="$BUILD_DIR/rust/build/$TARGETTRIPLE/stage1/lib/rustlib/$TARGETTRIPLE/lib"
+ RLIBS=$(find $LIBRARY_DIR -name "*.rlib")
+ cp $TEST/../total.ll $TEST
+ 
+diff --git a/benchmarks/uuid-format/test/erasan-unsafe/erasan-unsafe-uuid.sh b/benchmarks/uuid-format/test/erasan-unsafe/erasan-unsafe-uuid.sh
+index a9ba2e5..866f0b7 100755
+--- a/benchmarks/uuid-format/test/erasan-unsafe/erasan-unsafe-uuid.sh
++++ b/benchmarks/uuid-format/test/erasan-unsafe/erasan-unsafe-uuid.sh
+@@ -1,4 +1,5 @@
+ #!/bin/bash
++TARGETTRIPLE=$(uname -m)-unknown-linux-gnu
+ 
+ # immediately stop building if error occurs
+ set -e
+@@ -13,7 +14,7 @@ set -e
+ 
+ export TEST=$PWD
+ export BINARY_DIR=$TEST/../../build/uuid
+-LIBRARY_DIR="$BUILD_DIR/rust/build/x86_64-unknown-linux-gnu/stage1/lib/rustlib/x86_64-unknown-linux-gnu/lib"
++LIBRARY_DIR="$BUILD_DIR/rust/build/$TARGETTRIPLE/stage1/lib/rustlib/$TARGETTRIPLE/lib"
+ RLIBS=$(find $LIBRARY_DIR -name "*.rlib")
+ cp $TEST/../total.ll $TEST/../total_debug.ll $TEST
+ 
+diff --git a/benchmarks/uuid-format/test/erasan/erasan-uuid.sh b/benchmarks/uuid-format/test/erasan/erasan-uuid.sh
+index cadd057..50fc5e2 100755
+--- a/benchmarks/uuid-format/test/erasan/erasan-uuid.sh
++++ b/benchmarks/uuid-format/test/erasan/erasan-uuid.sh
+@@ -1,4 +1,5 @@
+ #!/bin/bash
++TARGETTRIPLE=$(uname -m)-unknown-linux-gnu
+ 
+ # immediately stop building if error occurs
+ set -e
+@@ -13,7 +14,7 @@ set -e
+ 
+ export TEST=$PWD
+ export BINARY_DIR=$TEST/../../build/uuid
+-LIBRARY_DIR="$BUILD_DIR/rust/build/x86_64-unknown-linux-gnu/stage1/lib/rustlib/x86_64-unknown-linux-gnu/lib"
++LIBRARY_DIR="$BUILD_DIR/rust/build/$TARGETTRIPLE/stage1/lib/rustlib/$TARGETTRIPLE/lib"
+ RLIBS=$(find $LIBRARY_DIR -name "*.rlib")
+ cp $TEST/../total.ll $TEST
+ 
+diff --git a/benchmarks/uuid-format/test/native/native-uuid.sh b/benchmarks/uuid-format/test/native/native-uuid.sh
+index e72982c..9ef2592 100755
+--- a/benchmarks/uuid-format/test/native/native-uuid.sh
++++ b/benchmarks/uuid-format/test/native/native-uuid.sh
+@@ -1,4 +1,5 @@
+ #!/bin/bash
++TARGETTRIPLE=$(uname -m)-unknown-linux-gnu
+ 
+ # immediately stop building if error occurs
+ set -e
+@@ -6,7 +7,7 @@ set -e
+ # Make sure that you set the environmetal settings by ERASan/env/env.sh
+ export TEST=$PWD
+ export BINARY_DIR=$TEST/../../build/uuid
+-LIBRARY_DIR="$BUILD_DIR/rust/build/x86_64-unknown-linux-gnu/stage1/lib/rustlib/x86_64-unknown-linux-gnu/lib"
++LIBRARY_DIR="$BUILD_DIR/rust/build/$TARGETTRIPLE/stage1/lib/rustlib/$TARGETTRIPLE/lib"
+ RLIBS=$(find $LIBRARY_DIR -name "*.rlib")
+ cp $TEST/../total.ll $TEST
+ 
+diff --git a/benchmarks/uuid-parse/test/asan/asan-uuid.sh b/benchmarks/uuid-parse/test/asan/asan-uuid.sh
+index 4dc69bb..65a4990 100755
+--- a/benchmarks/uuid-parse/test/asan/asan-uuid.sh
++++ b/benchmarks/uuid-parse/test/asan/asan-uuid.sh
+@@ -1,4 +1,5 @@
+ #!/bin/bash
++TARGETTRIPLE=$(uname -m)-unknown-linux-gnu
+ 
+ # immediately stop building if error occurs
+ set -e
+@@ -13,7 +14,7 @@ set -e
+ 
+ export TEST=$PWD
+ export BINARY_DIR=$TEST/../../build/uuid
+-LIBRARY_DIR="$BUILD_DIR/rust/build/x86_64-unknown-linux-gnu/stage1/lib/rustlib/x86_64-unknown-linux-gnu/lib"
++LIBRARY_DIR="$BUILD_DIR/rust/build/$TARGETTRIPLE/stage1/lib/rustlib/$TARGETTRIPLE/lib"
+ RLIBS=$(find $LIBRARY_DIR -name "*.rlib")
+ cp $TEST/../total.ll $TEST
+ 
+diff --git a/benchmarks/uuid-parse/test/erasan-debloating/erasan-debloating-uuid.sh b/benchmarks/uuid-parse/test/erasan-debloating/erasan-debloating-uuid.sh
+index 2541b60..daacf46 100755
+--- a/benchmarks/uuid-parse/test/erasan-debloating/erasan-debloating-uuid.sh
++++ b/benchmarks/uuid-parse/test/erasan-debloating/erasan-debloating-uuid.sh
+@@ -1,4 +1,5 @@
+ #!/bin/bash
++TARGETTRIPLE=$(uname -m)-unknown-linux-gnu
+ 
+ # immediately stop building if error occurs
+ set -e
+@@ -13,7 +14,7 @@ set -e
+ 
+ export TEST=$PWD
+ export BINARY_DIR=$TEST/../../build/uuid
+-LIBRARY_DIR="$BUILD_DIR/rust/build/x86_64-unknown-linux-gnu/stage1/lib/rustlib/x86_64-unknown-linux-gnu/lib"
++LIBRARY_DIR="$BUILD_DIR/rust/build/$TARGETTRIPLE/stage1/lib/rustlib/$TARGETTRIPLE/lib"
+ RLIBS=$(find $LIBRARY_DIR -name "*.rlib")
+ cp $TEST/../total.ll $TEST
+ 
+diff --git a/benchmarks/uuid-parse/test/erasan-rawptr/erasan-rawptr-uuid.sh b/benchmarks/uuid-parse/test/erasan-rawptr/erasan-rawptr-uuid.sh
+index ab84043..ea98648 100755
+--- a/benchmarks/uuid-parse/test/erasan-rawptr/erasan-rawptr-uuid.sh
++++ b/benchmarks/uuid-parse/test/erasan-rawptr/erasan-rawptr-uuid.sh
+@@ -1,4 +1,5 @@
+ #!/bin/bash
++TARGETTRIPLE=$(uname -m)-unknown-linux-gnu
+ 
+ # immediately stop building if error occurs
+ set -e
+@@ -13,7 +14,7 @@ set -e
+ 
+ export TEST=$PWD
+ export BINARY_DIR=$TEST/../../build/uuid
+-LIBRARY_DIR="$BUILD_DIR/rust/build/x86_64-unknown-linux-gnu/stage1/lib/rustlib/x86_64-unknown-linux-gnu/lib"
++LIBRARY_DIR="$BUILD_DIR/rust/build/$TARGETTRIPLE/stage1/lib/rustlib/$TARGETTRIPLE/lib"
+ RLIBS=$(find $LIBRARY_DIR -name "*.rlib")
+ cp $TEST/../total.ll $TEST
+ 
+diff --git a/benchmarks/uuid-parse/test/erasan-threadsafe/erasan-threadsafe-uuid.sh b/benchmarks/uuid-parse/test/erasan-threadsafe/erasan-threadsafe-uuid.sh
+index e15db9b..fc7d551 100755
+--- a/benchmarks/uuid-parse/test/erasan-threadsafe/erasan-threadsafe-uuid.sh
++++ b/benchmarks/uuid-parse/test/erasan-threadsafe/erasan-threadsafe-uuid.sh
+@@ -1,4 +1,5 @@
+ #!/bin/bash
++TARGETTRIPLE=$(uname -m)-unknown-linux-gnu
+ 
+ # immediately stop building if error occurs
+ set -e
+@@ -13,7 +14,7 @@ set -e
+ 
+ export TEST=$PWD
+ export BINARY_DIR=$TEST/../../build/uuid
+-LIBRARY_DIR="$BUILD_DIR/rust/build/x86_64-unknown-linux-gnu/stage1/lib/rustlib/x86_64-unknown-linux-gnu/lib"
++LIBRARY_DIR="$BUILD_DIR/rust/build/$TARGETTRIPLE/stage1/lib/rustlib/$TARGETTRIPLE/lib"
+ RLIBS=$(find $LIBRARY_DIR -name "*.rlib")
+ cp $TEST/../total.ll $TEST
+ 
+diff --git a/benchmarks/uuid-parse/test/erasan-unsafe/erasan-unsafe-uuid.sh b/benchmarks/uuid-parse/test/erasan-unsafe/erasan-unsafe-uuid.sh
+index a9ba2e5..866f0b7 100755
+--- a/benchmarks/uuid-parse/test/erasan-unsafe/erasan-unsafe-uuid.sh
++++ b/benchmarks/uuid-parse/test/erasan-unsafe/erasan-unsafe-uuid.sh
+@@ -1,4 +1,5 @@
+ #!/bin/bash
++TARGETTRIPLE=$(uname -m)-unknown-linux-gnu
+ 
+ # immediately stop building if error occurs
+ set -e
+@@ -13,7 +14,7 @@ set -e
+ 
+ export TEST=$PWD
+ export BINARY_DIR=$TEST/../../build/uuid
+-LIBRARY_DIR="$BUILD_DIR/rust/build/x86_64-unknown-linux-gnu/stage1/lib/rustlib/x86_64-unknown-linux-gnu/lib"
++LIBRARY_DIR="$BUILD_DIR/rust/build/$TARGETTRIPLE/stage1/lib/rustlib/$TARGETTRIPLE/lib"
+ RLIBS=$(find $LIBRARY_DIR -name "*.rlib")
+ cp $TEST/../total.ll $TEST/../total_debug.ll $TEST
+ 
+diff --git a/benchmarks/uuid-parse/test/erasan/erasan-uuid.sh b/benchmarks/uuid-parse/test/erasan/erasan-uuid.sh
+index cadd057..50fc5e2 100755
+--- a/benchmarks/uuid-parse/test/erasan/erasan-uuid.sh
++++ b/benchmarks/uuid-parse/test/erasan/erasan-uuid.sh
+@@ -1,4 +1,5 @@
+ #!/bin/bash
++TARGETTRIPLE=$(uname -m)-unknown-linux-gnu
+ 
+ # immediately stop building if error occurs
+ set -e
+@@ -13,7 +14,7 @@ set -e
+ 
+ export TEST=$PWD
+ export BINARY_DIR=$TEST/../../build/uuid
+-LIBRARY_DIR="$BUILD_DIR/rust/build/x86_64-unknown-linux-gnu/stage1/lib/rustlib/x86_64-unknown-linux-gnu/lib"
++LIBRARY_DIR="$BUILD_DIR/rust/build/$TARGETTRIPLE/stage1/lib/rustlib/$TARGETTRIPLE/lib"
+ RLIBS=$(find $LIBRARY_DIR -name "*.rlib")
+ cp $TEST/../total.ll $TEST
+ 
+diff --git a/benchmarks/uuid-parse/test/native/native-uuid.sh b/benchmarks/uuid-parse/test/native/native-uuid.sh
+index e72982c..9ef2592 100755
+--- a/benchmarks/uuid-parse/test/native/native-uuid.sh
++++ b/benchmarks/uuid-parse/test/native/native-uuid.sh
+@@ -1,4 +1,5 @@
+ #!/bin/bash
++TARGETTRIPLE=$(uname -m)-unknown-linux-gnu
+ 
+ # immediately stop building if error occurs
+ set -e
+@@ -6,7 +7,7 @@ set -e
+ # Make sure that you set the environmetal settings by ERASan/env/env.sh
+ export TEST=$PWD
+ export BINARY_DIR=$TEST/../../build/uuid
+-LIBRARY_DIR="$BUILD_DIR/rust/build/x86_64-unknown-linux-gnu/stage1/lib/rustlib/x86_64-unknown-linux-gnu/lib"
++LIBRARY_DIR="$BUILD_DIR/rust/build/$TARGETTRIPLE/stage1/lib/rustlib/$TARGETTRIPLE/lib"
+ RLIBS=$(find $LIBRARY_DIR -name "*.rlib")
+ cp $TEST/../total.ll $TEST
+ 
+diff --git a/build/asan.sh b/build/asan.sh
+index 36d578e..d3fd1a4 100755
+--- a/build/asan.sh
++++ b/build/asan.sh
+@@ -1,4 +1,5 @@
+ #!/bin/bash
++TARGETTRIPLE=$(uname -m)-unknown-linux-gnu
+ 
+ # immediately stop building if error occurs
+ set -e
+@@ -11,7 +12,7 @@ export LLVM_DIR=$RUST/src/llvm-project/llvm/lib/Transforms/Instrumentation
+ 
+ 
+ # only delete llvm-finished-building for making llvm build fast
+-rm $RUST/build/x86_64-unknown-linux-gnu/llvm/llvm-finished-building
++rm $RUST/build/$TARGETTRIPLE/llvm/llvm-finished-building
+ rm $LLVM_DIR/AddressSanitizer.cpp
+ cp $WORKING_DIR/AddressSanitizer.cpp $LLVM_DIR
+ echo "[Finished Changing Setting ASAN environment]"
+diff --git a/build/erasan-debloating.sh b/build/erasan-debloating.sh
+index 2b4200d..7c8e1fe 100755
+--- a/build/erasan-debloating.sh
++++ b/build/erasan-debloating.sh
+@@ -1,4 +1,5 @@
+ #!/bin/bash
++TARGETTRIPLE=$(uname -m)-unknown-linux-gnu
+ 
+ # immediately stop building if error occurs
+ set -e
+@@ -11,7 +12,7 @@ export LLVM_DIR=$RUST/src/llvm-project/llvm/lib/Transforms/Instrumentation
+ 
+ 
+ # only delete llvm-finished-building for making llvm build fast
+-rm $RUST/build/x86_64-unknown-linux-gnu/llvm/llvm-finished-building
++rm $RUST/build/$TARGETTRIPLE/llvm/llvm-finished-building
+ rm $LLVM_DIR/AddressSanitizer.cpp
+ cp $WORKING_DIR/ERASan.cpp $LLVM_DIR
+ mv $LLVM_DIR/ERASan_Debloating.cpp $LLVM_DIR/AddressSanitizer.cpp
+diff --git a/build/erasan-rawptr.sh b/build/erasan-rawptr.sh
+index 2f792f7..3efecf5 100755
+--- a/build/erasan-rawptr.sh
++++ b/build/erasan-rawptr.sh
+@@ -1,4 +1,5 @@
+ #!/bin/bash
++TARGETTRIPLE=$(uname -m)-unknown-linux-gnu
+ 
+ # immediately stop building if error occurs
+ set -e
+@@ -11,7 +12,7 @@ export LLVM_DIR=$RUST/src/llvm-project/llvm/lib/Transforms/Instrumentation
+ 
+ 
+ # only delete llvm-finished-building for making llvm build fast
+-rm $RUST/build/x86_64-unknown-linux-gnu/llvm/llvm-finished-building
++rm $RUST/build/$TARGETTRIPLE/llvm/llvm-finished-building
+ rm $LLVM_DIR/AddressSanitizer.cpp
+ cp $WORKING_DIR/ERASan.cpp $LLVM_DIR
+ mv $LLVM_DIR/ERASan_Rawptr.cpp $LLVM_DIR/AddressSanitizer.cpp
+diff --git a/build/erasan-threadsafe.sh b/build/erasan-threadsafe.sh
+index a4872bd..8221c1e 100755
+--- a/build/erasan-threadsafe.sh
++++ b/build/erasan-threadsafe.sh
+@@ -1,4 +1,5 @@
+ #!/bin/bash
++TARGETTRIPLE=$(uname -m)-unknown-linux-gnu
+ 
+ # immediately stop building if error occurs
+ set -e
+@@ -11,7 +12,7 @@ export LLVM_DIR=$RUST/src/llvm-project/llvm/lib/Transforms/Instrumentation
+ 
+ 
+ # only delete llvm-finished-building for making llvm build fast
+-rm $RUST/build/x86_64-unknown-linux-gnu/llvm/llvm-finished-building
++rm $RUST/build/$TARGETTRIPLE/llvm/llvm-finished-building
+ rm $LLVM_DIR/AddressSanitizer.cpp
+ cp $WORKING_DIR/ERASan.cpp $LLVM_DIR
+ mv $LLVM_DIR/ERASan_ThreadSafe.cpp $LLVM_DIR/AddressSanitizer.cpp
+diff --git a/build/erasan-unsafe.sh b/build/erasan-unsafe.sh
+index 844b1c2..469e208 100755
+--- a/build/erasan-unsafe.sh
++++ b/build/erasan-unsafe.sh
+@@ -1,4 +1,5 @@
+ #!/bin/bash
++TARGETTRIPLE=$(uname -m)-unknown-linux-gnu
+ 
+ # immediately stop building if error occurs
+ set -e
+@@ -11,7 +12,7 @@ export LLVM_DIR=$RUST/src/llvm-project/llvm/lib/Transforms/Instrumentation
+ 
+ 
+ # only delete llvm-finished-building for making llvm build fast
+-rm $RUST/build/x86_64-unknown-linux-gnu/llvm/llvm-finished-building
++rm $RUST/build/$TARGETTRIPLE/llvm/llvm-finished-building
+ rm $LLVM_DIR/AddressSanitizer.cpp
+ cp $WORKING_DIR/ERASan.cpp $LLVM_DIR
+ mv $LLVM_DIR/ERASan_Unsafe.cpp $LLVM_DIR/AddressSanitizer.cpp
+diff --git a/build/erasan.sh b/build/erasan.sh
+index d9a3b2c..462d435 100755
+--- a/build/erasan.sh
++++ b/build/erasan.sh
+@@ -1,4 +1,5 @@
+ #!/bin/bash
++TARGETTRIPLE=$(uname -m)-unknown-linux-gnu
+ 
+ # immediately stop building if error occurs
+ set -e
+@@ -11,7 +12,7 @@ export LLVM_DIR=$RUST/src/llvm-project/llvm/lib/Transforms/Instrumentation
+ 
+ 
+ # only delete llvm-finished-building for making llvm build fast
+-rm $RUST/build/x86_64-unknown-linux-gnu/llvm/llvm-finished-building
++rm $RUST/build/$TARGETTRIPLE/llvm/llvm-finished-building
+ rm $LLVM_DIR/AddressSanitizer.cpp
+ cp $WORKING_DIR/ERASan.cpp $LLVM_DIR
+ mv $LLVM_DIR/ERASan.cpp $LLVM_DIR/AddressSanitizer.cpp
+diff --git a/build/rust-1.64.0-build.sh b/build/rust-1.64.0-build.sh
+index a983c26..4699705 100755
+--- a/build/rust-1.64.0-build.sh
++++ b/build/rust-1.64.0-build.sh
+@@ -1,4 +1,5 @@
+ #!/bin/bash
++TARGETTRIPLE=$(uname -m)-unknown-linux-gnu
+ 
+ # immediately stop building if error occurs
+ set -e
+@@ -63,7 +64,7 @@ echo "[Build Finished]"
+ 
+ # echo "[Setting Rust LLVM & Opt files]"
+ # # only delete llvm-finished-building for making llvm build fast
+-# rm build/x86_64-unknown-linux-gnu/llvm/llvm-finished-building
++# rm build/$TARGETTRIPLE/llvm/llvm-finished-building
+ 
+ # export OPT_FILES=$WORKING_DIR/rustc-1.64.0/opt-files
+ # pushd $RUST
+diff --git a/build/rust-1.64.0-compiler-rt.sh b/build/rust-1.64.0-compiler-rt.sh
+index 62fc756..8295923 100755
+--- a/build/rust-1.64.0-compiler-rt.sh
++++ b/build/rust-1.64.0-compiler-rt.sh
+@@ -1,4 +1,5 @@
+ #!/bin/bash
++TARGETTRIPLE=$(uname -m)-unknown-linux-gnu
+ 
+ # immediately stop building if error occurs
+ set -e
+@@ -11,7 +12,7 @@ cd $RUST
+ 
+ echo "Seting for Compiler-rt in Rust Compiler"
+ rm src/bootstrap/native.rs
+-rm build/x86_64-unknown-linux-gnu/llvm/llvm-finished-building
++rm build/$TARGETTRIPLE/llvm/llvm-finished-building
+ cp $WORKING_DIR/rustc-1.64.0/src/bootstrap/native.rs $RUST/src/bootstrap
+ 
+ # build rust compiler
+diff --git a/env/env.sh b/env/env.sh
+index d30a603..f2c81ed 100755
+--- a/env/env.sh
++++ b/env/env.sh
+@@ -1,12 +1,13 @@
++TARGETTRIPLE=$(uname -m)-unknown-linux-gnu
+ # #!/bin/sh
+ export S2HOME=`pwd`/..
+ export BUILD_DIR=$S2HOME/build
+-export PATH=$BUILD_DIR/rust/build/x86_64-unknown-linux-gnu/llvm/bin:$PATH
+-export PATH=$BUILD_DIR/rust/build/x86_64-unknown-linux-gnu/stage0/bin:$PATH
+-export PATH=$BUILD_DIR/rust/build/x86_64-unknown-linux-gnu/stage1/bin:$PATH
++export PATH=$BUILD_DIR/rust/build/$TARGETTRIPLE/llvm/bin:$PATH
++export PATH=$BUILD_DIR/rust/build/$TARGETTRIPLE/stage0/bin:$PATH
++export PATH=$BUILD_DIR/rust/build/$TARGETTRIPLE/stage1/bin:$PATH
+ export PATH=$BUILD_DIR/SVF/Release-build/bin:$PATH
+-export LLVM_CONFIG=$BUILD_DIR/rust/build/x86_64-unknown-linux-gnu/llvm/bin/llvm-config
+-export CARGO=$BUILD_DIR/rust/build/x86_64-unknown-linux-gnu/stage0/bin/cargo
++export LLVM_CONFIG=$BUILD_DIR/rust/build/$TARGETTRIPLE/llvm/bin/llvm-config
++export CARGO=$BUILD_DIR/rust/build/$TARGETTRIPLE/stage0/bin/cargo
+ 
+-export LD_LIBRARY_PATH=$BUILD_DIR/rust/build/x86_64-unknown-linux-gnu/stage1/lib/rustlib/x86_64-unknown-linux-gnu/lib:$LD_LIBRARY_PATH
+-export LD_LIBRARY_PATH=$BUILD_DIR/rust/build/x86_64-unknown-linux-gnu/llvm/lib/clang/14.0.6/lib/linux:$LD_LIBRARY_PATH
++export LD_LIBRARY_PATH=$BUILD_DIR/rust/build/$TARGETTRIPLE/stage1/lib/rustlib/$TARGETTRIPLE/lib:$LD_LIBRARY_PATH
++export LD_LIBRARY_PATH=$BUILD_DIR/rust/build/$TARGETTRIPLE/llvm/lib/clang/14.0.6/lib/linux:$LD_LIBRARY_PATH
+diff --git a/poc/RUSTSEC-2019-0009/run.sh b/poc/RUSTSEC-2019-0009/run.sh
+index 0a66604..0182a3a 100755
+--- a/poc/RUSTSEC-2019-0009/run.sh
++++ b/poc/RUSTSEC-2019-0009/run.sh
+@@ -1,10 +1,11 @@
+ #!/bin/bash
++TARGETTRIPLE=$(uname -m)-unknown-linux-gnu
+ start=$(date +%s%6N)
+ 
+-LIBRARY_DIR="$S2HOME/build/rust/build/x86_64-unknown-linux-gnu/stage1/lib/rustlib/x86_64-unknown-linux-gnu/lib"
++LIBRARY_DIR="$S2HOME/build/rust/build/$TARGETTRIPLE/stage1/lib/rustlib/$TARGETTRIPLE/lib"
+ 
+ RLIBS=$(find $LIBRARY_DIR -name "*.rlib")
+-#--release --target x86_64-unknown-linux-gnu
++#--release --target $TARGETTRIPLE
+ 
+ # (1) Build the program and Preprocess it
+ RUSTFLAGS="--emit=llvm-ir --print link-args" cargo build > ERASAN_linking_commands.txt
+diff --git a/poc/RUSTSEC-2019-0023/run.sh b/poc/RUSTSEC-2019-0023/run.sh
+index b44e16f..f3376c2 100755
+--- a/poc/RUSTSEC-2019-0023/run.sh
++++ b/poc/RUSTSEC-2019-0023/run.sh
+@@ -1,9 +1,10 @@
+ #!/bin/bash
++TARGETTRIPLE=$(uname -m)-unknown-linux-gnu
+ start=$(date +%s%6N)
+ 
+-LIBRARY_DIR="$S2HOME/build/rust/build/x86_64-unknown-linux-gnu/stage1/lib/rustlib/x86_64-unknown-linux-gnu/lib"
++LIBRARY_DIR="$S2HOME/build/rust/build/$TARGETTRIPLE/stage1/lib/rustlib/$TARGETTRIPLE/lib"
+ RLIBS=$(find $LIBRARY_DIR -name "*.rlib")
+-#--release --target x86_64-unknown-linux-gnu
++#--release --target $TARGETTRIPLE
+ 
+ # (1) Build the program and Preprocess it
+ RUSTFLAGS="--emit=llvm-ir --print link-args" cargo build > ERASAN_linking_commands.txt
+diff --git a/poc/RUSTSEC-2019-0034/run.sh b/poc/RUSTSEC-2019-0034/run.sh
+index 3883a98..e328e6d 100755
+--- a/poc/RUSTSEC-2019-0034/run.sh
++++ b/poc/RUSTSEC-2019-0034/run.sh
+@@ -1,10 +1,11 @@
+ #!/bin/bash
++TARGETTRIPLE=$(uname -m)-unknown-linux-gnu
+ set -e
+ start=$(date +%s%6N)
+ 
+-LIBRARY_DIR="$S2HOME/build/rust/build/x86_64-unknown-linux-gnu/stage1/lib/rustlib/x86_64-unknown-linux-gnu/lib"
++LIBRARY_DIR="$S2HOME/build/rust/build/$TARGETTRIPLE/stage1/lib/rustlib/$TARGETTRIPLE/lib"
+ RLIBS=$(find $LIBRARY_DIR -name "*.rlib")
+-#--release --target x86_64-unknown-linux-gnu
++#--release --target $TARGETTRIPLE
+ 
+ # (1) Build the program and Preprocess it
+ RUSTFLAGS="--emit=llvm-ir --print link-args" cargo build > ERASAN_linking_commands.txt
+diff --git a/poc/RUSTSEC-2020-0005/run.sh b/poc/RUSTSEC-2020-0005/run.sh
+index b44e16f..f3376c2 100755
+--- a/poc/RUSTSEC-2020-0005/run.sh
++++ b/poc/RUSTSEC-2020-0005/run.sh
+@@ -1,9 +1,10 @@
+ #!/bin/bash
++TARGETTRIPLE=$(uname -m)-unknown-linux-gnu
+ start=$(date +%s%6N)
+ 
+-LIBRARY_DIR="$S2HOME/build/rust/build/x86_64-unknown-linux-gnu/stage1/lib/rustlib/x86_64-unknown-linux-gnu/lib"
++LIBRARY_DIR="$S2HOME/build/rust/build/$TARGETTRIPLE/stage1/lib/rustlib/$TARGETTRIPLE/lib"
+ RLIBS=$(find $LIBRARY_DIR -name "*.rlib")
+-#--release --target x86_64-unknown-linux-gnu
++#--release --target $TARGETTRIPLE
+ 
+ # (1) Build the program and Preprocess it
+ RUSTFLAGS="--emit=llvm-ir --print link-args" cargo build > ERASAN_linking_commands.txt
+diff --git a/poc/RUSTSEC-2020-0038/run.sh b/poc/RUSTSEC-2020-0038/run.sh
+index b44e16f..f3376c2 100755
+--- a/poc/RUSTSEC-2020-0038/run.sh
++++ b/poc/RUSTSEC-2020-0038/run.sh
+@@ -1,9 +1,10 @@
+ #!/bin/bash
++TARGETTRIPLE=$(uname -m)-unknown-linux-gnu
+ start=$(date +%s%6N)
+ 
+-LIBRARY_DIR="$S2HOME/build/rust/build/x86_64-unknown-linux-gnu/stage1/lib/rustlib/x86_64-unknown-linux-gnu/lib"
++LIBRARY_DIR="$S2HOME/build/rust/build/$TARGETTRIPLE/stage1/lib/rustlib/$TARGETTRIPLE/lib"
+ RLIBS=$(find $LIBRARY_DIR -name "*.rlib")
+-#--release --target x86_64-unknown-linux-gnu
++#--release --target $TARGETTRIPLE
+ 
+ # (1) Build the program and Preprocess it
+ RUSTFLAGS="--emit=llvm-ir --print link-args" cargo build > ERASAN_linking_commands.txt
+diff --git a/poc/RUSTSEC-2020-0039/run.sh b/poc/RUSTSEC-2020-0039/run.sh
+index b44e16f..f3376c2 100755
+--- a/poc/RUSTSEC-2020-0039/run.sh
++++ b/poc/RUSTSEC-2020-0039/run.sh
+@@ -1,9 +1,10 @@
+ #!/bin/bash
++TARGETTRIPLE=$(uname -m)-unknown-linux-gnu
+ start=$(date +%s%6N)
+ 
+-LIBRARY_DIR="$S2HOME/build/rust/build/x86_64-unknown-linux-gnu/stage1/lib/rustlib/x86_64-unknown-linux-gnu/lib"
++LIBRARY_DIR="$S2HOME/build/rust/build/$TARGETTRIPLE/stage1/lib/rustlib/$TARGETTRIPLE/lib"
+ RLIBS=$(find $LIBRARY_DIR -name "*.rlib")
+-#--release --target x86_64-unknown-linux-gnu
++#--release --target $TARGETTRIPLE
+ 
+ # (1) Build the program and Preprocess it
+ RUSTFLAGS="--emit=llvm-ir --print link-args" cargo build > ERASAN_linking_commands.txt
+diff --git a/poc/RUSTSEC-2020-0060/run.sh b/poc/RUSTSEC-2020-0060/run.sh
+index b44e16f..f3376c2 100755
+--- a/poc/RUSTSEC-2020-0060/run.sh
++++ b/poc/RUSTSEC-2020-0060/run.sh
+@@ -1,9 +1,10 @@
+ #!/bin/bash
++TARGETTRIPLE=$(uname -m)-unknown-linux-gnu
+ start=$(date +%s%6N)
+ 
+-LIBRARY_DIR="$S2HOME/build/rust/build/x86_64-unknown-linux-gnu/stage1/lib/rustlib/x86_64-unknown-linux-gnu/lib"
++LIBRARY_DIR="$S2HOME/build/rust/build/$TARGETTRIPLE/stage1/lib/rustlib/$TARGETTRIPLE/lib"
+ RLIBS=$(find $LIBRARY_DIR -name "*.rlib")
+-#--release --target x86_64-unknown-linux-gnu
++#--release --target $TARGETTRIPLE
+ 
+ # (1) Build the program and Preprocess it
+ RUSTFLAGS="--emit=llvm-ir --print link-args" cargo build > ERASAN_linking_commands.txt
+diff --git a/poc/RUSTSEC-2020-0061/run.sh b/poc/RUSTSEC-2020-0061/run.sh
+index b44e16f..f3376c2 100755
+--- a/poc/RUSTSEC-2020-0061/run.sh
++++ b/poc/RUSTSEC-2020-0061/run.sh
+@@ -1,9 +1,10 @@
+ #!/bin/bash
++TARGETTRIPLE=$(uname -m)-unknown-linux-gnu
+ start=$(date +%s%6N)
+ 
+-LIBRARY_DIR="$S2HOME/build/rust/build/x86_64-unknown-linux-gnu/stage1/lib/rustlib/x86_64-unknown-linux-gnu/lib"
++LIBRARY_DIR="$S2HOME/build/rust/build/$TARGETTRIPLE/stage1/lib/rustlib/$TARGETTRIPLE/lib"
+ RLIBS=$(find $LIBRARY_DIR -name "*.rlib")
+-#--release --target x86_64-unknown-linux-gnu
++#--release --target $TARGETTRIPLE
+ 
+ # (1) Build the program and Preprocess it
+ RUSTFLAGS="--emit=llvm-ir --print link-args" cargo build > ERASAN_linking_commands.txt
+diff --git a/poc/RUSTSEC-2020-0091/run.sh b/poc/RUSTSEC-2020-0091/run.sh
+index b44e16f..f3376c2 100755
+--- a/poc/RUSTSEC-2020-0091/run.sh
++++ b/poc/RUSTSEC-2020-0091/run.sh
+@@ -1,9 +1,10 @@
+ #!/bin/bash
++TARGETTRIPLE=$(uname -m)-unknown-linux-gnu
+ start=$(date +%s%6N)
+ 
+-LIBRARY_DIR="$S2HOME/build/rust/build/x86_64-unknown-linux-gnu/stage1/lib/rustlib/x86_64-unknown-linux-gnu/lib"
++LIBRARY_DIR="$S2HOME/build/rust/build/$TARGETTRIPLE/stage1/lib/rustlib/$TARGETTRIPLE/lib"
+ RLIBS=$(find $LIBRARY_DIR -name "*.rlib")
+-#--release --target x86_64-unknown-linux-gnu
++#--release --target $TARGETTRIPLE
+ 
+ # (1) Build the program and Preprocess it
+ RUSTFLAGS="--emit=llvm-ir --print link-args" cargo build > ERASAN_linking_commands.txt
+diff --git a/poc/RUSTSEC-2020-0097/run.sh b/poc/RUSTSEC-2020-0097/run.sh
+index 73a8f8b..5b99a02 100755
+--- a/poc/RUSTSEC-2020-0097/run.sh
++++ b/poc/RUSTSEC-2020-0097/run.sh
+@@ -1,10 +1,11 @@
+ #!/bin/bash
++TARGETTRIPLE=$(uname -m)-unknown-linux-gnu
+ start=$(date +%s%6N)
+ set -e
+ 
+-LIBRARY_DIR="$S2HOME/build/rust/build/x86_64-unknown-linux-gnu/stage1/lib/rustlib/x86_64-unknown-linux-gnu/lib"
++LIBRARY_DIR="$S2HOME/build/rust/build/$TARGETTRIPLE/stage1/lib/rustlib/$TARGETTRIPLE/lib"
+ RLIBS=$(find $LIBRARY_DIR -name "*.rlib")
+-#--release --target x86_64-unknown-linux-gnu
++#--release --target $TARGETTRIPLE
+ 
+ # (1) Build the program and Preprocess it
+ RUSTFLAGS="--emit=llvm-ir --print link-args" cargo build > ERASAN_linking_commands.txt
+diff --git a/poc/RUSTSEC-2020-0167/run.sh b/poc/RUSTSEC-2020-0167/run.sh
+index d01d06c..bdba609 100755
+--- a/poc/RUSTSEC-2020-0167/run.sh
++++ b/poc/RUSTSEC-2020-0167/run.sh
+@@ -1,9 +1,10 @@
+ #!/bin/bash
++TARGETTRIPLE=$(uname -m)-unknown-linux-gnu
+ start=$(date +%s%6N)
+ 
+-LIBRARY_DIR="$S2HOME/build/rust/build/x86_64-unknown-linux-gnu/stage1/lib/rustlib/x86_64-unknown-linux-gnu/lib"
++LIBRARY_DIR="$S2HOME/build/rust/build/$TARGETTRIPLE/stage1/lib/rustlib/$TARGETTRIPLE/lib"
+ RLIBS=$(find $LIBRARY_DIR -name "*.rlib")
+-#--release --target x86_64-unknown-linux-gnu
++#--release --target $TARGETTRIPLE
+ 
+ # (1) Build the program and Preprocess it
+ cargo update -p regex --precise 1.0.9
+diff --git a/poc/RUSTSEC-2021-0003/run.sh b/poc/RUSTSEC-2021-0003/run.sh
+index b44e16f..f3376c2 100755
+--- a/poc/RUSTSEC-2021-0003/run.sh
++++ b/poc/RUSTSEC-2021-0003/run.sh
+@@ -1,9 +1,10 @@
+ #!/bin/bash
++TARGETTRIPLE=$(uname -m)-unknown-linux-gnu
+ start=$(date +%s%6N)
+ 
+-LIBRARY_DIR="$S2HOME/build/rust/build/x86_64-unknown-linux-gnu/stage1/lib/rustlib/x86_64-unknown-linux-gnu/lib"
++LIBRARY_DIR="$S2HOME/build/rust/build/$TARGETTRIPLE/stage1/lib/rustlib/$TARGETTRIPLE/lib"
+ RLIBS=$(find $LIBRARY_DIR -name "*.rlib")
+-#--release --target x86_64-unknown-linux-gnu
++#--release --target $TARGETTRIPLE
+ 
+ # (1) Build the program and Preprocess it
+ RUSTFLAGS="--emit=llvm-ir --print link-args" cargo build > ERASAN_linking_commands.txt
+diff --git a/poc/RUSTSEC-2021-0018/run.sh b/poc/RUSTSEC-2021-0018/run.sh
+index b44e16f..f3376c2 100755
+--- a/poc/RUSTSEC-2021-0018/run.sh
++++ b/poc/RUSTSEC-2021-0018/run.sh
+@@ -1,9 +1,10 @@
+ #!/bin/bash
++TARGETTRIPLE=$(uname -m)-unknown-linux-gnu
+ start=$(date +%s%6N)
+ 
+-LIBRARY_DIR="$S2HOME/build/rust/build/x86_64-unknown-linux-gnu/stage1/lib/rustlib/x86_64-unknown-linux-gnu/lib"
++LIBRARY_DIR="$S2HOME/build/rust/build/$TARGETTRIPLE/stage1/lib/rustlib/$TARGETTRIPLE/lib"
+ RLIBS=$(find $LIBRARY_DIR -name "*.rlib")
+-#--release --target x86_64-unknown-linux-gnu
++#--release --target $TARGETTRIPLE
+ 
+ # (1) Build the program and Preprocess it
+ RUSTFLAGS="--emit=llvm-ir --print link-args" cargo build > ERASAN_linking_commands.txt
+diff --git a/poc/RUSTSEC-2021-0028/run.sh b/poc/RUSTSEC-2021-0028/run.sh
+index b44e16f..f3376c2 100755
+--- a/poc/RUSTSEC-2021-0028/run.sh
++++ b/poc/RUSTSEC-2021-0028/run.sh
+@@ -1,9 +1,10 @@
+ #!/bin/bash
++TARGETTRIPLE=$(uname -m)-unknown-linux-gnu
+ start=$(date +%s%6N)
+ 
+-LIBRARY_DIR="$S2HOME/build/rust/build/x86_64-unknown-linux-gnu/stage1/lib/rustlib/x86_64-unknown-linux-gnu/lib"
++LIBRARY_DIR="$S2HOME/build/rust/build/$TARGETTRIPLE/stage1/lib/rustlib/$TARGETTRIPLE/lib"
+ RLIBS=$(find $LIBRARY_DIR -name "*.rlib")
+-#--release --target x86_64-unknown-linux-gnu
++#--release --target $TARGETTRIPLE
+ 
+ # (1) Build the program and Preprocess it
+ RUSTFLAGS="--emit=llvm-ir --print link-args" cargo build > ERASAN_linking_commands.txt
+diff --git a/poc/RUSTSEC-2021-0031/run.sh b/poc/RUSTSEC-2021-0031/run.sh
+index b44e16f..f3376c2 100755
+--- a/poc/RUSTSEC-2021-0031/run.sh
++++ b/poc/RUSTSEC-2021-0031/run.sh
+@@ -1,9 +1,10 @@
+ #!/bin/bash
++TARGETTRIPLE=$(uname -m)-unknown-linux-gnu
+ start=$(date +%s%6N)
+ 
+-LIBRARY_DIR="$S2HOME/build/rust/build/x86_64-unknown-linux-gnu/stage1/lib/rustlib/x86_64-unknown-linux-gnu/lib"
++LIBRARY_DIR="$S2HOME/build/rust/build/$TARGETTRIPLE/stage1/lib/rustlib/$TARGETTRIPLE/lib"
+ RLIBS=$(find $LIBRARY_DIR -name "*.rlib")
+-#--release --target x86_64-unknown-linux-gnu
++#--release --target $TARGETTRIPLE
+ 
+ # (1) Build the program and Preprocess it
+ RUSTFLAGS="--emit=llvm-ir --print link-args" cargo build > ERASAN_linking_commands.txt
+diff --git a/poc/RUSTSEC-2021-0033/run.sh b/poc/RUSTSEC-2021-0033/run.sh
+index b44e16f..f3376c2 100755
+--- a/poc/RUSTSEC-2021-0033/run.sh
++++ b/poc/RUSTSEC-2021-0033/run.sh
+@@ -1,9 +1,10 @@
+ #!/bin/bash
++TARGETTRIPLE=$(uname -m)-unknown-linux-gnu
+ start=$(date +%s%6N)
+ 
+-LIBRARY_DIR="$S2HOME/build/rust/build/x86_64-unknown-linux-gnu/stage1/lib/rustlib/x86_64-unknown-linux-gnu/lib"
++LIBRARY_DIR="$S2HOME/build/rust/build/$TARGETTRIPLE/stage1/lib/rustlib/$TARGETTRIPLE/lib"
+ RLIBS=$(find $LIBRARY_DIR -name "*.rlib")
+-#--release --target x86_64-unknown-linux-gnu
++#--release --target $TARGETTRIPLE
+ 
+ # (1) Build the program and Preprocess it
+ RUSTFLAGS="--emit=llvm-ir --print link-args" cargo build > ERASAN_linking_commands.txt
+diff --git a/poc/RUSTSEC-2021-0039/run.sh b/poc/RUSTSEC-2021-0039/run.sh
+index b44e16f..f3376c2 100755
+--- a/poc/RUSTSEC-2021-0039/run.sh
++++ b/poc/RUSTSEC-2021-0039/run.sh
+@@ -1,9 +1,10 @@
+ #!/bin/bash
++TARGETTRIPLE=$(uname -m)-unknown-linux-gnu
+ start=$(date +%s%6N)
+ 
+-LIBRARY_DIR="$S2HOME/build/rust/build/x86_64-unknown-linux-gnu/stage1/lib/rustlib/x86_64-unknown-linux-gnu/lib"
++LIBRARY_DIR="$S2HOME/build/rust/build/$TARGETTRIPLE/stage1/lib/rustlib/$TARGETTRIPLE/lib"
+ RLIBS=$(find $LIBRARY_DIR -name "*.rlib")
+-#--release --target x86_64-unknown-linux-gnu
++#--release --target $TARGETTRIPLE
+ 
+ # (1) Build the program and Preprocess it
+ RUSTFLAGS="--emit=llvm-ir --print link-args" cargo build > ERASAN_linking_commands.txt
+diff --git a/poc/RUSTSEC-2021-0042/run.sh b/poc/RUSTSEC-2021-0042/run.sh
+index b44e16f..f3376c2 100755
+--- a/poc/RUSTSEC-2021-0042/run.sh
++++ b/poc/RUSTSEC-2021-0042/run.sh
+@@ -1,9 +1,10 @@
+ #!/bin/bash
++TARGETTRIPLE=$(uname -m)-unknown-linux-gnu
+ start=$(date +%s%6N)
+ 
+-LIBRARY_DIR="$S2HOME/build/rust/build/x86_64-unknown-linux-gnu/stage1/lib/rustlib/x86_64-unknown-linux-gnu/lib"
++LIBRARY_DIR="$S2HOME/build/rust/build/$TARGETTRIPLE/stage1/lib/rustlib/$TARGETTRIPLE/lib"
+ RLIBS=$(find $LIBRARY_DIR -name "*.rlib")
+-#--release --target x86_64-unknown-linux-gnu
++#--release --target $TARGETTRIPLE
+ 
+ # (1) Build the program and Preprocess it
+ RUSTFLAGS="--emit=llvm-ir --print link-args" cargo build > ERASAN_linking_commands.txt
+diff --git a/poc/RUSTSEC-2021-0047/run.sh b/poc/RUSTSEC-2021-0047/run.sh
+index b44e16f..f3376c2 100755
+--- a/poc/RUSTSEC-2021-0047/run.sh
++++ b/poc/RUSTSEC-2021-0047/run.sh
+@@ -1,9 +1,10 @@
+ #!/bin/bash
++TARGETTRIPLE=$(uname -m)-unknown-linux-gnu
+ start=$(date +%s%6N)
+ 
+-LIBRARY_DIR="$S2HOME/build/rust/build/x86_64-unknown-linux-gnu/stage1/lib/rustlib/x86_64-unknown-linux-gnu/lib"
++LIBRARY_DIR="$S2HOME/build/rust/build/$TARGETTRIPLE/stage1/lib/rustlib/$TARGETTRIPLE/lib"
+ RLIBS=$(find $LIBRARY_DIR -name "*.rlib")
+-#--release --target x86_64-unknown-linux-gnu
++#--release --target $TARGETTRIPLE
+ 
+ # (1) Build the program and Preprocess it
+ RUSTFLAGS="--emit=llvm-ir --print link-args" cargo build > ERASAN_linking_commands.txt
+diff --git a/poc/RUSTSEC-2021-0048/run.sh b/poc/RUSTSEC-2021-0048/run.sh
+index b44e16f..f3376c2 100755
+--- a/poc/RUSTSEC-2021-0048/run.sh
++++ b/poc/RUSTSEC-2021-0048/run.sh
+@@ -1,9 +1,10 @@
+ #!/bin/bash
++TARGETTRIPLE=$(uname -m)-unknown-linux-gnu
+ start=$(date +%s%6N)
+ 
+-LIBRARY_DIR="$S2HOME/build/rust/build/x86_64-unknown-linux-gnu/stage1/lib/rustlib/x86_64-unknown-linux-gnu/lib"
++LIBRARY_DIR="$S2HOME/build/rust/build/$TARGETTRIPLE/stage1/lib/rustlib/$TARGETTRIPLE/lib"
+ RLIBS=$(find $LIBRARY_DIR -name "*.rlib")
+-#--release --target x86_64-unknown-linux-gnu
++#--release --target $TARGETTRIPLE
+ 
+ # (1) Build the program and Preprocess it
+ RUSTFLAGS="--emit=llvm-ir --print link-args" cargo build > ERASAN_linking_commands.txt
+diff --git a/poc/RUSTSEC-2021-0049/run.sh b/poc/RUSTSEC-2021-0049/run.sh
+index b44e16f..f3376c2 100755
+--- a/poc/RUSTSEC-2021-0049/run.sh
++++ b/poc/RUSTSEC-2021-0049/run.sh
+@@ -1,9 +1,10 @@
+ #!/bin/bash
++TARGETTRIPLE=$(uname -m)-unknown-linux-gnu
+ start=$(date +%s%6N)
+ 
+-LIBRARY_DIR="$S2HOME/build/rust/build/x86_64-unknown-linux-gnu/stage1/lib/rustlib/x86_64-unknown-linux-gnu/lib"
++LIBRARY_DIR="$S2HOME/build/rust/build/$TARGETTRIPLE/stage1/lib/rustlib/$TARGETTRIPLE/lib"
+ RLIBS=$(find $LIBRARY_DIR -name "*.rlib")
+-#--release --target x86_64-unknown-linux-gnu
++#--release --target $TARGETTRIPLE
+ 
+ # (1) Build the program and Preprocess it
+ RUSTFLAGS="--emit=llvm-ir --print link-args" cargo build > ERASAN_linking_commands.txt
+diff --git a/poc/RUSTSEC-2021-0053/run.sh b/poc/RUSTSEC-2021-0053/run.sh
+index b44e16f..f3376c2 100755
+--- a/poc/RUSTSEC-2021-0053/run.sh
++++ b/poc/RUSTSEC-2021-0053/run.sh
+@@ -1,9 +1,10 @@
+ #!/bin/bash
++TARGETTRIPLE=$(uname -m)-unknown-linux-gnu
+ start=$(date +%s%6N)
+ 
+-LIBRARY_DIR="$S2HOME/build/rust/build/x86_64-unknown-linux-gnu/stage1/lib/rustlib/x86_64-unknown-linux-gnu/lib"
++LIBRARY_DIR="$S2HOME/build/rust/build/$TARGETTRIPLE/stage1/lib/rustlib/$TARGETTRIPLE/lib"
+ RLIBS=$(find $LIBRARY_DIR -name "*.rlib")
+-#--release --target x86_64-unknown-linux-gnu
++#--release --target $TARGETTRIPLE
+ 
+ # (1) Build the program and Preprocess it
+ RUSTFLAGS="--emit=llvm-ir --print link-args" cargo build > ERASAN_linking_commands.txt
+diff --git a/poc/RUSTSEC-2021-0094/run.sh b/poc/RUSTSEC-2021-0094/run.sh
+index f9304d7..552dfad 100755
+--- a/poc/RUSTSEC-2021-0094/run.sh
++++ b/poc/RUSTSEC-2021-0094/run.sh
+@@ -1,10 +1,11 @@
+ #!/bin/bash
++TARGETTRIPLE=$(uname -m)-unknown-linux-gnu
+ start=$(date +%s%6N)
+ 
+-LIBRARY_DIR="$S2HOME/build/rust/build/x86_64-unknown-linux-gnu/stage1/lib/rustlib/x86_64-unknown-linux-gnu/lib"
++LIBRARY_DIR="$S2HOME/build/rust/build/$TARGETTRIPLE/stage1/lib/rustlib/$TARGETTRIPLE/lib"
+ RUSTCRYPTO_DIR="$S2HOME/poc/RUSTSEC-2021-0094/target/debug/build/rust-crypto-3146230e4619ba62/out"
+ RLIBS=$(find $LIBRARY_DIR -name "*.rlib")
+-#--release --target x86_64-unknown-linux-gnu
++#--release --target $TARGETTRIPLE
+ 
+ # (1) Build the program and Preprocess it
+ RUSTFLAGS="--emit=llvm-ir --print link-args" cargo build > ERASAN_linking_commands.txt
+diff --git a/poc/RUSTSEC-2021-0128/run.sh b/poc/RUSTSEC-2021-0128/run.sh
+index be86703..9a0c28b 100755
+--- a/poc/RUSTSEC-2021-0128/run.sh
++++ b/poc/RUSTSEC-2021-0128/run.sh
+@@ -1,10 +1,11 @@
+ #!/bin/bash
++TARGETTRIPLE=$(uname -m)-unknown-linux-gnu
+ set -e
+ start=$(date +%s%6N)
+ 
+-LIBRARY_DIR="$S2HOME/build/rust/build/x86_64-unknown-linux-gnu/stage1/lib/rustlib/x86_64-unknown-linux-gnu/lib"
++LIBRARY_DIR="$S2HOME/build/rust/build/$TARGETTRIPLE/stage1/lib/rustlib/$TARGETTRIPLE/lib"
+ RLIBS=$(find $LIBRARY_DIR -name "*.rlib")
+-#--release --target x86_64-unknown-linux-gnu
++#--release --target $TARGETTRIPLE
+ 
+ # (1) Build the program and Preprocess it
+ RUSTFLAGS="--emit=llvm-ir --print link-args" cargo build > ERASAN_linking_commands.txt
+diff --git a/poc/RUSTSEC-2021-0130/run.sh b/poc/RUSTSEC-2021-0130/run.sh
+index b44e16f..f3376c2 100755
+--- a/poc/RUSTSEC-2021-0130/run.sh
++++ b/poc/RUSTSEC-2021-0130/run.sh
+@@ -1,9 +1,10 @@
+ #!/bin/bash
++TARGETTRIPLE=$(uname -m)-unknown-linux-gnu
+ start=$(date +%s%6N)
+ 
+-LIBRARY_DIR="$S2HOME/build/rust/build/x86_64-unknown-linux-gnu/stage1/lib/rustlib/x86_64-unknown-linux-gnu/lib"
++LIBRARY_DIR="$S2HOME/build/rust/build/$TARGETTRIPLE/stage1/lib/rustlib/$TARGETTRIPLE/lib"
+ RLIBS=$(find $LIBRARY_DIR -name "*.rlib")
+-#--release --target x86_64-unknown-linux-gnu
++#--release --target $TARGETTRIPLE
+ 
+ # (1) Build the program and Preprocess it
+ RUSTFLAGS="--emit=llvm-ir --print link-args" cargo build > ERASAN_linking_commands.txt
+diff --git a/poc/RUSTSEC-2022-0070/run.sh b/poc/RUSTSEC-2022-0070/run.sh
+index 61fb94d..ecaa66e 100755
+--- a/poc/RUSTSEC-2022-0070/run.sh
++++ b/poc/RUSTSEC-2022-0070/run.sh
+@@ -1,11 +1,12 @@
+ #!/bin/bash
++TARGETTRIPLE=$(uname -m)-unknown-linux-gnu
+ start=$(date +%s%6N)
+ 
+-LIBRARY_DIR="$S2HOME/build/rust/build/x86_64-unknown-linux-gnu/stage1/lib/rustlib/x86_64-unknown-linux-gnu/lib"
++LIBRARY_DIR="$S2HOME/build/rust/build/$TARGETTRIPLE/stage1/lib/rustlib/$TARGETTRIPLE/lib"
+ RLIBS=$(find $LIBRARY_DIR -name "*.rlib")
+ SECPLIB="$S2HOME/poc/RUSTSEC-2022-0070/target/debug/build/secp256k1-sys-c5fbf70ec555741d/out"
+ 
+-#--release --target x86_64-unknown-linux-gnu
++#--release --target $TARGETTRIPLE
+ 
+ # (1) Build the program and Preprocess it
+ RUSTFLAGS="--emit=llvm-ir --print link-args" cargo build > ERASAN_linking_commands.txt
+diff --git a/poc/RUSTSEC-2022-0078/run.sh b/poc/RUSTSEC-2022-0078/run.sh
+index b44e16f..f3376c2 100755
+--- a/poc/RUSTSEC-2022-0078/run.sh
++++ b/poc/RUSTSEC-2022-0078/run.sh
+@@ -1,9 +1,10 @@
+ #!/bin/bash
++TARGETTRIPLE=$(uname -m)-unknown-linux-gnu
+ start=$(date +%s%6N)
+ 
+-LIBRARY_DIR="$S2HOME/build/rust/build/x86_64-unknown-linux-gnu/stage1/lib/rustlib/x86_64-unknown-linux-gnu/lib"
++LIBRARY_DIR="$S2HOME/build/rust/build/$TARGETTRIPLE/stage1/lib/rustlib/$TARGETTRIPLE/lib"
+ RLIBS=$(find $LIBRARY_DIR -name "*.rlib")
+-#--release --target x86_64-unknown-linux-gnu
++#--release --target $TARGETTRIPLE
+ 
+ # (1) Build the program and Preprocess it
+ RUSTFLAGS="--emit=llvm-ir --print link-args" cargo build > ERASAN_linking_commands.txt
+diff --git a/poc/RUSTSEC-2023-0005/run.sh b/poc/RUSTSEC-2023-0005/run.sh
+index b44e16f..f3376c2 100755
+--- a/poc/RUSTSEC-2023-0005/run.sh
++++ b/poc/RUSTSEC-2023-0005/run.sh
+@@ -1,9 +1,10 @@
+ #!/bin/bash
++TARGETTRIPLE=$(uname -m)-unknown-linux-gnu
+ start=$(date +%s%6N)
+ 
+-LIBRARY_DIR="$S2HOME/build/rust/build/x86_64-unknown-linux-gnu/stage1/lib/rustlib/x86_64-unknown-linux-gnu/lib"
++LIBRARY_DIR="$S2HOME/build/rust/build/$TARGETTRIPLE/stage1/lib/rustlib/$TARGETTRIPLE/lib"
+ RLIBS=$(find $LIBRARY_DIR -name "*.rlib")
+-#--release --target x86_64-unknown-linux-gnu
++#--release --target $TARGETTRIPLE
+ 
+ # (1) Build the program and Preprocess it
+ RUSTFLAGS="--emit=llvm-ir --print link-args" cargo build > ERASAN_linking_commands.txt
