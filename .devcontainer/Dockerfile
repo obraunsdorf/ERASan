@@ -23,4 +23,5 @@ RUN apt-get update \
   libz3-dev \
   less \
   nano \
-  vim
+  vim \
+  llvm-13

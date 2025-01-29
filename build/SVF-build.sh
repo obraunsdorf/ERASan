@@ -97,9 +97,31 @@ cp $erasan_dir/tools/ERAsan/CMakeLists.txt $erasan_dir/tools/ERAsan/erasan.cpp $
 
 echo "[Finished Modifying SVF libraries]"
 
-# build SVF
+# compiling rust_demangle
+cd $erasan_dir/src/rust_demangle
+cargo build --release
 
+# build SVF
 cd $SVF
+# Change dependencies for SVF if on AARCH64
+if [ "$(uname -m)" == "aarch64" ]; then
+    # Setting LLVM_DIR for SVF to the LLVM 13 shipped with ubuntu 
+    # which hopefully contains the AARCH64 fix https://github.com/llvm/llvm-project/commit/b66339575a9b541e67ce5ad2ba7e88da07cf9305#diff-df87e9ab6218c6a572c045d3501c19f225363ebb70b2f033b51529ae4f4fb2b9
+    export LLVM_DIR=/usr/lib/llvm-13/
+    # make sure LLVM 13 is installed
+    if [ ! -d "$LLVM_DIR" ]; then
+        echo "LLVM 13 is not installed. Please install LLVM 13 first. (sudo apt install llvm-13)"
+        exit 1
+    fi
+
+    # Setting Z3_DIR for SVF to the Z3 shipped with ubuntu
+    export Z3_DIR=/usr
+    # check if z3.h and z3 executable are present
+    if [ ! -f "$Z3_DIR/include/z3.h" ] || [ ! -f "$Z3_DIR/bin/z3" ]; then
+        echo "Z3 is not installed. Please install Z3 first. (sudo apt install z3)"
+        exit 1
+    fi
+fi
 
 echo "[Build SVF]"
 ./build.sh
