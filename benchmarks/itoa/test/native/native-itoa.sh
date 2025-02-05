@@ -13,7 +13,8 @@ cp $TEST/../total.ll $TEST
 
 llvm-as total.ll -o total.bc
 llc -filetype=obj total.bc -o total.o
-clang total.o -o native -L$LIBRARY_DIR -lstd-bc021c2817d56996 -lpthread -ldl -lm -lssl -lcrypto $RLIBS $RLIBS
+HASH=$(basename $(find $LIBRARY_DIR -name "libstd-*.rlib" | head -n 1) | sed 's/libstd-\(.*\)\.rlib/\1/')
+clang total.o -o native -L$LIBRARY_DIR -lstd-$HASH -lpthread -ldl -lm -lssl -lcrypto $RLIBS $RLIBS
 cp native $BINARY_DIR
 cd $BINARY_DIR
 ./native --bench

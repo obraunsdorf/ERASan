@@ -22,7 +22,8 @@ erasan total.ll -erasan
 opt --asan-module -S erasanOptAnalysis.ll -o erasanOptAnalysis.ll
 llvm-as erasanOptAnalysis.ll -o erasanOptAnalysis.bc
 llc -filetype=obj erasanOptAnalysis.bc -o erasanOptAnalysis.o
-clang erasanOptAnalysis.o -o erasan -L$LIBRARY_DIR -lstd-bc021c2817d56996 -lpthread -ldl -lm -fsanitize=address -lssl -lcrypto $RLIBS $RLIBS
+HASH=$(basename $(find $LIBRARY_DIR -name "libstd-*.rlib" | head -n 1) | sed 's/libstd-\(.*\)\.rlib/\1/')
+clang erasanOptAnalysis.o -o erasan -L$LIBRARY_DIR -lstd-$HASH -lpthread -ldl -lm -fsanitize=address -lssl -lcrypto $RLIBS $RLIBS
 cp erasan $BINARY_DIR
 cd $BINARY_DIR
 ./erasan --bench
