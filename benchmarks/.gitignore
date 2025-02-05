@@ -1,0 +1,9 @@
+*.ll
+*.bc
+*.o
+*Erasan_opt.txt
+
+
+*/test/erasan/erasan
+*/test/native/native
+
